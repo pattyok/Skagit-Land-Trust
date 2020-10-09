@@ -1,0 +1,38 @@
+/** Share Links **/
+.social-share-links {
+	display: flex;
+	align-items: center;
+	font-size: var(--font-size-large);
+	color: var(--color-theme-aqua);
+
+	& a,
+	& a:visited {
+		color: var(--color-theme-aqua);
+	}
+
+	& a:hover,
+	& a:active {
+
+		color: var(--color-theme-aqua-light-links);
+	}
+}
+
+
+.social-share-links__label {
+	color: var(--color-theme-aqua-light-links);
+	font-size: var(--font-size-regular);
+	font-weight: var(--font-weight-medium);
+	margin: 0;
+	padding: 0.5rem 0.5rem 0.5rem 0;
+}
+
+@media (--desktop-up) {
+
+	.social-share-links__label {
+		font-size: var(--font-size-regular-hd);
+	}
+
+	.social-share-links {
+		font-size: var(--font-size-large-hd);
+	}
+}

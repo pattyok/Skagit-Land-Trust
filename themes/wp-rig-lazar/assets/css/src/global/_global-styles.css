@@ -1,0 +1,156 @@
+/*--------------------------------------------------------------
+# Accessibility
+--------------------------------------------------------------*/
+
+/**
+ * Text meant only for screen readers.
+ * Re: word-wrap: Many screen reader and browser combinations announce broken
+ * words as they would appear visually.
+ */
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+	background-color: #f1f1f1;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto !important;
+	color: #21759b;
+	display: block;
+	font-size: 0.875rem;
+	font-weight: 700;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000; /* Above WP toolbar. */
+}
+
+/* Do not show the outline on the skip link target. */
+#primary[tabindex="-1"]:focus {
+	outline: 0;
+}
+
+/*--------------------------------------------------------------
+# Layouts
+--------------------------------------------------------------*/
+.site {
+	margin: 0 auto;
+	max-width: 100%;
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+
+.site-main {
+	flex-grow: 1;
+}
+
+@media (--sidebar-query) {
+
+	.has-sidebar .site {
+		margin: 0 1em;
+		display: grid;
+		grid-template-columns: 3fr 1fr;
+		grid-gap: 2rem;
+		justify-content: center;
+	}
+
+	.site-header {
+		grid-column: span 2;
+	}
+
+	.site-main {
+		grid-column: 1;
+		min-width: 0;
+
+	}
+
+	.primary-sidebar {
+		grid-column: 2;
+		min-width: 0;
+	}
+
+	.site-footer {
+		grid-column: span 2;
+	}
+}
+
+
+/*--------------------------------------------------------------
+# Infinite scroll
+--------------------------------------------------------------*/
+
+/* Globally hidden elements when Infinite Scroll is supported and in use. */
+.infinite-scroll .posts-navigation,
+.infinite-scroll .pagination,
+.infinite-scroll.neverending .site-footer {
+
+	/* Theme Footer (when set to scrolling) */
+	display: none;
+}
+
+/* When Infinite Scroll has reached its end we need to re-display elements that
+were hidden (via .neverending) before. */
+.infinity-end.neverending .site-footer {
+	display: block;
+}
+
+/*--------------------------------------------------------------
+# Utillity
+--------------------------------------------------------------*/
+
+@media (--mobile-only) {
+
+	.hidden-mobile {
+		display: none !important;
+	}
+}
+
+@media (--tablet-only) {
+
+	.hidden-tablet {
+		display: none !important;
+	}
+}
+
+@media (--tablet-wide-up) {
+
+	.hidden-tablet-wide-up {
+		display: none;
+	}
+
+	.hidden-desktop {
+		display: none !important;
+	}
+}
+
+
+@media (--desktop-up) {
+
+	.hidden-desktop-up {
+		display: none;
+	}
+}
+
+/*--------------------------------------------------------------
+# Common Icons
+--------------------------------------------------------------*/
+.arrow-icon {
+	height: 15px;
+	width: 15px;
+	display: inline-block;
+	border: solid var(--color-theme-white);
+	border-width: 3px 3px 0 0;
+	transform: rotate(45deg);
+}
+

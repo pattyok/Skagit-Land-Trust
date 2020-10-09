@@ -1,0 +1,21 @@
+@import './carkeek-blocks.css';
+.block-editor-block-list__block[data-type="carkeek-blocks/slider"],
+.block-editor-block-list__block[data-type="carkeek-blocks/image-slider"]{
+    .block-editor-block-list__layout > .wp-block {
+        display: none;
+        &:first-child {
+            display: block;
+        }
+    }
+    &.is-selected,
+    &.has-child-selected {
+        .block-editor-block-list__layout > .wp-block {
+            display: block;
+        }
+    }
+}
+
+.block-library-gallery-item__inline-menu.carkeek-edit .components-button.is-pressed {
+    background-color: #fff;
+    color: #000;
+}

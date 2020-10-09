@@ -1,0 +1,50 @@
+.editor-styles-wrapper {
+    .wp-block-carkeek-blocks-link-gallery {
+        display: block;
+        .block-editor-block-list__layout {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .block-editor-block-list__layout > * {
+            padding: 2rem;
+            padding-top: 0;
+        }
+
+        &.has-1-columns {
+            .block-editor-block-list__layout > * {
+                flex-basis: 100%;
+                padding-left: 30%;
+                padding-right: 30%;
+            }
+        }
+        &.has-2-columns {
+            .block-editor-block-list__layout > * {
+                flex-basis: 50%;
+            }
+        }
+        &.has-3-columns {
+            .block-editor-block-list__layout > * {
+                flex-basis: 33.3333%;
+            }
+        }
+        &.has-4-columns {
+            .block-editor-block-list__layout > * {
+                flex-basis: 25%;
+            }
+        }
+        &.has-5-columns {
+            .block-editor-block-list__layout > * {
+                flex-basis: 20%;
+            }
+        }
+        &.has-6-columns {
+            .block-editor-block-list__layout > * {
+                flex-basis: 16.66667%;
+            }
+        }
+    }
+}

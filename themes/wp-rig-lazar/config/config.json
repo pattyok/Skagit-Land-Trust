@@ -1,0 +1,27 @@
+{
+  "theme": {
+    "slug": "Lazar-theme",
+    "name": "Lazar Lanscape Custom Theme",
+    "author": "Patty O'Hara"
+  },
+  "dev": {
+    "browserSync": {
+      "live": true,
+      "proxyURL": "lazar-landscape.local",
+      "bypassPort": "3000",
+      "https": true,
+      "certPath": "/Users/pattyohara/Sites/BrowserSync/wp-rig-browser-sync-cert.crt",
+      "keyPath": "/Users/pattyohara/Sites/BrowserSync/wp-rig-browser-sync-key.key"
+    }
+  },
+  "export": {
+    "compress": false,
+    "generatePotFile": false,
+    "filesToCopy": [
+      "LICENSE",
+      "readme.txt",
+      "assets/fonts/**",
+      "acf-json/**"
+    ]
+  }
+}

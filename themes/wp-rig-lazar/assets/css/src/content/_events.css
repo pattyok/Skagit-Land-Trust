@@ -1,0 +1,414 @@
+.events-custom-content {
+	margin-right: auto;
+	margin-left: auto;
+	padding-right: var(--gutter-width-mobile);
+	padding-left: var(--gutter-width-mobile);
+	max-width: var(--content-width);
+	margin-bottom: var(--block-padding-vert);
+}
+
+@media (--tablet-small-up) {
+
+	.events-custom-content {
+		padding-right: var(--gutter-width);
+		padding-left: var(--gutter-width);
+		margin-bottom: var(--block-padding-vert-tablet);
+	}
+}
+
+.tribe-events-calendar-list__event-date-tag {
+	display: none;
+}
+
+.tribe-events {
+
+	& .tribe-events-calendar-list__event-datetime-wrapper {
+		font-size: var(--font-size-h1-mobile);
+		color: var(--color-theme-aqua);
+		line-height: 1.15;
+		font-weight: 700;
+	}
+
+	& .wfl-events-more {
+
+		& .tribe-events-calendar-list__event-datetime-wrapper {
+			font-size: var(--font-size-h3-mobile);
+		}
+	}
+
+	& .entry-taxonomies {
+		font-size: 16px;
+		color: var(--color-theme-aqua);
+		letter-spacing: 2px;
+		font-family: var(--highlight-font-family);
+		text-transform: uppercase;
+		font-weight: 700;
+		margin-bottom: 0.5rem;
+	}
+
+	& .tribe-events-calendar-list__event-title {
+		font-size: var(--font-size-h4-mobile);
+	}
+
+	.tribe-events-calendar-list__event-details {
+		padding: var(--gutter-width-mobile);
+	}
+
+	& .tribe-events-calendar-list__event-more-link {
+		margin-top: 1rem;
+	}
+
+	& .wfl-events-more__headline {
+		display: none;
+	}
+}
+
+@media (--tablet-wide-up) {
+
+	.tribe-events {
+
+		& .tribe-events-calendar-list__event-datetime-wrapper {
+			font-size: var(--font-size-h1);
+		}
+	}
+}
+
+@media (--desktop-up) {
+
+	.tribe-events {
+
+		& .tribe-events-calendar-list__event-datetime-wrapper {
+			font-size: var(--font-size-h1);
+		}
+
+		& .wfl-events-more {
+
+			& .tribe-events-calendar-list__event-datetime-wrapper {
+				font-size: var(--font-size-h3);
+			}
+		}
+
+		& .tribe-events-calendar-list__event-title {
+			font-size: var(--font-size-h4);
+		}
+
+		& .entry-taxonomies {
+			font-size: 20px;
+		}
+	}
+}
+
+.tribe-common .tribe-common-g-row--gutters {
+	margin-left: 0;
+	margin-right: 0;
+
+	& > .tribe-events-calendar-list__event-featured-image-wrapper.tribe-common-g-col {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+.tribe-common--breakpoint-medium.tribe-common {
+
+	& .tribe-common-g-row--gutters {
+		margin: 0;
+	}
+}
+
+.tribe-common--breakpoint-medium.tribe-events {
+
+	& .tribe-events-calendar-list {
+		border-top: 2px solid var(--color-border);
+
+		& .tribe-events-calendar-list__event {
+			flex-direction: row;
+		}
+
+		& > .tribe-events-calendar-list__event-row:nth-child(even) .tribe-events-calendar-list__event {
+			flex-direction: row-reverse;
+		}
+	}
+
+	& .tribe-events-calendar-list__event-wrapper {
+		flex: 1 1 100%;
+	}
+
+	& .tribe-events-calendar-list__event-row {
+		margin: 0;
+
+		& > .tribe-common-g-col {
+			padding: 0;
+		}
+	}
+
+	& .tribe-events-calendar-list__event-featured-image-wrapper {
+		width: 50%;
+		padding: 0 !important;
+
+		& img {
+			width: 100%;
+			height: 53vw;
+			object-fit: cover;
+			max-height: 800px;
+		}
+	}
+
+	& .tribe-events-calendar-list__event-details {
+		width: 50%;
+		padding: var(--block-padding-vert-tablet) var(--gutter-width);
+	}
+
+	& .wfl-events-more-wrapper {
+		border-top: 2px solid var(--color-border);
+		padding: var(--block-padding-vert-tablet) var(--gutter-width-small);
+
+		& .wfl-events-more__headline {
+			display: block;
+			width: 100%;
+			margin-bottom: var(--block-padding-vert-tablet);
+		}
+	}
+
+	& .wfl-events-more-row {
+		margin-right: calc(-0.5 * var(--gutter-width-small));
+		margin-left: calc(-0.5 * var(--gutter-width-small));
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+
+		& .tribe-events-calendar-list__event-row {
+			flex: 1 1 33.33333%;
+		}
+
+		& .tribe-events-calendar-list__event {
+			display: flex;
+			flex-direction: column;
+
+		}
+
+		& .tribe-events-calendar-list__event-details {
+			width: 100%;
+			padding-right: calc(var(--gutter-width-small) / 2) !important;
+			padding-left: calc(var(--gutter-width-small) / 2) !important;
+			padding-top: 1rem;
+			padding-bottom: 0;
+		}
+
+		& .tribe-events-calendar-list__event-description {
+			display: none !important;
+		}
+
+		& .tribe-events-calendar-list__event-featured-image-wrapper {
+			width: 100%;
+			padding-right: calc(var(--gutter-width-small) / 2) !important;
+			padding-left: calc(var(--gutter-width-small) / 2) !important;
+
+			& a {
+				position: relative;
+
+				&::after {
+					display: block;
+					width: 100%;
+					content: "";
+					padding-bottom: 66%;
+				}
+			}
+
+			& img {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+
+
+	}
+
+}
+
+/** Single Event **/
+
+.single-tribe_events {
+
+	& .page-content > .wp-block-group.wft-event-details {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	& .tribe-events-schedule {
+		margin-top: 1rem;
+
+		& h2,
+		& span {
+			font-size: var(--font-size-h5-mobile) !important;
+			line-height: 1.555;
+			font-family: var(--global-font-family);
+		}
+
+		& .tribe-events-schedule__timezone {
+			font-weight: 700;
+			color: var(--color-theme-aqua);
+
+		}
+	}
+
+	& .tribe-block__venue {
+
+		& .tribe-block__venue__meta {
+			display: flex;
+			flex-wrap: wrap;
+
+			& .tribe-block__venue__name h3,
+			& .tribe-block__venue__address {
+				font-size: var(--font-size-h5-mobile);
+				color: var(--color-theme-aqua);
+				font-weight: 700;
+
+			}
+
+			& .tribe-block__venue__address {
+				margin-bottom: 0;
+				display: flex;
+
+			}
+
+			& br {
+				display: none;
+			}
+
+			& .tribe-country-name {
+				display: none;
+			}
+
+			& .tribe-events-gmap {
+				display: none;
+			}
+		}
+	}
+
+	& .tribe-block__events-link {
+		margin-top: 2rem;
+		padding-bottom: 0.5rem;
+		border-bottom: 2px solid var(--color-border);
+		display: flex;
+		align-content: flex-end;
+		justify-content: space-between;
+		margin-bottom: var(--block-padding-vert);
+
+		& .share-link-calendar-wrapper {
+			font-size: var(--font-size-large);
+		}
+
+		& .share-link-calendar {
+			display: flex;
+			align-items: center;
+		}
+
+		& .tribe-events-gmap {
+			padding-top: 0.5rem;
+		}
+
+		& li {
+			padding-bottom: 0;
+			padding-top: 0;
+		}
+
+		& [class^="icon"] {
+			font-size: var(--font-size-large);
+		}
+
+		& .share-link-calendar-label {
+			font-size: var(--font-size-regular);
+			padding-left: 5px;
+		}
+
+
+	}
+}
+
+@media (--tablet-small-up) {
+
+	.single-tribe_events {
+
+		& .tribe-block__venue {
+			flex-wrap: nowrap;
+
+			& .tribe-block__venue__meta {
+
+				& .tribe-block__venue__name h3,
+				& .tribe-block__venue__address {
+					line-height: 1.555;
+				}
+
+				& .tribe-block__venue__address {
+
+					&::before {
+						content: ": ";
+						padding-right: 5px;
+					}
+				}
+			}
+		}
+
+		& .tribe-block__events-link {
+			align-items: center;
+			justify-content: flex-start;
+
+			& .share-link-calendar-wrapper {
+
+				margin-left: 3rem;
+			}
+
+			& .tribe-events-gmap {
+				padding-top: 0;
+				margin-left: 3rem;
+
+			}
+		}
+	}
+}
+
+
+@media (--desktop-up) {
+
+	.single-tribe_events {
+
+		& .tribe-events-schedule {
+
+			& h2,
+			& span {
+				font-size: var(--font-size-h5) !important;
+			}
+		}
+
+		& .tribe-block__venue {
+
+			& .tribe-block__venue__meta {
+
+				& .tribe-block__venue__name h3,
+				& .tribe-block__venue__address {
+					font-size: var(--font-size-h5);
+					line-height: 1.555;
+					color: var(--color-theme-aqua);
+					font-weight: 700;
+
+				}
+			}
+		}
+
+		& .tribe-block__events-link {
+
+			& [class^="icon"] {
+				font-size: var(--font-size-large-hd);
+			}
+
+			& .share-link-calendar-label {
+				font-size: var(--font-size-regular-hd);
+			}
+		}
+	}
+}
+

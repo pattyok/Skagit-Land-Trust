@@ -1,0 +1,36 @@
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Imports
+	# Custom properties
+	# Reset
+	# Typography
+	# Elements
+	# Links
+# Accessibility
+# Layout
+# Forms
+# Header
+	# Main navigation menu
+# Content navigation
+# Footer
+# Infinite scroll
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Imports
+--------------------------------------------------------------*/
+@import "global/_fontello.css";
+@import "global/_custom-properties.css";
+@import "global/_reset.css";
+@import "global/_global-styles.css";
+@import "global/_icons-animated.css";
+@import "global/_typography.css";
+@import "global/_elements.css";
+@import "global/_links.css";
+@import "global/_search.css";
+@import "global/_forms.css";
+@import "global/_forms_gravity.css";
+@import "global/_header.css";
+@import "global/_navigation.css";
+@import "global/_footer.css";

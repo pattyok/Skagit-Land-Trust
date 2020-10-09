@@ -1,0 +1,132 @@
+/**
+ * Custom Properties
+ * aka CSS variables.
+ *
+ * @link: https://developer.mozilla.org/en-US/docs/Web/CSS/--*
+ **/
+
+:root {
+	--global-font-color: #3c3b3b;
+	--global-font-family: avenir, sans-serif;
+	--global-font-size: 16;
+	--global-font-line-height: 1.7;
+	--highlight-font-family: avenir, sans-serif;
+	--navigation-font-family: avenir, sans-serif;
+	--form-field-font-family: avenir, sans-serif;
+	--header-font-family: helveticaneue-light, avenir, sans-serif;
+	--icons-font-family: carkeek-blocks, sans-serif;
+	--content-width: calc(1180px + (2 * var(--gutter-width) )); /* including padding 824 + 4 rem*/
+	--content-width-actual: 1130px;
+	--header-width: 100%;
+	--dropdown-symbol-width: 0.7em;
+
+	--gutter-width: 1.5rem;
+	--gutter-width-small: 12px;
+	--gutter-width-mobile: 1.5rem;
+
+	/*block padding */
+	--block-padding-vert: 2.5rem;
+	--block-padding-vert-tablet: 2.5rem;
+
+	--global-text-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+
+
+	/* Custom editor colors */
+	--color-theme-primary: #6d8d39;
+	--color-theme-secondary: #c0da95;
+	--color-theme-green: #6d8d39;
+	--color-theme-green-light: #c0da95;
+	--color-theme-green-dark: #324611;
+	--color-theme-black: #3c3b3b;
+	--color-theme-white: #fff;
+
+	--color-theme-grey-dark: #3c3b3b;
+	--color-theme-grey-light: #ccc;
+	--color-theme-grey: #757575;
+
+	--color-theme-grey-lightest: #f2f2f2;
+
+	--color-theme-nav: var(--color-theme-grey-dark);
+	--color-button-background: var(--color-theme-green);
+	--color-button-text: var(--color-theme-white);
+	--color-button-hover: var(--color-theme-green-dark);
+
+	--color-link: var(--color-theme-green);
+	--color-link-visited: var(--color-theme-green);
+	--color-link-active: var(--color-theme-green);
+
+	--color-quote-border: #000;
+	--color-quote-citation: #6c7781;
+	--color-border: var(--color-theme-grey-lightest);
+	--color-border-dark: #979797;
+
+	/* Custom editor font sizes */
+	--font-size-small: calc(16 / var(--global-font-size) * 1rem);
+	--font-size-xsmall: calc(12 / var(--global-font-size) * 1rem);
+	--font-size-medium: calc(18 / var(--global-font-size) * 1rem); /** intro text **/
+
+	--font-size-regular: calc(17 / var(--global-font-size) * 1rem);
+	--font-size-regular-hd: calc(18 / var(--global-font-size) * 1rem);
+	--font-size-large: calc(18 / var(--global-font-size) * 1rem); /** quote **/
+	--font-size-large-t: calc(21 / var(--global-font-size) * 1rem); /** quote **/
+	--font-size-large-tw: calc(24 / var(--global-font-size) * 1rem); /** quote **/
+	--font-size-large-hd: calc(30 / var(--global-font-size) * 1rem); /** quote **/
+	--font-size-larger: calc(48 / var(--global-font-size) * 1rem);
+	--font-size-nav: calc(16 / var(--global-font-size) * 1rem);
+	--font-size-nav-mobile: calc(16 / var(--global-font-size) * 1rem);
+	--font-size-button: calc(16 / var(--global-font-size) * 1rem);
+	--font-size-button-hd: calc(20 / var(--global-font-size) * 1rem);
+
+
+	/* Main family font weights */
+	--font-weight-regular: 300;
+	--font-weight-light: 300;
+	--font-weight-book: 350;
+	--font-weight-roman: 400;
+	--font-weight-medium: 500;
+	--font-weight-black: 900;
+
+	/* Heading font sizes */
+	--font-size-h1: calc(48 / var(--global-font-size) * 1rem);
+	--font-size-h1-entry-title: calc(28 / var(--global-font-size) * 1rem);
+	--font-size-h2: calc(20 / var(--global-font-size) * 1rem);
+	--font-size-h3: calc(18 / var(--global-font-size) * 1rem);
+	--font-size-h4: calc(16 / var(--global-font-size) * 1rem);
+	--font-size-h5: calc(16 / var(--global-font-size) * 1rem);
+	--font-size-h6: calc(16 / var(--global-font-size) * 1rem);
+	--header-line-height: 1.25;
+	--header-height: 100px;
+	--footer-height: 50px;
+
+	--admin-bar-height: 46px;
+
+}
+
+@media (--tablet-up) {
+
+	:root {
+		--font-size-h1: calc(65 / var(--global-font-size) * 1rem);
+	}
+}
+
+@media (--tablet-wide-up) {
+
+	:root {
+		--header-height: 150px;
+		--admin-bar-height: 32px;
+	}
+}
+
+@media (--desktop-up) {
+
+	:root {
+		--font-size-h1-entry-title: calc(34 / var(--global-font-size) * 1rem);
+		--font-size-medium: calc(24 / var(--global-font-size) * 1rem);
+		--font-size-h1: calc(85 / var(--global-font-size) * 1rem);
+		--font-size-h2: calc(24 / var(--global-font-size) * 1rem);
+		--font-size-h3: calc(18 / var(--global-font-size) * 1rem);
+
+		--gutter-width-small: 16px;
+
+	}
+}

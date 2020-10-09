@@ -1,0 +1,71 @@
+@import './carkeek-blocks.css';
+@import './slick.css';
+@import './slick-theme.scss';
+
+.slick-slide {
+    color: #fff;
+
+    .wp-block-media-text {
+        img {
+            width: 100%;
+            height: 66vw;
+            max-height: 800px;
+            object-fit: cover;
+        }
+
+        .wp-block-media-text__content {
+            padding-left: 4rem;
+            padding-right: 4em;
+        }
+    }
+}
+
+.slick-initialized .slick-track{
+    display: flex;
+
+    .slick-slide {
+        flex: 1 1 0;
+        display: flex;
+        height: auto;
+        align-items: center; //optional
+        justify-content: center; //optional
+        > div,
+        .slide-single {
+            height: 100%;
+
+            > [class^="wp-block"] {
+                height: 100%;
+            }
+        }
+    }
+}
+.wp-block-carkeek-blocks-slider__slide-wrapper {
+    height: 66vw;
+}
+
+.wp-block-carkeek-blocks-image-slider {
+    .slick-list,
+	.slick-track {
+		height: 100%;
+	}
+    .slick-slide > div {
+        width: 100%;
+    }
+    .carkeek-slider-item {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    .carkeek-slider-item__image {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+    }
+    .carkeek-slider-item__caption {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        padding: 1rem 2rem;
+        font-size: 1.5rem;
+    }
+}

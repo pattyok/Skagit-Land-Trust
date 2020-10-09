@@ -1,0 +1,97 @@
+{
+    "key": "group_5efb77de88c53",
+    "title": "Farms: Set Location",
+    "fields": [
+        {
+            "key": "field_5efb7828d8cbb",
+            "label": "Lookup Location",
+            "name": "lookup_location",
+            "type": "google_map",
+            "instructions": "Enter the farm address to set the lat, lng coordinates.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "center_lat": "47.608013",
+            "center_lng": "-122.335167",
+            "zoom": "",
+            "height": ""
+        },
+        {
+            "key": "field_5f1f117865bda",
+            "label": "LatLng",
+            "name": "latlng",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5f1f118f65bdb",
+                    "label": "Lat",
+                    "name": "lat",
+                    "type": "text",
+                    "instructions": "This field is updated\/populated on save.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5f1f119c65bdc",
+                    "label": "Lng",
+                    "name": "lng",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "protected_farms"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1595871676
+}
