@@ -64,11 +64,11 @@
 /* we only show the nav when the nav is active */
 html.overflow-hidden {
 	overflow: hidden;
-	height: 100vh;
+	height: var(--viewheight);
 
 	& body {
 		overflow: hidden auto;
-		height: 100vh;
+		height: var(--viewheight);
 	}
 
 	& .site {
@@ -76,7 +76,7 @@ html.overflow-hidden {
 	}
 
 	& .overlay {
-		height: 100vh;
+		height: var(--viewheight);
 		transform: translateX(0);
 		background-color: rgba(0, 0, 0, 0.5);
 		transition:
@@ -102,7 +102,7 @@ html.overflow-hidden {
 		transition: transform 0.6s ease;
 		display: flex;
 		flex-direction: column;
-		min-height: calc(100vh - 102px);
+		min-height: calc(var(--viewheight) - 102px);
 		justify-content: flex-start;
 	}
 
@@ -165,7 +165,7 @@ html.overflow-hidden {
 	/* sub menus toggle from right */
 	.nav--toggle-small .sub-menu {
 		width: 380px;
-		height: 100vh;
+		height: var(--viewheight);
 		position: fixed;
 		top: 0;
 		align-content: flex-start;
@@ -318,6 +318,10 @@ html.overflow-hidden {
 
 	& .sub-menu li {
 		border-bottom: 0;
+
+		& a {
+			padding: 0.5rem;
+		}
 	}
 }
 

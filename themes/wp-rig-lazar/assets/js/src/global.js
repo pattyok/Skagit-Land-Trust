@@ -1,5 +1,18 @@
 ( function( $ ) {
-	$( document ).ready( function() {
+	function setVH() {
+	// account for vh on mobile
+	// https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
+		const vh = window.innerHeight * 0.01;
+		// Then we set the value in the --vh custom property to the root of the document
+		document.documentElement.style.setProperty( '--vh', `${ vh }px` );
+	}
+
+	jQuery( function() {
+		setVH();
+		// We listen to the resize event
+		window.addEventListener( 'resize', () => {
+			setVH();
+		} );
 		$( '.info-popover' ).gpopover();
 
 		$( '.toggle-slide' ).click( function( e ) {
@@ -44,3 +57,4 @@
 			} );
 	} );
 }( jQuery ) );
+

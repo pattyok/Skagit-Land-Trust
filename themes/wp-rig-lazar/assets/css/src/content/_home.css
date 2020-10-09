@@ -5,7 +5,7 @@
 
 	& .wp-block-carkeek-blocks-image-slider {
 		margin-bottom: 0;
-		height: calc(100vh - var(--footer-height) - var(--header-height));
+		height: calc(var(--viewheight) - var(--footer-height) - var(--header-height));
 		position: relative;
 	}
 
