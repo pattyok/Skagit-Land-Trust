@@ -1,63 +1,83 @@
 @font-face {
-	font-family: "Avenir";
+	font-family: avenir;
 	font-weight: 300;
 	font-style: normal;
 	src:
-		url("../fonts/AvenirLTStd-Roman.eot?#iefix") format("embedded-opentype"),
-		url("../fonts/AvenirLTStd-Roman.otf")  format("opentype"),
-		url("../fonts/AvenirLTStd-Roman.woff") format("woff"),
-		url("../fonts/AvenirLTStd-Roman.ttf")  format("truetype"),
-		url("../fonts/AvenirLTStd-Roman.svg#AvenirLTStd-Roman") format("svg");
+		url(../fonts/AvenirLTStd-Roman.eot?#iefix) format("embedded-opentype"),
+		url(../fonts/AvenirLTStd-Roman.otf) format("opentype"),
+		url(../fonts/AvenirLTStd-Roman.woff) format("woff"),
+		url(../fonts/AvenirLTStd-Roman.ttf) format("truetype"),
+		url(../fonts/AvenirLTStd-Roman.svg#AvenirLTStd-Roman) format("svg");
 }
 
 @font-face {
-	font-family: "Avenir";
+	font-family: avenir;
 	font-weight: 350;
 	font-style: normal;
 	src:
-		url("../fonts/AvenirLTStd-Book.eot?#iefix") format("embedded-opentype"),
-		url("../fonts/AvenirLTStd-Book.otf")  format("opentype"),
-		url("../fonts/AvenirLTStd-Book.woff") format("woff"),
-		url("../fonts/AvenirLTStd-Book.ttf")  format("truetype"),
-		url("../fonts/AvenirLTStd-Book.svg#AvenirLTStd-Book") format("svg");
+		url(../fonts/AvenirLTStd-Book.eot?#iefix) format("embedded-opentype"),
+		url(../fonts/AvenirLTStd-Book.otf) format("opentype"),
+		url(../fonts/AvenirLTStd-Book.woff) format("woff"),
+		url(../fonts/AvenirLTStd-Book.ttf) format("truetype"),
+		url(../fonts/AvenirLTStd-Book.svg#AvenirLTStd-Book) format("svg");
 }
 
 @font-face {
-	font-family: "Avenir";
+	font-family: avenir;
 	font-weight: 400;
 	font-style: normal;
 	src:
-		url("../fonts/Avenir-Roman.eot?#iefix") format("embedded-opentype"),
-		url("../fonts/Avenir-Roman.otf")  format("opentype"),
-		url("../fonts/Avenir-Roman.woff") format("woff"),
-		url("../fonts/Avenir-Roman.ttf")  format("truetype"),
-		url("../fonts/Avenir-Roman.svg#Avenir-Roman") format("svg");
+		url(../fonts/Avenir-Roman.eot?#iefix) format("embedded-opentype"),
+		url(../fonts/Avenir-Roman.otf) format("opentype"),
+		url(../fonts/Avenir-Roman.woff) format("woff"),
+		url(../fonts/Avenir-Roman.ttf) format("truetype"),
+		url(../fonts/Avenir-Roman.svg#Avenir-Roman) format("svg");
 }
 
 @font-face {
-	font-family: "Avenir";
+	font-family: avenir;
 	font-weight: 500;
 	font-style: normal;
-	src: url("../fonts/Avenir-Medium.eot?#iefix") format("embedded-opentype"), url("../fonts/Avenir-Medium.woff") format("woff"), url("../fonts/Avenir-Medium.ttf")  format("truetype"), url("../fonts/Avenir-Medium.svg#Avenir-Medium") format("svg");
+	src: url(../fonts/Avenir-Medium.eot?#iefix) format("embedded-opentype"), url(../fonts/Avenir-Medium.woff) format("woff"), url(../fonts/Avenir-Medium.ttf) format("truetype"), url(../fonts/Avenir-Medium.svg#Avenir-Medium) format("svg");
 }
 
 @font-face {
-	font-family: "Avenir";
+	font-family: avenir;
 	font-weight: 900;
 	font-style: normal;
 	src:
-		url("../fonts/AvenirLTStd-Black.eot?#iefix") format("embedded-opentype"),
-		url("../fonts/AvenirLTStd-Black.otf")  format("opentype"),
-		url("../fonts/AvenirLTStd-Black.woff") format("woff"),
-		url("../fonts/AvenirLTStd-Black.ttf")  format("truetype"),
-		url("../fonts/AvenirLTStd-Black.svg#AvenirLTStd-Black") format("svg");
+		url(../fonts/AvenirLTStd-Black.eot?#iefix) format("embedded-opentype"),
+		url(../fonts/AvenirLTStd-Black.otf) format("opentype"),
+		url(../fonts/AvenirLTStd-Black.woff) format("woff"),
+		url(../fonts/AvenirLTStd-Black.ttf) format("truetype"),
+		url(../fonts/AvenirLTStd-Black.svg#AvenirLTStd-Black) format("svg");
 }
 
+@font-face {
+	font-family: helveticaneue;
+	font-weight: 300;
+	font-style: normal;
+	src: url(../fonts/HelveticaNeue-Thin.eot?#iefix) format("embedded-opentype"), url(../fonts/HelveticaNeue-Thin.woff) format("woff"), url(../fonts/HelveticaNeue-Thin.ttf) format("truetype"), url(../fonts/HelveticaNeue-Thin.svg#HelveticaNeue-Thin) format("svg");
+}
 
 @font-face {
-	font-family: "HelveticaNeue-Light";
-	font-weight: normal;
+	font-family: helveticaneue;
+	font-weight: 400;
 	font-style: normal;
-	src: url("../fonts/HelveticaNeue-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/HelveticaNeue-Light.woff") format("woff"), url("../fonts/HelveticaNeue-Light.ttf")  format("truetype"), url("../fonts/HelveticaNeue-Light.svg#HelveticaNeue-Light") format("svg");
+	src: url(../fonts/HelveticaNeue-Light.eot?#iefix) format("embedded-opentype"), url(../fonts/HelveticaNeue-Light.woff) format("woff"), url(../fonts/HelveticaNeue-Light.ttf) format("truetype"), url(../fonts/HelveticaNeue-Light.svg#HelveticaNeue-Light) format("svg");
+}
+
+@font-face {
+	font-family: helveticaneue;
+	font-weight: 500;
+	font-style: normal;
+	src: url(../fonts/HelveticaNeue-Regular_22555.ttf) format("truetype");
+}
+
+@font-face {
+	font-family: helveticaneue;
+	font-weight: 600;
+	font-style: normal;
+	src: url(../fonts/HelveticaNeue-Medium.eot?#iefix) format("embedded-opentype"), url(../fonts/HelveticaNeue-Medium.woff) format("woff"), url(../fonts/HelveticaNeue-Medium.ttf) format("truetype"), url(../fonts/HelveticaNeue-Medium.svg#HelveticaNeue-Medium) format("svg");
 }
 

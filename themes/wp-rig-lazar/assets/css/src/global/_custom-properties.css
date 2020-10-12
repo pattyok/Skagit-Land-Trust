@@ -13,7 +13,7 @@
 	--highlight-font-family: avenir, sans-serif;
 	--navigation-font-family: avenir, sans-serif;
 	--form-field-font-family: avenir, sans-serif;
-	--header-font-family: helveticaneue-light, avenir, sans-serif;
+	--header-font-family: helveticaneue, avenir, sans-serif;
 	--icons-font-family: carkeek-blocks, sans-serif;
 	--content-width: calc(1180px + (2 * var(--gutter-width) )); /* including padding 824 + 4 rem*/
 	--content-width-actual: 1130px;

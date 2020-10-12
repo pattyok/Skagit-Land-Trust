@@ -137,7 +137,7 @@ h2 + [class^=wp-block-] {
 h1,
 .h1 {
 	font-family: var(--header-font-family);
-	font-weight: normal;
+	font-weight: 300;
 	font-size: var(--font-size-h1);
 	line-height: 1.3888;
 }
