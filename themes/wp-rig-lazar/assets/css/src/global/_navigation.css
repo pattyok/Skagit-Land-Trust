@@ -284,7 +284,8 @@ html.overflow-hidden {
 		padding: 0;
 
 		& a {
-			display: block;
+			border: 1px solid transparent;
+			display: inline-block;
 			width: 100%;
 			padding: 1.75rem 1.25rem;
 			text-decoration: none;
@@ -312,7 +313,9 @@ html.overflow-hidden {
 		& a {
 			text-decoration: none;
 			color: var(--color-theme-nav);
-			font-weight: var(--font-weight-black);
+
+			/*font-weight: var(--font-weight-black);*/
+			text-shadow: 0 0 1px var(--global-font-color);
 		}
 	}
 
@@ -493,6 +496,7 @@ html.overflow-hidden {
 	}
 
 	.main-navigation li.menu-item-has-children > a {
+		display: block;
 
 		&::after {
 			display: none;

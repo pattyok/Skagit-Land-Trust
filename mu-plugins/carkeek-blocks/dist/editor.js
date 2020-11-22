@@ -718,8 +718,6 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "onChangeTaxonomy", function (taxonomySelected) {
-      console.log("taxonomy changed");
-
       _this.props.setAttributes({
         taxonomySelected: taxonomySelected
       });
@@ -729,8 +727,6 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
       _this.props.setAttributes({
         filterByTaxonomy: value
       });
-
-      console.log(_this.props.taxonomies);
 
       if (Array.isArray(_this.props.taxonomies) && _this.props.taxonomies.length == 1) {
         _this.props.setAttributes({
@@ -761,8 +757,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
           className = _this$props.className,
           attributes = _this$props.attributes,
           setAttributes = _this$props.setAttributes,
-          isSelected = _this$props.isSelected,
-          taxSelected = _this$props.taxSelected;
+          isSelected = _this$props.isSelected;
       var numberOfPosts = attributes.numberOfPosts,
           displayPostExcerpt = attributes.displayPostExcerpt,
           excerptLength = attributes.excerptLength,
@@ -775,7 +770,9 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
           hideIfEmpty = attributes.hideIfEmpty,
           emptyMessage = attributes.emptyMessage,
           headline = attributes.headline,
-          headlineLevel = attributes.headlineLevel;
+          headlineLevel = attributes.headlineLevel,
+          sortBy = attributes.sortBy,
+          order = attributes.order;
       var headlineStyle = 'h' + headlineLevel;
       var icons = {
         pin: wp.element.createElement("svg", {
@@ -787,7 +784,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 77,
+            lineNumber: 76,
             columnNumber: 17
           }
         }, wp.element.createElement("path", {
@@ -796,7 +793,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 84,
+            lineNumber: 83,
             columnNumber: 21
           }
         }), wp.element.createElement("path", {
@@ -804,7 +801,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 85,
+            lineNumber: 84,
             columnNumber: 21
           }
         }))
@@ -822,7 +819,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 90,
+          lineNumber: 89,
           columnNumber: 13
         }
       });
@@ -833,7 +830,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 106,
+          lineNumber: 105,
           columnNumber: 17
         }
       }), filterByTaxonomy && wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["SelectControl"], {
@@ -849,7 +846,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 113,
+          lineNumber: 112,
           columnNumber: 25
         }
       }), taxonomySelected && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["SelectControl"], {
@@ -866,7 +863,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 126,
+          lineNumber: 125,
           columnNumber: 29
         }
       })));
@@ -874,7 +871,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 145,
+          lineNumber: 144,
           columnNumber: 13
         }
       }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
@@ -882,7 +879,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 146,
+          lineNumber: 145,
           columnNumber: 17
         }
       }, postTypeSelect, postTypeSelected && wp.element.createElement(wp.element.Fragment, null, " ", taxonomySelect, " "), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
@@ -895,7 +892,52 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 151,
+          lineNumber: 150,
+          columnNumber: 21
+        }
+      }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["SelectControl"], {
+        label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Sort By", "carkeek-blocks"),
+        onChange: function onChange(value) {
+          return setAttributes({
+            sortBy: value
+          });
+        },
+        options: [{
+          label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Publish Date"),
+          value: "date"
+        }, {
+          label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Title (alpha)"),
+          value: "title"
+        }, {
+          label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Menu Order"),
+          value: "menu_order"
+        }],
+        value: sortBy,
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 158,
+          columnNumber: 21
+        }
+      }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RadioControl"], {
+        label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Order"),
+        selected: order,
+        options: [{
+          label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("ASC"),
+          value: "ASC"
+        }, {
+          label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("DESC"),
+          value: "DESC"
+        }],
+        onChange: function onChange(value) {
+          return setAttributes({
+            order: value
+          });
+        },
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 172,
           columnNumber: 21
         }
       })), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
@@ -903,7 +945,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 161,
+          lineNumber: 187,
           columnNumber: 17
         }
       }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RadioControl"], {
@@ -927,7 +969,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 162,
+          lineNumber: 188,
           columnNumber: 17
         }
       }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
@@ -943,7 +985,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 176,
+          lineNumber: 202,
           columnNumber: 17
         }
       }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ToggleControl"], {
@@ -957,7 +999,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 186,
+          lineNumber: 212,
           columnNumber: 21
         }
       }), displayPostExcerpt && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
@@ -973,7 +1015,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 196,
+          lineNumber: 222,
           columnNumber: 29
         }
       }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ToggleControl"], {
@@ -987,7 +1029,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 207,
+          lineNumber: 233,
           columnNumber: 21
         }
       }), !hideIfEmpty && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["TextareaControl"], {
@@ -1001,7 +1043,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 215,
+          lineNumber: 241,
           columnNumber: 25
         }
       })));
@@ -1024,7 +1066,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 241,
+            lineNumber: 267,
             columnNumber: 21
           }
         }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["Placeholder"], {
@@ -1033,14 +1075,14 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 250,
+            lineNumber: 276,
             columnNumber: 21
           }
         }, !Array.isArray(posts) ? wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["Spinner"], {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 251,
+            lineNumber: 277,
             columnNumber: 50
           }
         }) : noPostMessage));
@@ -1058,7 +1100,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 265,
+          lineNumber: 291,
           columnNumber: 17
         }
       }, (isSelected || headline) && wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__["RichText"], {
@@ -1074,7 +1116,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 274,
+          lineNumber: 300,
           columnNumber: 21
         }
       }), wp.element.createElement("div", {
@@ -1082,7 +1124,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 282,
+          lineNumber: 308,
           columnNumber: 21
         }
       }, displayPosts.map(function (post) {
@@ -1101,7 +1143,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
           __self: _this2,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 317,
+            lineNumber: 343,
             columnNumber: 33
           }
         }, wp.element.createElement("div", {
@@ -1109,7 +1151,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
           __self: _this2,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 319,
+            lineNumber: 345,
             columnNumber: 41
           }
         }, imageSourceUrl && wp.element.createElement("img", {
@@ -1118,7 +1160,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
           __self: _this2,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 321,
+            lineNumber: 347,
             columnNumber: 49
           }
         })), wp.element.createElement("div", {
@@ -1126,7 +1168,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
           __self: _this2,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 327,
+            lineNumber: 353,
             columnNumber: 41
           }
         }, wp.element.createElement("div", {
@@ -1134,14 +1176,14 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
           __self: _this2,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 328,
+            lineNumber: 354,
             columnNumber: 41
           }
         }, titleTrimmed ? wp.element.createElement(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["RawHTML"], {
           __self: _this2,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 330,
+            lineNumber: 356,
             columnNumber: 49
           }
         }, titleTrimmed) : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("(no title)")), displayPostExcerpt && wp.element.createElement("div", {
@@ -1149,7 +1191,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
           __self: _this2,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 339,
+            lineNumber: 365,
             columnNumber: 41
           }
         }, postExcerpt)));
@@ -1161,7 +1203,7 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 348,
+          lineNumber: 374,
           columnNumber: 21
         }
       }, "(Showing Recent ", postTypeSelected, ": Posts rendered here may differ than the actual query.)")));
@@ -1177,7 +1219,9 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
       postTypeSelected = attributes.postTypeSelected,
       taxonomySelected = attributes.taxonomySelected,
       taxTermsSelected = attributes.taxTermsSelected,
-      filterByTaxonomy = attributes.filterByTaxonomy;
+      filterByTaxonomy = attributes.filterByTaxonomy,
+      order = attributes.order,
+      sortBy = attributes.sortBy;
 
   var _select = select("core"),
       getEntityRecords = _select.getEntityRecords,
@@ -1189,7 +1233,9 @@ var CustomArchiveEdit = /*#__PURE__*/function (_Component) {
     per_page: -1
   });
   var query = {
-    per_page: numberOfPosts
+    per_page: numberOfPosts,
+    order: order.toLowerCase(),
+    orderby: sortBy
   };
 
   if (filterByTaxonomy && taxonomySelected && taxTermsSelected) {
@@ -1262,6 +1308,14 @@ var attributes = {
   postLayout: {
     type: "string",
     default: "grid"
+  },
+  sortBy: {
+    type: "string",
+    default: "date"
+  },
+  order: {
+    type: "string",
+    default: "ASC"
   },
   excerptLength: {
     type: "number",

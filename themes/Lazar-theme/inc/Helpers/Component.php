@@ -210,6 +210,13 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		return '&hellip;';
 	}
 
+	/**
+	 * Make New Window Script
+	 */
+	private function make_new_window() {
+		return "onclick=\"javascript:window.open(this.href, '_blank', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;\"";
+	}
+
 
 	/**
 	 * Make FB Links

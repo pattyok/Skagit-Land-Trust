@@ -19,6 +19,14 @@ const attributes = {
         type: "string",
         default: "grid"
     },
+    sortBy: {
+        type: "string",
+        default: "date"
+    },
+    order: {
+        type: "string",
+        default: "ASC"
+    },
     excerptLength: {
         type: "number",
         default: 25

@@ -302,7 +302,14 @@ class Component implements Component_Interface {
 		$page_type_object->template = array(
 			array(
 				'carkeek-blocks/image-slider',
-				array( 'align' => 'full' ),
+				array(
+					'align'           => 'full',
+					'autoPlay'        => true,
+					'transitionSpeed' => 1000,
+					'showDots'        => true,
+					'fixHeight'       => true,
+					'align'           => 'full',
+				),
 				array(
 					array( 'core/image' ),
 				),

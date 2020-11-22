@@ -94,6 +94,14 @@ class CarkeekBlocks_Block_Register {
 						'type'    => 'number',
 						'default' => 30,
 					),
+					'order'              => array(
+						'type'    => 'string',
+						'default' => 'ASC',
+					),
+					'sortBy'             => array(
+						'type'    => 'string',
+						'default' => 'date',
+					),
 				),
 			)
 		);
@@ -111,7 +119,7 @@ class CarkeekBlocks_Block_Register {
 		$this->carkeek_blocks_register_block(
 			'title-block',
 			array(
-				'render_callback' => function(){
+				'render_callback' => function() {
 					return '<h1 class="entry-title">' . get_the_title() . '</h1>';
 				},
 			)

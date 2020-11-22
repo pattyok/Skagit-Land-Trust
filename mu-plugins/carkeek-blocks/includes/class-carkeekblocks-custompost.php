@@ -99,8 +99,10 @@ class CarkeekBlocks_CustomPost {
 		$args   = array(
 			'posts_per_page' => $attributes['numberOfPosts'],
 			'post_type'      => $attributes['postTypeSelected'],
-			'order'          => 'DESC',
+			'order'          => $attributes['order'],
+			'orderby'        => $attributes['sortBy'],
 		);
+
 		if ( true === $attributes['filterByTaxonomy'] && ! empty( $attributes['taxonomySelected'] ) && ! empty( $attributes['taxTermsSelected'] ) ) {
 			$args['tax_query'] = array(
 				array(
@@ -170,10 +172,10 @@ class CarkeekBlocks_CustomPost {
 						$excerpt = substr( $excerpt, 0, $pos[ $limit ] );
 					}
 				}
-				error_log('1: -- ' . $post->ID);
-				error_log('carkeek_block_custom_post_' . $attributes['postTypeSelected'] . '__link');
+				error_log( '1: -- ' . $post->ID );
+				error_log( 'carkeek_block_custom_post_' . $attributes['postTypeSelected'] . '__link' );
 				$permalink = apply_filters( 'carkeek_block_custom_post_' . $attributes['postTypeSelected'] . '__link', get_permalink(), $post->ID, $attributes );
-				error_log($permalink);
+				error_log( $permalink );
 				$post_html = '<div class="' . implode( ' ', $css_classes_item ) . '">';
 				if ( 'link-tile' == $attributes['postLayout'] ) {
 					$post_html .= '<a class="wp-block-carkeek-blocks-link-tile__link wp-block-carkeek-blocks-link-tile__inner" href="' . esc_url( $permalink ) . '">

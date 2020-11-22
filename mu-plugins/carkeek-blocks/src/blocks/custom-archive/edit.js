@@ -26,13 +26,11 @@ class CustomArchiveEdit extends Component {
     };
 
     onChangeTaxonomy = taxonomySelected => {
-        console.log("taxonomy changed");
         this.props.setAttributes({ taxonomySelected });
     };
 
     onChangeTaxFilter = value => {
         this.props.setAttributes({ filterByTaxonomy: value });
-        console.log(this.props.taxonomies);
         if (Array.isArray(this.props.taxonomies) && this.props.taxonomies.length == 1) {
             this.props.setAttributes({ taxonomySelected : this.props.taxonomies[0].slug});
         }
@@ -54,7 +52,6 @@ class CustomArchiveEdit extends Component {
             attributes,
             setAttributes,
             isSelected,
-            taxSelected,
         } = this.props;
         const {
             numberOfPosts,
@@ -70,6 +67,8 @@ class CustomArchiveEdit extends Component {
             emptyMessage,
             headline,
             headlineLevel,
+            sortBy,
+            order
         } = attributes;
         const headlineStyle = 'h' + headlineLevel;
         const icons = {
@@ -156,6 +155,33 @@ class CustomArchiveEdit extends Component {
                         min={-1}
                         max={21}
                     />
+                    <SelectControl
+                            label={__("Sort By", "carkeek-blocks")}
+                            onChange={value =>
+                                setAttributes({
+                                    sortBy: value
+                                })
+                            }
+                            options={[
+                                { label: __("Publish Date"), value: "date"},
+                                { label: __("Title (alpha)"), value: "title"},
+                                { label: __("Menu Order"), value: "menu_order"}
+                            ]}
+                            value={sortBy}
+                        />
+                    <RadioControl
+                    label={__("Order")}
+                    selected={order}
+                    options={[
+                        { label: __("ASC"), value: "ASC"},
+                        { label: __("DESC"), value: "DESC"},
+                    ]}
+                    onChange={value =>
+                        setAttributes({
+                            order: value
+                        })
+                    }
+                />
 
                 </PanelBody>
                 <PanelBody title={__("Layout", "carkeek-blocks")}>
@@ -356,10 +382,10 @@ class CustomArchiveEdit extends Component {
 export default withSelect((select, props) => {
 
     const { attributes } = props;
-    const { numberOfPosts, postTypeSelected, taxonomySelected, taxTermsSelected, filterByTaxonomy } = attributes;
+    const { numberOfPosts, postTypeSelected, taxonomySelected, taxTermsSelected, filterByTaxonomy, order, sortBy } = attributes;
     const { getEntityRecords, getMedia, getPostTypes, getTaxonomies } = select("core");
     const taxTerms = getEntityRecords('taxonomy', taxonomySelected, { per_page: -1 } );
-    let query = { per_page: numberOfPosts };
+    let query = { per_page: numberOfPosts, order: order.toLowerCase() , orderby: sortBy };
     if (filterByTaxonomy && taxonomySelected && taxTermsSelected) {
         query[taxonomySelected] = taxTermsSelected;
     }
