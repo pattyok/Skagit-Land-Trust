@@ -310,7 +310,7 @@ html.overflow-hidden {
 	&.current-menu-parent,
 	&.current-menu-item {
 
-		& a {
+		& > a {
 			text-decoration: none;
 			color: var(--color-theme-nav);
 
