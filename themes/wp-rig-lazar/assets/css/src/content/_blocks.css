@@ -30,7 +30,7 @@
  * .wp-block-categories
  * .wp-block-archives
  */
-.page-content > [class^="wp-block-"] {
+.page-content > [class*="wp-block-"] {
 	margin-top: var(--block-padding-vert);
 	margin-bottom: var(--block-padding-vert);
 
@@ -90,7 +90,7 @@
 
 @media (--tablet-up) {
 
-	.page-content > [class^="wp-block-"] {
+	.page-content > [class*="wp-block-"] {
 		margin-top: var(--block-padding-vert-tablet);
 		margin-bottom: var(--block-padding-vert-tablet);
 

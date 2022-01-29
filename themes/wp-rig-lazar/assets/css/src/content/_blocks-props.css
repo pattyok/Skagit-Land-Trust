@@ -42,7 +42,7 @@
 	margin-bottom: var(--gutter-width-mobile);
 }
 
-[class^="wp-block-"] {
+[class*="wp-block-"] {
 
 	&.no-top-margin {
 		margin-top: 0;
@@ -108,7 +108,7 @@
 		margin-bottom: var(--gutter-width-small);
 	}
 
-	[class^="wp-block-"] {
+	[class*="wp-block-"] {
 
 		&.add-top-margin {
 			margin-top: var(--block-padding-vert-tablet);
