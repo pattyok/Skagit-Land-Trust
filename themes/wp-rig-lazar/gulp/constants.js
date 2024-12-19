@@ -38,10 +38,12 @@ export const assetsDir = `${ rootPath }/assets`;
 export const prodAssetsDir = `${ prodThemePath }/assets`;
 
 // PHPCS options
+const phpcsBin = Object.prototype.hasOwnProperty.call( config.dev, 'phpcsBin' ) ? config.dev.phpcsBin : `${ rootPath }/vendor/bin/phpcs`;
 export const PHPCSOptions = {
-	bin: `${ rootPath }/vendor/bin/phpcs`,
-	standard: `${ rootPath }/phpcs.xml.dist`,
-	warningSeverity: 0,
+	bin: phpcsBin,
+	showSniffCode: true,
+	report: 'full',
+	reporter: 'log',
 };
 
 // Theme config name fields and their defaults
@@ -78,22 +80,20 @@ const paths = {
 		dest: `${ rootPath }/`,
 	},
 	styles: {
-		editorSrc: [
-			`${ assetsDir }/css/src/editor/**/*.css`,
+		blockSrc: [
+			`${ assetsDir }/css/blocks/src/*.css`,
 			// Ignore partial files.
-			`!${ assetsDir }/css/src/**/_*.css`,
+			`!${ assetsDir }/css/blocks/src/_*.css`,
 		],
-		editorSrcDir: `${ assetsDir }/css/src/editor`,
-		editorDest: `${ assetsDir }/css/editor`,
+		blockDest: `${ assetsDir }/css/blocks`,
 		src: [
-			`${ assetsDir }/css/src/**/*.css`,
+			`${ assetsDir }/css/global/src/*.css`,
 			// Ignore partial files.
-			`!${ assetsDir }/css/src/**/_*.css`,
-			// Ignore editor source css.
-			`!${ assetsDir }/css/src/editor/**/*.css`,
+			`!${ assetsDir }/css/global/src/_*.css`,
 		],
-		srcDir: `${ assetsDir }/css/src`,
-		dest: `${ assetsDir }/css`,
+		srcDir: `${ assetsDir }/css/global/src`,
+		dest: `${ assetsDir }/css/global`,
+		watch: `${ assetsDir }/css/**/src/*.css`,
 	},
 	scripts: {
 		src: [
@@ -137,8 +137,8 @@ for ( const filePath of filesToCopy.concat( additionalFilesToCopy ) ) {
 // Override paths for production
 if ( isProd ) {
 	paths.php.dest = `${ prodThemePath }/`;
-	paths.styles.dest = `${ prodAssetsDir }/css/`;
-	paths.styles.editorDest = `${ prodAssetsDir }/css/editor/`;
+	paths.styles.dest = `${ prodAssetsDir }/css/global`;
+	paths.styles.blockDest = `${ prodAssetsDir }/css/blocks/`;
 	paths.scripts.dest = `${ prodAssetsDir }/js/`;
 	paths.images.dest = `${ prodAssetsDir }/images/`;
 	paths.languages = {

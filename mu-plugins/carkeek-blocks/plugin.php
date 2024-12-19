@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Carkeek Blocks
+ * Plugin Name: Carkeek Blocks (OLD)
  * Plugin URI: https://carkeekstudios.com/
  * Description: Series of blocks designed to work with the Carkeek Theme
  * Author: pattyok

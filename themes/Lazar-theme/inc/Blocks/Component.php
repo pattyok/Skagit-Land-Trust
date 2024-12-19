@@ -58,7 +58,7 @@ class Component implements Component_Interface {
 			/*
 			 * Enqueue global scripts
 			 */
-			wp_enqueue_script( $handle, $asset, $data['dependencies'], $version, $data['in_footer'] );
+			wp_enqueue_script( $handle, $asset, $data['dependencies'], $version, true );
 		}
 	}
 }

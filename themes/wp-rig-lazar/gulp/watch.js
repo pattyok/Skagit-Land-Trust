@@ -15,8 +15,7 @@ import { getThemeConfig, backslashToForwardSlash } from './utils';
 import { reload } from './browserSync';
 import images from './images';
 import scripts from './scripts';
-import styles from './styles';
-import editorStyles from './editorStyles';
+import {styles, blockStyles} from './styles';
 
 /**
  * Watch everything
@@ -43,7 +42,7 @@ export default function watch() {
 		} );
 	}
 
-	gulpWatch( backslashToForwardSlash( paths.styles.src[ 0 ] ), series( styles, editorStyles ) );
+	gulpWatch( backslashToForwardSlash( paths.styles.watch ), series( styles, blockStyles ) );
 
 	gulpWatch( backslashToForwardSlash( paths.scripts.src[ 0 ] ), series( scripts, reload ) );
 

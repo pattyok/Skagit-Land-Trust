@@ -110,8 +110,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			wp_enqueue_style( 'wp-rig-typekit', $typekit_fonts_url, array(), null ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 		}
 
-		$css_uri = get_theme_file_uri( '/assets/css/' );
-		$css_dir = get_theme_file_path( '/assets/css/' );
+		$css_uri = get_theme_file_uri( '/assets/css/global/' );
+		$css_dir = get_theme_file_path( '/assets/css/global/' );
 
 		$preloading_styles_enabled = $this->preloading_styles_enabled();
 
@@ -198,7 +198,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		}
 
 		// Enqueue block editor stylesheet.
-		add_editor_style( 'assets/css/editor/editor-styles.min.css' );
+		add_editor_style( 'assets/css/global/editor-styles.min.css' );
 	}
 
 	/**
@@ -293,21 +293,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			'wp-rig-global'   => array(
 				'file'   => 'global.min.css',
 				'global' => true,
-			),
-			'wp-rig-comments' => array(
-				'file'             => 'comments.min.css',
-				'preload_callback' => function() {
-					return ! post_password_required() && is_singular() && ( comments_open() || get_comments_number() );
-				},
-			),
-			'wp-rig-content'  => array(
-				'file'             => 'content.min.css',
-				'preload_callback' => '__return_true',
-			),
-			'wp-rig-events'   => array(
-				'file'             => 'events.min.css',
-				'preload_callback' => '__return_true',
-			),
+			)
 		);
 
 		/**

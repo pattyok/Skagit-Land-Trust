@@ -5,15 +5,20 @@
   "license": "GPL-3.0-or-later",
   "require-dev": {
     "php": ">=7.0",
-    "wp-coding-standards/wpcs": "^2",
-    "dealerdirect/phpcodesniffer-composer-installer": "^0.5",
+    "wp-coding-standards/wpcs": "^3.1.0",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+    "squizlabs/php_codesniffer": "3.*",
     "phpunit/phpunit": "^6",
     "brain/monkey": "^2",
-    "phpcompatibility/php-compatibility": "^9"
+    "phpcompatibility/php-compatibility": "^9.3",
+    "yoast/phpunit-polyfills": "^1.0"
   },
   "config": {
     "platform": {
       "php": "7.0"
+    },
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
     }
   },
   "autoload": {

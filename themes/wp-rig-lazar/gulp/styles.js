@@ -6,7 +6,8 @@
  */
 import { src, dest } from 'gulp';
 import postcssPresetEnv from 'postcss-preset-env';
-import postcssNesting from 'postcss-nesting';
+import postcssSimpleVars from 'postcss-simple-vars';
+import postcssNested from 'postcss-nested';
 import AtImport from 'postcss-import';
 import pump from 'pump';
 import cssnano from 'cssnano';
@@ -18,7 +19,7 @@ import { pipeline } from 'mississippi';
 /**
  * Internal dependencies
  */
-import { rootPath, paths, gulpPlugins, isProd, assetsDir } from './constants';
+import { rootPath, paths, gulpPlugins, isProd } from './constants';
 import {
 	getThemeConfig,
 	getStringReplacementTasks,
@@ -27,10 +28,13 @@ import {
 	appendBaseToFilePathArray,
 } from './utils';
 import { server } from './browserSync';
+// get the config
+const config = getThemeConfig();
 
 export function stylesBeforeReplacementStream() {
 	// Return a single stream containing all the
 	// before replacement functionality
+	const phpcsBin = Object.prototype.hasOwnProperty.call( config.dev, 'phpcsBin' ) ? config.dev.phpcsBin : `${ rootPath }/vendor/bin/phpcs`;
 	return pipeline.obj( [
 		logError( 'CSS' ),
 		gulpPlugins.newer( {
@@ -38,7 +42,7 @@ export function stylesBeforeReplacementStream() {
 			extra: [ paths.config.themeConfig ],
 		} ),
 		gulpPlugins.phpcs( {
-			bin: `${ rootPath }/vendor/bin/phpcs`,
+			bin: phpcsBin,
 			standard: 'WordPress',
 			warningSeverity: 0,
 		} ),
@@ -51,43 +55,68 @@ export function stylesAfterReplacementStream() {
 	const config = getThemeConfig();
 
 	const postcssPlugins = [
-		stylelint(),
-		postcssNesting(),
+		//stylelint(),
+		postcssNested(),
 		postcssPresetEnv( {
-			importFrom: (
-				configValueDefined( 'config.dev.styles.importFrom' ) ?
-					appendBaseToFilePathArray( config.dev.styles.importFrom, paths.styles.srcDir ) :
-					[]
-			),
-			stage: (
-				configValueDefined( 'config.dev.styles.stage' ) ?
-					config.dev.styles.stage :
-					3
-			),
-			autoprefixer: (
-				configValueDefined( 'config.dev.styles.autoprefixer' ) ?
-					config.dev.styles.autoprefixer :
-					{}
-			),
-			features: (
-				configValueDefined( 'config.dev.styles.features' ) ?
-					config.dev.styles.features :
-					{
-						'custom-media-queries': {
-							preserve: false,
-						},
-						'custom-properties': {
-							preserve: true,
-						},
-						'nesting-rules': true,
-					}
-			),
+			insertAfter: {
+				'all-property': postcssSimpleVars,
+			},
+			stage: 3,
+			autoprefixer: {
+				grid: true,
+			},
+			features: {
+				'nesting-rules': false,
+				'custom-properties': {
+					preserve: true,
+				},
+				'custom-media-queries': {
+					preserve: false,
+				},
+				"custom-selectors": true,
+				'is-pseudo-class': false
+			},
 		} ),
 		calc( {
 			preserve: false,
 		} ),
-		cssnano(),
+		cssnano({
+			preset: [
+			  'default',
+			  { cssDeclarationSorter: false }
+			]
+		  }),
 	];
+
+	// THIS NOT WORKING
+	// postcssPresetEnv( {
+	// 	insertAfter: {
+	// 		'all-property': postcssSimpleVars,
+	// 	},
+	// 	stage: (
+	// 		configValueDefined( 'config.dev.styles.stage' )
+	// 			? config.dev.styles.stage
+	// 			: 3
+	// 	),
+	// 	autoprefixer: (
+	// 		configValueDefined( 'config.dev.styles.autoprefixer' )
+	// 			? config.dev.styles.autoprefixer
+	// 			: {}
+	// 	),
+	// 	features: (
+	// 		configValueDefined( 'config.dev.styles.features' )
+	// 			? config.dev.styles.features
+	// 			: {
+	// 				'custom-media-queries': {
+	// 					preserve: false,
+	// 				},
+	// 				'custom-properties': {
+	// 					preserve: true,
+	// 				},
+	// 				'nesting-rules': true,
+	// 			}
+	// 	),
+	// } ),
 
 	// Skip minifying files if we aren't building for
 	// production and debug is enabled
@@ -141,11 +170,12 @@ export function stylesAfterReplacementStream() {
 // }
 
 /**
-* CSS via PostCSS + CSSNext (includes Autoprefixer by default).
-* @param {function} done function to call when async processes finish
-* @return {Stream} single stream
-*/
-export default function styles( done ) {
+ * CSS via PostCSS + CSSNext (includes Autoprefixer by default).
+ *
+ * @param {Function} done function to call when async processes finish
+ * @return {Stream} single stream
+ */
+export function styles( done ) {
 	return pump( [
 		src( paths.styles.src, { sourcemaps: ! isProd } ),
 		stylesBeforeReplacementStream(),
@@ -156,5 +186,19 @@ export default function styles( done ) {
 		),
 		stylesAfterReplacementStream(),
 		dest( paths.styles.dest, { sourcemaps: ! isProd } ),
+	], done );
+}
+
+export function blockStyles( done ) {
+	return pump( [
+		src( paths.styles.blockSrc, { sourcemaps: ! isProd } ),
+		stylesBeforeReplacementStream(),
+		// Only do string replacements when building for production
+		gulpPlugins.if(
+			isProd,
+			getStringReplacementTasks()
+		),
+		stylesAfterReplacementStream(),
+		dest( paths.styles.blockDest, { sourcemaps: ! isProd } ),
 	], done );
 }
