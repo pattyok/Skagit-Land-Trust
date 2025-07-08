@@ -38,10 +38,14 @@ namespace WP_Rig\WP_Rig;
 
 	<header id="masthead" class="site-header">
 		<div class="site-header--inner">
+			<?php get_template_part( 'template-parts/header/branding' ); ?>
 
 			<?php get_template_part( 'template-parts/header/custom_header' ); ?>
 
-			<?php get_template_part( 'template-parts/header/branding' ); ?>
+
+
+			<?php get_template_part( 'template-parts/header/top_navigation' ); ?>
+
 
 			<div class="header-nav-wrapper">
 

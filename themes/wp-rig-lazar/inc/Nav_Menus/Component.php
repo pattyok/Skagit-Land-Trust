@@ -28,7 +28,6 @@ class Component implements Component_Interface, Templating_Component_Interface {
 
 	const PRIMARY_NAV_MENU_SLUG   = 'primary';
 	const SECONDARY_NAV_MENU_SLUG = 'secondary';
-	const CAMPAIGNFOOTER_NAV_MENU_SLUG = 'campaign_footer';
 
 	/**
 	 * Gets the unique identifier for the theme component.
@@ -60,8 +59,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			'display_primary_nav_menu'   => array( $this, 'display_primary_nav_menu' ),
 			'is_secondary_nav_menu_active' => array( $this, 'is_secondary_nav_menu_active' ),
 			'display_secondary_nav_menu'   => array( $this, 'display_secondary_nav_menu' ),
-			'is_campaign_footer_nav_menu_active' => array( $this, 'is_campaign_footer_nav_menu_active' ),
-			'display_campaign_footer_nav_menu'   => array( $this, 'display_campaign_footer_nav_menu' ),
+
 		);
 	}
 
@@ -72,8 +70,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		register_nav_menus(
 			array(
 				static::PRIMARY_NAV_MENU_SLUG   => esc_html__( 'Primary', 'wp-rig' ),
-				static::SECONDARY_NAV_MENU_SLUG => esc_html__( 'Secondary', 'wp-rig' ),
-				static::CAMPAIGNFOOTER_NAV_MENU_SLUG => esc_html__( 'Campaign', 'wp-rig' ),
+				static::SECONDARY_NAV_MENU_SLUG => esc_html__( 'Secondary', 'wp-rig' )
 			)
 		);
 	}
@@ -144,6 +141,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 * @return bool True if the primary navigation menu is active, false otherwise.
 	 */
 	public function is_secondary_nav_menu_active() : bool {
+		error_log( static::SECONDARY_NAV_MENU_SLUG );
+		error_log( has_nav_menu( static::SECONDARY_NAV_MENU_SLUG ) );
 		return (bool) has_nav_menu( static::SECONDARY_NAV_MENU_SLUG );
 	}
 
@@ -162,28 +161,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		wp_nav_menu( $args );
 	}
 
-	/**
-	 * Checks whether the primary navigation menu is active.
-	 *
-	 * @return bool True if the primary navigation menu is active, false otherwise.
-	 */
-	public function is_campaign_footer_nav_menu_active() : bool {
-		return (bool) has_nav_menu( static::CAMPAIGNFOOTER_NAV_MENU_SLUG );
-	}
 
-	/**
-	 * Displays the primary navigation menu.
-	 *
-	 * @param array $args Optional. Array of arguments. See `wp_nav_menu()` documentation for a list of supported
-	 *                    arguments.
-	 */
-	public function display_campaign_footer_nav_menu( array $args = array() ) {
-		if ( ! isset( $args['container'] ) ) {
-			$args['container'] = 'ul';
-		}
 
-		$args['theme_location'] = static::CAMPAIGNFOOTER_NAV_MENU_SLUG;
-		wp_nav_menu( $args );
-	}
+
 
 }

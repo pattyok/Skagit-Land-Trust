@@ -1,0 +1,269 @@
+
+/*--------------------------------------------------------------
+# Elements
+--------------------------------------------------------------*/
+
+/* stylelint-disable */
+
+html {
+	overflow-x: hidden;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+
+/* stylelint-enable */
+
+/**
+ * Inherit box-sizing to make it easier to change the property for
+ * components that leverage other behavior; see
+ * http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ */
+
+*,
+*::before,
+*::after {
+	-webkit-box-sizing: inherit;
+	box-sizing: inherit;
+}
+
+/* stylelint-disable */
+
+/* Fallback for when there is no custom background color defined. */
+
+body {
+	overflow-x: hidden;
+	overflow-y: auto;
+	max-width: 100vw;
+	font-weight: 400;
+	font-weight: var(--font-weight--light);
+	line-height: var(--global-font-line-height);
+}
+
+/* stylelint-enable */
+
+/* stylelint-disable */
+
+hr {
+	box-sizing: border-box;
+	border: none;
+	border-bottom: 1px solid #dedede;
+	margin-top: 0;
+}
+
+/* stylelint-enable */
+
+ul,
+ol {
+	margin: 1.5rem 0;
+	line-height: 1.66667;
+}
+
+ul {
+	list-style: disc;
+}
+
+ol {
+	list-style: decimal;
+}
+
+li > ul,
+li > ol {
+	margin: 0;
+}
+
+ul.no-list,
+ul.no-bullets {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul.list-inline {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+li.list-inline-item {
+	display: inline-block;
+}
+
+dt {
+	font-weight: 700;
+}
+
+dd {
+	margin: 0 1.5em 1.5em;
+}
+
+/* stylelint-disable */
+
+img {
+	display: block;
+	height: auto;
+	max-width: 100%;
+}
+
+b,
+strong {
+	font-weight: var(--element-bold);
+}
+
+/* stylelint-enable */
+
+/* Extra wide images within figure tags don't overflow the content area. */
+
+figure {
+	margin: 0;
+}
+
+table {
+	margin: 0 0 1.5em;
+	width: 100%;
+}
+
+p {
+	margin-bottom: 1.5rem;
+	margin-bottom: var(--wp--preset--spacing--30);
+	margin-top: 0;
+}
+
+div > p:last-child {
+	margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# Links
+--------------------------------------------------------------*/
+
+/* stylelint-disable */
+
+a {
+	transition: all 0.2s ease-in;
+}
+em > a,
+a > em  {
+	font-weight: var(--font-weight-regular);
+}
+
+/* stylelint-enable */
+
+
+:focus-visible {
+	outline-color: var(--outline-color, currentColor) !important;
+	outline-offset: 0.125rem !important;
+	outline-style: double !important;
+	outline-width: 0.1875rem !important;
+}
+
+a:hover,
+a:active {
+	outline: 0;
+	text-decoration: underline;
+}
+
+a.wp-block-button__link:hover {
+	text-decoration: none;
+}
+
+button.facetwp-load-more,
+.arrow-link > a,
+a.arrow-link {
+	border: none;
+	padding: 0;
+	text-align: left;
+	font-size: var(--font-size-cta);
+	font-weight: 900;
+	text-decoration: none;
+	display: flex !important;
+	align-items: center;
+
+	&:hover {
+		background-color: transparent !important;
+		color: $primary !important;
+		border: none !important;
+		box-shadow: none !important;
+		transform: none;
+		text-decoration: none;
+	}
+
+}
+
+.wp-block-button__link,
+button.facetwp-load-more,
+.arrow-link > a,
+a.arrow-link {
+	line-height: 2;
+	display: inline-flex;
+	align-items: center;
+	&::after {
+		background-color: currentcolor;
+		content: "";
+		display: inline-block;
+		height: 15px;
+		width: 10px;
+		margin-left: 1rem;
+
+		mask-image: url(../../images/cta_arrow.svg);
+		mask-size: 10px auto;
+		mask-repeat: no-repeat;
+		mask-position: center right;
+		transform-origin: left;
+		will-change: transform;
+		transition: all 0.2s ease-in-out;
+	}
+
+	&:hover {
+		&::after {
+			transform: translateX(5px);
+		}
+	}
+
+}
+
+
+.gpopover {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-color: rgba(0, 0, 0, 0.2);
+	border-radius: 2px;
+	-webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	display: none;
+	padding: 12px;
+	position: absolute;
+	z-index: 998;
+}
+
+.gpopover .gpopover-arrow {
+	border: 8px solid transparent;
+	border-top-color: #fff;
+	border-bottom-width: 0;
+	height: 0;
+	position: absolute;
+	width: 0;
+	z-index: 999;
+}
+
+.gpopover .gpopover-arrow-shadow {
+	border: 8px solid transparent;
+	border-top-color: #c0c0c0;
+	border-top-color: rgba(0, 0, 0, 0.275);
+	border-bottom-width: 0;
+	height: 0;
+	position: absolute;
+	width: 0;
+	z-index: 997;
+}
+
+figure:not(.is-resized) {
+	width: 100% !important;
+}
+
+figcaption {
+	font-size: var(--font-size-caption);
+	color: var(--color-caption);
+	margin-bottom: 1rem;
+	margin-top: 6px;
+}

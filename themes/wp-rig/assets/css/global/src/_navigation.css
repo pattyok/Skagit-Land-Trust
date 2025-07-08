@@ -1,0 +1,836 @@
+/*--------------------------------------------------------------
+## Basic navigation menus - handles submenu and small screen toggle
+--------------------------------------------------------------*/
+
+
+/** Nav toggle buttons **/
+.nav--toggle-small button.menu-toggle {
+	height: 100%;
+	width: 100%;
+	padding: 15px 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-weight: 400;
+	border: none !important;
+	border-radius: 0;
+	font-size: 15px;
+	background-color: transparent;
+	min-width: auto;
+	&:hover,
+	&:active {
+		background-color: transparent !important;
+	}
+}
+
+.menu-toggle-label {
+	display: none;
+	padding-bottom: 10px;
+	color: $hamburgerColor;
+	font-size: 10px;
+
+	&.menu-open {
+		display: none;
+	}
+}
+
+.nav--toggled-on {
+
+	& .menu-toggle-label {
+
+		&.menu-closed {
+			display: none;
+		}
+
+		&.menu-open {
+			display: none;
+
+		}
+	}
+}
+
+.nav--toggle-sub .dropdown,
+.nav--toggle-sub .dropdown-toggle {
+	display: block;
+	background: transparent;
+	position: absolute;
+	right: 0;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	font-size: inherit;
+	line-height: inherit;
+	margin: 0;
+	padding: 0;
+	border: none;
+	border-radius: 0;
+	overflow: visible;
+}
+
+.nav--toggle-sub .dropdown-symbol {
+	background: transparent;
+	position: absolute;
+	right: 0;
+	top: 45%;
+	width: 8px;
+	height: 8px;
+	border-style: solid;
+	border-color: $colorNavLinkMobile;
+	border-width: 0 2px 2px 0;
+	transform: translateY(-50%) rotate(45deg);
+}
+
+/** Most of this manages the behavior of the mobile menu **/
+@media (--narrow-menu-query) {
+
+	body.nav-primary--toggled-on {
+
+		& .overlay {
+			position: absolute;
+			top: var(--header-height);
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: rgba(0, 0, 0, 0.65);
+			z-index: 300;
+		}
+	}
+
+	.hide-mobile-menu {
+		display: none;
+	}
+
+	.primary-menu-container {
+		background-color: $navBackgroundMobile;
+	}
+
+	/* main menu toggles from right */
+	.nav--toggle-small {
+
+		& .primary-menu-container {
+			position: fixed;
+			left: 0;
+			top: var(--header-height);
+			width: 100vw;
+			transform: translate3d(100%, 0, 0);
+			will-change: transform;
+			background-color: $navBackgroundMobile;
+			z-index: 1000;
+			opacity: 0;
+			transition: transform 0.6s ease;
+
+			& > li {
+				position: relative;
+			}
+
+			& > .menu {
+				border-top: 1px solid $colorBorders;
+			}
+		}
+
+		&.nav--toggled-on .primary-menu-container {
+			transform: translate3d(0, 0, 0);
+			opacity: 1;
+			background-color: $white;
+			transition: transform 0.6s ease;
+		}
+
+		&.subnav--toggled-on .sub-menu {
+			height: calc(100vh);
+			padding-bottom: 50px;
+		}
+
+		&  .sub-menu {
+			will-change: transform;
+			right: 0;
+			width: 100vw;
+			position: fixed;
+
+			transition: transform 0.6s ease;
+			transform: translate3d(200%, 0, 0);
+			transition-delay: 0s;
+			z-index: 2000;
+		}
+
+	}
+
+	.nav--toggle-sub .dropdown-symbol {
+		transform: translateY(-50%) rotate(-45deg);
+		right: 20px;
+	}
+
+	.nav--toggle-small.nav--toggled-on .sub-menu.toggle-show {
+		transform: translate3d(0, 0, 0);
+	}
+
+	.nav--toggle-small.subnav--toggled-on #primary-menu > li:not(.menu-item--toggled-on) {
+		display: none;
+	}
+
+	/* we only show the nav when the nav is active */
+	html.overflow-hidden {
+		overflow: hidden;
+		height: 100vh;
+
+		& body {
+			overflow: hidden;
+			height: 100vh;
+		}
+
+
+	}
+
+	.main-navigation li.menu-item-has-children {
+
+		& > a {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		&.menu-item--toggled-on {
+
+			& > a {
+				justify-content: flex-start;
+				background-color: $navBackgroundMobile;
+				color: $colorNavLinkHover;
+				padding-left: 2.875rem;
+			}
+
+			& .dropdown-symbol {
+				background: transparent;
+				right: auto;
+				left: 20px;
+				top: 50%;
+				transform: translateY(-50%) rotate(135deg);
+			}
+		}
+
+
+		& .sub-menu {
+
+			& .nav--toggle-sub .dropdown-toggle {
+				display: none;
+			}
+
+		}
+	}
+}
+
+
+@media (--wide-menu-query) {
+
+
+	.nav--toggle-small button.menu-toggle {
+		display: none;
+	}
+
+	.nav--toggle-small .menu {
+		display: flex;
+		justify-content: space-around;
+	}
+
+	.nav--toggle-sub ul ul {
+		display: none;
+		position: absolute;
+		top: calc(100% - 2px);
+		left: 0;
+		flex-direction: column;
+		margin-left: 0;
+		padding-top: 0;
+		z-index: 1100;
+	}
+
+	.nav--toggle-sub .dropdown,
+	.nav--toggle-sub .dropdown-toggle {
+		display: block;
+		background: transparent;
+		position: absolute;
+		right: 0;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 100%;
+		font-size: inherit;
+		line-height: inherit;
+		margin: 0;
+		padding: 0;
+		border: none;
+		border-radius: 0;
+		overflow: visible;
+	}
+
+	.nav--toggle-sub ul ul .dropdown,
+	.nav--toggle-sub ul ul .dropdown-toggle {
+		top: 40%;
+		right: 0.2em;
+	}
+
+	.nav--toggle-sub ul ul .dropdown-symbol {
+		transform: rotate(-45deg);
+	}
+
+	.nav--toggle-sub .dropdown-toggle:hover,
+	.nav--toggle-sub .menu-item--has-toggle:hover .dropdown-toggle {
+		pointer-events: none;
+	}
+
+	/* Need menu-item-has-children for non-JS */
+	.nav--toggle-sub li.menu-item-has-children,
+	.nav--toggle-sub li.menu-item--has-toggle {
+		position: relative;
+	}
+
+	/*
+	 * If the dropdown toggle is active with JS, then
+	 * we'll take care of showing the submenu with JS.
+	 */
+	.nav--toggle-sub li:hover > ul,
+	.nav--toggle-sub li.menu-item--toggled-on > ul,
+	.nav--toggle-sub li:not(.menu-item--has-toggle):focus-visible > ul {
+		display: block;
+	}
+
+	/*
+	 * "focus-within" is an alternative to focus class for
+	 * supporting browsers (all but IE/Edge) for no-JS context
+	 * (e.g. AMP) See https://caniuse.com/#feat=css-focus-within
+	 *
+	 * This selector needs to stay separated, otherwise submenus
+	 * will not be displayed with IE/Edge.
+	 */
+	.nav--toggle-sub li:not(.menu-item--has-toggle):focus-within > ul {
+		display: block;
+	}
+
+}
+
+
+/*--------------------------------------------------------------
+## Main navigation menu - managing the styles of the menus
+--------------------------------------------------------------*/
+ul.menu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+	font-family: var(--navigation-font-family);
+
+	& a {
+		font-weight: $menuFontWeight;
+		text-decoration: none;
+		font-size: $menuFontSize;
+	}
+}
+
+.main-navigation {
+	clear: both;
+	display: block;
+	padding: 0;
+	line-height: 1.3;
+	color: $colorNavLinkMobile;
+	height: 100%;
+}
+
+.main-navigation .menu-item a {
+	font-family: var(--navigation-font-family);
+	display: flex;
+	gap: 5px;
+	width: 100%;
+	padding: 1.6875rem;
+	text-decoration: none;
+	text-align: left;
+	color: $colorNavLinkMobile;
+	font-size: $menuFontSize;
+	border-bottom: 1px solid $colorBorders;
+	background-color: $navBackgroundMobile;
+}
+
+.main-navigation .menu-item-icon a {
+	font-size: 1.25rem;
+}
+
+.main-navigation .menu-item.menu-button,
+.menu-item.menu-button {
+	display: flex;
+	padding: 1rem;
+
+	& a {
+		border: $btnBorder;
+		border-radius: 30px;
+		background-color: $btnBackground;
+		color: $btnText;
+		font-size: 1rem;
+		font-family: $btnFont;
+		font-weight: 700;
+		padding: var(--padding-button);
+		align-self: flex-start;
+		width: auto;
+		min-width: 130px;
+
+		&:hover,
+		&:active {
+			background-color: $btnBackgroundHover;
+			border: $btnBorderHover;
+			color: #fff;
+		}
+	}
+
+	&:hover {
+
+		& a {
+			border-bottom: none;
+			color: #fff;
+		}
+	}
+}
+
+.main-navigation .menu-item.current-menu-item.menu-button a {
+	border: $btnBorder;
+	background-color: $btnBackground;
+	color: $btnText;
+
+	&:hover {
+		background-color: $btnBackgroundHover;
+		color: $btnTextHover;
+	}
+}
+
+.main-navigation .menu-item.current-menu-item.menu-button-light a,
+.main-navigation .menu-button.menu-button-light a {
+	color: $btnAltText;
+	background-color: $btnAltBackground;
+	border: $btnAltBorder;
+
+	&:hover,
+	&:active {
+		background-color: $btnAltBackgroundHover;
+		color: $btnAltTextHover;
+		text-decoration: none;
+		border: $btnAltBorderHover;
+	}
+
+}
+
+.main-navigation .sub-menu .menu-item a {
+	text-transform: none;
+	color: $colorSubNavLinkMobile;
+	font-size: 1.0625rem;
+	padding: 1.25rem 2.875rem;
+	font-weight: var(--font-weight--medium);
+}
+
+.main-navigation li.menu-item:hover > a,
+.main-navigation a:focus-visible {
+	color: $colorNavLinkHover;
+}
+
+.main-navigation ul li.menu-item.current-menu-parent > a,
+.main-navigation ul li.menu-item.current-menu-item > a {
+	color: $colorNavLinkHover;
+	text-decoration: none;
+
+	&::after {
+		text-decoration: none;
+	}
+}
+
+.main-navigation ul {
+	display: block;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	& li {
+		position: relative;
+	}
+}
+
+.top-navigation {
+	display: none;
+
+	& ul.menu {
+		display: flex;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		justify-content: flex-end;
+
+		& li a {
+			padding: 5px;
+		}
+
+	}
+}
+
+.search-form {
+
+	& .icon-search {
+		font-size: 1.5rem;
+	}
+}
+
+
+@media (--wide-menu-query) {
+
+	.main-navigation {
+		margin: 0;
+		flex-basis: 100%;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+
+
+		& .menu {
+			align-items: center;
+			gap: 20px;
+		}
+
+		& button {
+			min-width: 0;
+		}
+
+		& .menu-item-icon {
+			& a {
+				font-size: 1.25rem;
+			}
+		}
+	}
+
+	.main-navigation .menu-item a {
+		border: none;
+		background-color: transparent;
+		color: $colorNavLink;
+		text-align: left;
+
+		display: flex;
+		align-items: center;
+	}
+
+	.main-navigation ul.menu > li {
+		display: flex;
+		align-items: center;
+		height: 100%;
+		padding: 0.5rem 1rem;
+
+		&.hide-desktop-menu {
+			display: none;
+		}
+
+		&::before {
+			content: "";
+			height: 0;
+			width: 0;
+			background-color: $colorNavLinkHoverBG;
+			z-index: -1;
+			border-radius: 50%;
+			position: absolute;
+			left: 0;
+			transition: all 0.3s ease-in-out;
+		}
+
+		& a {
+			padding: 0.5rem 0;
+			position: relative;
+			border-bottom: 2px solid transparent;
+		}
+
+		&:hover {
+
+			& > a {
+				border-bottom: 2px solid $colorNavLinkHover;
+			}
+
+		}
+
+		&.current-menu-item,
+		&.current-menu-ancestor {
+
+			& > a {
+				background-color: transparent;
+				color: $colorNavLink;
+				border-bottom: 2px solid $colorNavLink;
+				text-decoration: none;
+			}
+		}
+	}
+
+
+	.main-navigation ul.sub-menu {
+		background-color: $colorSubNavBackground;
+		padding-top: 2.5rem;
+		min-width: 275px;
+
+		& .menu-item > a {
+			color: $colorSubNavLink;
+			border-top: none;
+			border-bottom: none;
+			padding: 0.75rem 2rem;
+			white-space: nowrap;
+
+			&:hover {
+				color: $colorSubNavLinkHover;
+				background-color: $colorSubNavLinkHoverBG;
+			}
+
+		}
+
+		& li.menu-item.current-menu-item a {
+			color: $colorNavLinkHover;
+			&:hover {
+				color: #fff;
+			}
+		}
+	}
+
+	.main-navigation ul ul ul {
+		top: 0;
+		left: 100%;
+		min-height: 100%;
+	}
+
+	.search-dropdown {
+
+		& .search-form {
+
+			& label {
+				font-size: $large;
+				font-weight: var(--font-weight--bold);
+				margin-right: 10px;
+			}
+
+			& input {
+				min-width: 300px;
+			}
+
+			& button.search-submit {
+				height: 48px;
+			}
+		}
+	}
+
+	.menu-extras {
+		padding: 0;
+
+		& .menu {
+			gap: 15px;
+		}
+	}
+
+	.main-navigation .menu-item.menu-button a {
+		padding: 1rem 0.75rem;
+		font-size: var(--navigation-font-size);
+
+	}
+
+	.top-navigation {
+		display: flex;
+
+		& ul.menu {
+			height: 50px;
+
+			& li {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-content: center;
+				margin-left: 4px;
+				position: relative;
+			}
+
+			& li > a {
+				font-size: 14px;
+				font-weight: var(--font-weight--bold);
+				padding: 0 0.5rem;
+				text-align: center;
+				line-height: 1;
+				flex: 1;
+				display: flex;
+				align-items: center;
+				text-decoration: none;
+				white-space: nowrap;
+			}
+
+			& .sub-menu {
+				display: none;
+				position: absolute;
+				top: 100%;
+				left: 0;
+				padding: 0;
+				z-index: 100;
+				width: 100%;
+
+				& li {
+					margin-left: 0;
+
+					& a {
+						padding: 0.5rem 1rem;
+					}
+				}
+			}
+
+			& li:hover > .sub-menu {
+				display: block;
+			}
+		}
+	}
+
+	.primary-menu-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		width: 100%;
+
+		& .menu-extras:not(.hide-desktop-menu) {
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-end;
+			align-items: center;
+
+			& .menu {
+				display: flex;
+				flex-direction: row;
+				justify-content: flex-end;
+				align-items: center;
+			}
+		}
+	}
+}
+
+.main-navigation .hide-main {
+	display: none !important;
+}
+
+
+/*--------------------------------------------------------------
+# Content navigation
+--------------------------------------------------------------*/
+.site-main .comment-navigation,
+.site-main .posts-navigation,
+.site-main .post-navigation,
+.site-main .pagination {
+	border-top: 1px solid var(--color-border);
+	padding-top: 1rem;
+	margin: 0 auto 2em;
+	overflow: hidden;
+	font-family: var(--highlight-font-family);
+	font-stretch: condensed;
+
+	font-size: 15px;
+}
+
+.post-navigation-sub {
+	display: inline-block;
+	padding-right: 5px;
+	text-transform: uppercase;
+}
+
+.nav-links {
+	display: flex;
+}
+
+.comment-navigation .nav-previous,
+.posts-navigation .nav-previous,
+.post-navigation .nav-previous {
+	width: 50%;
+	flex: 1 0 50%;
+}
+
+.comment-navigation .nav-next,
+.posts-navigation .nav-next,
+.post-navigation .nav-next {
+	text-align: end;
+	flex: 1 0 50%;
+}
+
+.post-navigation-sub span {
+	color: var(--global-font-color);
+	text-decoration: none;
+	display: inline-block;
+}
+
+.site-main .pagination {
+	margin-bottom: 1.5em;
+}
+
+.pagination .nav-links {
+	justify-content: center;
+	flex-wrap: nowrap;
+	align-items: center;
+
+	& .page-numbers {
+		margin: 0 0.5em;
+		border: 1px solid var(--wp--preset--color--accent-2);
+
+		&.dots,
+		&.next,
+		&.prev {
+			border: none;
+		}
+	}
+}
+
+.pagination .page-numbers {
+	font-size: var(--font-size-large);
+	font-weight: var(--font-weight--bold);
+	display: inline-block;
+	margin-bottom: 0.5em;
+	min-width: 1.75em;
+	line-height: 1.75;
+	text-align: center;
+	text-decoration: none;
+}
+
+.pagination a:visited {
+	color: var(--color-link);
+}
+
+.pagination a:hover,
+.pagination a:focus-visible,
+.pagination a:active {
+	border-color: #00a0d2;
+}
+
+.pagination .prev,
+.pagination .next {
+	min-width: auto;
+	border-color: transparent;
+	text-decoration: none;
+}
+
+.pagination .next::after {
+	font-family: var(--font-family-icons);
+	content: "\f105";
+	padding-left: 5px;
+}
+
+.pagination .prev::before {
+	font-family: var(--font-family-icons);
+	content: "\f104";
+	padding-right: 5px;
+}
+
+.pagination .prev:hover,
+.pagination .prev:focus-visible,
+.pagination .prev:active,
+.pagination .next:hover,
+.pagination .next:focus-visible,
+.pagination .next:active {
+	border-color: transparent;
+}
+
+.pagination .dots {
+	min-width: auto;
+	border: none;
+}
+
+.pagination .current {
+	border-color: var(--global-font-color);
+	background-color: var(--color-link);
+	color: #fff;
+}
+

@@ -51,7 +51,6 @@ if ( ! wp_rig()->is_primary_nav_menu_active() ) {
 	</button>
 
 	<div class="primary-menu-container nav-toggled-container" id="primary-menu-wrapper">
-		<?php wp_rig()->display_secondary_nav_menu( array( 'menu_id' => 'secondary' ) ); ?>
 		<?php wp_rig()->display_primary_nav_menu( array( 'menu_id' => 'primary-menu' ) ); ?>
 	</div>
 </nav><!-- #site-navigation -->

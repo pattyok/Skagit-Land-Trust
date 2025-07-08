@@ -1,0 +1,119 @@
+.wp-block-carkeek-blocks-accordion {
+	margin-top: var(--block-spacing-vert-small);
+
+	--ck-icon-font-family: var(--font-family-icons);
+	--ck-accordion-expand: "\f107";
+	--ck-accordion-panel-bg: var(--wp--preset--color--white);
+	--ck-accordion-borders: 1px solid var(--wp--preset--color--accent-1);
+	--ck-accordion-panel-spacing: 12px;
+
+	--ck-color-accordion-header-text: var(--wp--preset--color--primary);
+	--ck-color-accordion-header-expanded-text: var(--wp--preset--color--primary);
+	--ck-color-accordion-header-expanded-bg: var(--wp--preset--color--white);
+	--ck-color-accordion-header-focus-text: var(--wp--preset--color--primary);
+	--ck-color-accordion-header-focus-bg: var(--wp--preset--color--white);
+
+
+	& button.accordion__trigger {
+		text-transform: none;
+		border: none;
+		border-radius: 0;
+		font-size: inherit;
+		padding-left: 0;
+		border-bottom: var(--ck-accordion-borders);
+
+		&::after {
+			color: var(--wp--preset--color--accent-1);
+			margin-left: 0.5em;
+		}
+
+		&[aria-expanded="true"] {
+			border: none;
+
+			&::after {
+				transform: rotate(-180deg);
+			}
+
+		}
+
+		&:focus {
+			box-shadow: none;
+		}
+
+	}
+
+	& .ck-accordion-panel {
+		margin-top: -3px;
+	}
+
+	& .accordion__panel {
+
+		& > * + * {
+			margin-block-start: 1rem;
+		}
+
+		&[aria-hidden="false"] {
+			max-height: none;
+			padding: 0;
+			padding-bottom: 2rem;
+			border: none;
+			border-bottom: var(--ck-accordion-borders);
+		}
+
+	}
+
+	&.is-style-mini {
+
+
+		& > .accordion {
+			border-bottom: none;
+		}
+
+		& .accordion__heading {
+			display: flex;
+			justify-content: center;
+
+		}
+
+		& .ck-accordion-panel {
+			background-color: transparent;
+
+			& .facetwp-facet {
+				margin-bottom: 0;
+			}
+		}
+
+		& button.accordion__trigger {
+			text-transform: uppercase;
+			border: none;
+			border-radius: 5px;
+			padding: 0;
+			background-color: transparent;
+			width: auto;
+			font-size: var(--font-size-h5);
+			font-weight: 800;
+			letter-spacing: 0.96px;
+
+			&::after {
+				display: inline-block;
+				padding: 3px 10px;
+				content: "\e808";
+				font-weight: var(--font-weight-bold);
+				transform: rotate(90deg);
+				color: inherit;
+				margin-left: 0;
+			}
+
+			&[aria-expanded="true"]::after {
+				content: "\e809";
+				transform: rotate(0);
+			}
+		}
+
+		& .accordion__panel[aria-hidden="false"] {
+			padding-bottom: 0;
+			padding-top: 2rem;
+		}
+
+	}
+}

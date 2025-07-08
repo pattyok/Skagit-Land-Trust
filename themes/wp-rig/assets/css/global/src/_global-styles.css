@@ -1,0 +1,143 @@
+/*--------------------------------------------------------------
+# Accessibility
+--------------------------------------------------------------*/
+
+/**
+ * Text meant only for screen readers.
+ * Re: word-wrap: Many screen reader and browser combinations announce broken
+ * words as they would appear visually.
+ */
+
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+	background-color: #f1f1f1;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto !important;
+	color: #21759b;
+	display: block;
+	font-size: 0.875rem;
+	font-weight: 700;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000; /* Above WP toolbar. */
+}
+
+/* Do not show the outline on the skip link target. */
+
+#primary[tabindex="-1"]:focus {
+	outline: 0;
+}
+
+.hidden-front-end {
+	display: none;
+}
+
+/*--------------------------------------------------------------
+# Layouts
+--------------------------------------------------------------*/
+
+.site {
+	margin: 0 auto;
+	max-width: 100%;
+}
+
+/*--------------------------------------------------------------
+# Infinite scroll
+--------------------------------------------------------------*/
+
+/* Globally hidden elements when Infinite Scroll is supported and in use. */
+
+.infinite-scroll .posts-navigation,
+.infinite-scroll .pagination,
+.infinite-scroll.neverending .site-footer {
+
+	/* Theme Footer (when set to scrolling) */
+	display: none;
+}
+
+/* When Infinite Scroll has reached its end we need to re-display elements that
+were hidden (via .neverending) before. */
+
+.infinity-end.neverending .site-footer {
+	display: block;
+}
+
+/*--------------------------------------------------------------
+# Responsive
+--------------------------------------------------------------*/
+
+@media screen and (min-width: 768px) {
+
+	.hidden-tablet-up {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+
+	.hidden-tablet-wide-up {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 1360px) {
+
+	.hidden-desktop-up {
+		display: none;
+	}
+}
+
+/*--------------------------------------------------------------
+# Common Icons
+--------------------------------------------------------------*/
+
+.arrow-icon {
+	height: 15px;
+	width: 15px;
+	display: inline-block;
+	border: solid var(--wp--preset--color--white);
+	border-width: 3px 3px 0 0;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+	-webkit-transition: all 0.1s;
+	transition: all 0.1s;
+}
+
+.post-thumbnail-responsive {
+	position: relative;
+	display: block;
+	overflow: hidden;
+
+	&::before {
+		content: "";
+		width: 100%;
+		height: 0;
+		padding-top: var(--ck-fixed-image-ratio);
+		display: block;
+	}
+
+	& img {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100% !important;
+		object-fit: cover;
+		object-position: 50% 50%;
+	}
+}

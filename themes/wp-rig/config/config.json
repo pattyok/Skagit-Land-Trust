@@ -1,0 +1,37 @@
+{
+  "theme": {
+    "slug": "lazar-2025",
+    "name": "Lazar Landscape 2025",
+    "author": "Carkeek Studios"
+  },
+  "dev": {
+    "debug": {
+      "styles": true
+    },
+    "styles": {
+      "stage": 3,
+      "autoprefixer": {
+        "grid": true
+      },
+      "features": {
+        "custom-media-queries": true,
+        "custom-properties": {
+          "preserve": true
+        },
+        "custom-selectors": true
+      }
+    }
+  },
+  "export": {
+    "compress": false,
+    "generatePotFile": false,
+    "filesToCopy": [
+      "LICENSE",
+      "readme.txt",
+      "assets/fonts/**",
+      "acf-json/**",
+      "theme.json",
+	  "parts/**"
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+@import "../../global/src/_custom-vars.css";
+
+.wp-block-separator {
+	opacity: 1;
+
+	color: $colorSeparator;
+	border-bottom: 2px solid currentcolor;
+
+	/** override index **/
+
+	height: 1px !important;
+	width: 100% !important;
+
+	margin-top: var(--wp--preset--spacing--60);
+	margin-bottom: var(--wp--preset--spacing--60);
+
+	&.alignwide {
+		max-width: var(--wp--style--global--wide-size);
+	}
+
+	&.alignfull {
+		max-width: 100%;
+		width: 100%;
+	}
+
+	&.is-style-thick {
+		border-bottom: none;
+		height: 10px !important;
+		color: var(--wp--preset--color--accent-2);
+		background-color: currentcolor;
+		border-radius: 10px;
+	}
+
+}
+
+.page-content > .wp-block-separator {
+	max-width: var(--content-width);
+
+	&:not(.is-style-wide):not(.is-style-dots) {
+
+		&.alignwide {
+			max-width: var(--content-width-wide);
+		}
+	}
+}

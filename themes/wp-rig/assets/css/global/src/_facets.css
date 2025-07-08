@@ -1,0 +1,67 @@
+.facetwp-facet {
+
+	font-size: 1.375rem;
+	font-weight: 500;
+
+	& .facetwp-counter {
+		display: none;
+	}
+
+	& .facetwp-display-value {
+		text-transform: lowercase;
+	}
+
+}
+
+.facetwp-facet-load_more {
+	display: flex;
+	justify-content: center;
+
+}
+
+.facetwp-load-more {
+	background-color: transparent;
+	color: $primary;
+	text-transform: lowercase;
+
+	&.facetwp-hidden {
+		display: none !important;
+	}
+}
+
+.facetwp-facet[data-type="radio"] {
+	display: flex;
+	justify-content: center;
+	gap: 0.5rem;
+	flex-wrap: wrap;
+	max-width: 600px;
+
+	& .facetwp-radio {
+		background: none;
+		padding: 10px;
+
+		& .facetwp-display-value {
+			padding: 0;
+		}
+
+		&:hover {
+			background-color: $accent1;
+		}
+
+		&.checked {
+			background-color: $accent1;
+		}
+	}
+}
+
+.facetwp-facet-project_types {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+@media (--tablet-up){
+	.facetwp-facet-project_types {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	}
+}

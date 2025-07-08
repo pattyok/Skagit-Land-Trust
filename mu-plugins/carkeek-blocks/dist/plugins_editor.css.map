@@ -1,1 +1,0 @@
-{"version":3,"file":"plugins_editor.css","sources":["webpack:///./src/plugins/styles.editor.scss"],"sourcesContent":["body.carkeek-blocks-title-hidden .editor-post-title__input {\n  opacity: 0.25; }\n"],"mappings":"AAAA;AACA;;","sourceRoot":""}

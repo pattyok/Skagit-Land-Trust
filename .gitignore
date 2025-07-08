@@ -11,8 +11,8 @@ themes/*/node_modules/
 themes/*/bower_components/
 
 
-!themes/wp-rig-lazar
-!themes/Lazar-theme
+!themes/wp-rig
+!themes/lazar-2025
 
 
 !mu-plugins/*/src/plugins

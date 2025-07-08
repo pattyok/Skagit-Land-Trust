@@ -1,0 +1,16 @@
+.gform_required_legend {
+	display: none;
+}
+
+.gform_wrapper.gravity-theme select {
+	padding: var(--padding-button) !important;
+}
+
+.gform_wrapper.gravity-theme .gfield_label {
+    font-size: var(--wp--preset--font-size--base);
+	font-weight: var(--font-weight--regular);
+}
+
+.gform_wrapper.gravity-theme .gfield_checkbox label, .gform_wrapper.gravity-theme .gfield_radio label {
+    font-size: var(--wp--preset--font-size--small);
+}

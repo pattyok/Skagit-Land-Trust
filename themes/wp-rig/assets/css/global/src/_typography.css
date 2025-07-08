@@ -1,0 +1,107 @@
+/*--------------------------------------------------------------
+# Typography
+--------------------------------------------------------------*/
+
+
+.wp-block-heading.has-text-align-center {
+
+	& img {
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+.wp-block-heading {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+h1,
+.h1 {
+	font-family: $fontFamilyHeadings;
+	line-height: 1.15;
+	font-size: var(--font-size-h1);
+	font-weight: var(--font-weight--light);
+}
+
+.has-h-2-font-size,
+h2,
+.h2 {
+	font-family: $fontFamilyHeadings;
+	color: var(--wp--preset--color--accent-1);
+	font-size: var(--font-size-h2);
+	font-weight: var(--font-weight--light);
+	line-height: 1.15;
+}
+
+.has-h-3-font-size,
+h3,
+.h3 {
+	color: var(--wp--preset--color--accent-1);
+	font-family: var(--wp--preset--font-family--headings-alt);
+	font-size: var(--font-size-h3);
+	font-weight: var(--font-weight--light);
+	line-height: 1.15;
+}
+
+.has-h-4-font-size,
+h4,
+.h4 {
+	color: var(--wp--preset--color--global);
+	font-family: var(--wp--preset--font-family--global);
+	font-size: var(--font-size-h4);
+	line-height: 1.15;
+}
+
+
+.has-h-5-font-size,
+h5,
+.h5 {
+	color: var(--wp--preset--color--global);
+	font-family: var(--wp--preset--font-family--global);
+	font-size: var(--font-size-h5);
+	line-height: 1.15;
+}
+
+.has-h-6-font-size,
+h6,
+.h6 {
+	color: var(--wp--preset--color--global);
+	font-family: var(--wp--preset--font-family--global);
+	font-size: var(--font-size-h6);
+	line-height: 1.15;
+}
+
+.entry-header h1.entry-title,
+.page-header .page-title {
+	line-height: 1.4;
+}
+
+dfn,
+cite,
+em,
+i {
+	font-style: italic;
+}
+
+blockquote,
+q {
+	quotes: initial;
+}
+
+blockquote {
+	border: none;
+}
+
+blockquote cite {
+	color: inherit;
+	font-size: var(--font-size-quote-cite);
+	margin-top: 1em;
+	position: relative;
+	font-style: normal;
+	font-weight: 800;
+
+	&::before {
+		content: "\2013 ";
+		margin-right: 3px;
+	}
+}

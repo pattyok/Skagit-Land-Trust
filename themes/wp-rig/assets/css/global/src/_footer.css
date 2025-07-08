@@ -1,0 +1,150 @@
+.site-colophon {
+	text-transform: uppercase;
+	padding: $spacingSmall var(--gutter-width-page);
+	padding-right: var(--gutter-width-page);
+	font-size: 0.75rem;
+	font-weight: 300;
+}
+
+.site-copy {
+	font-size: 1rem;
+
+	& p {
+		margin-bottom: 0;
+	}
+
+	& a {
+		display: inline-block;
+		color: #fff;
+		text-decoration: none;
+		font-weight: 400;
+		padding-left: 1rem;
+	}
+
+
+	& .gpopover {
+		color: var(--wp--preset--color--global);
+
+		& a {
+			color: $colorLink;
+		}
+	}
+
+}
+
+.footer-main {
+	position: relative;
+	& a {
+		text-decoration: none;
+		color: #fff;
+		font-weight: 500;
+		&:hover {
+			text-decoration: underline;
+		}
+
+	}
+
+	& .wp-block-heading {
+		font-family: var(--wp--preset--font-family--global);
+	}
+	& .wp-block-navigation {
+		& .wp-block-navigation-item {
+			flex-direction: column;
+			align-items: flex-start;
+			font-weight: 500;
+			& a {
+				padding: 0.25rem 0;
+			}
+		}
+		& .has-child .wp-block-navigation__submenu-container {
+			position: relative;
+			height: auto;
+			width: auto;
+			visibility: visible;
+			opacity: 1;
+			left: auto;
+			background-color: transparent;
+			border: none;
+			min-width: auto !important;
+			& .wp-block-navigation-item a {
+				padding: 0.25rem 0;
+			}
+		}
+		& .has-child:not(.open-on-click):hover > .wp-block-navigation__submenu-container {
+			min-width: auto;
+		}
+	}
+}
+
+@media (max-width: 781px) {
+
+	.footer-main {
+
+		& .wp-block-navigation {
+
+			& .wp-block-navigation__container {
+				align-items: flex-start;
+				justify-content: space-between;
+				gap: 1rem;
+			}
+
+			& .wp-block-navigation-item {
+				align-items: flex-start;
+			}
+		}
+
+		& .footer-newsletter {
+			border-top: 1px solid #fff;
+			padding-top: var(--wp--preset--spacing--50);
+		}
+		& .footer-colophon {
+			display: flex;
+			flex-direction: column;
+			padding-top: var(--wp--preset--spacing--50);
+			border-top: 1px solid #fff;
+
+
+		}
+
+		& .items-justified-right {
+			justify-content: flex-start;
+		}
+
+		& .gform_wrapper.gravity-theme form {
+			& .gform_footer {
+				padding: 0;
+				margin: 0;
+				justify-content: center;
+			}
+		}
+
+		& .site-colophon {
+			&.wp-block-group {
+				flex-direction: column-reverse;
+				gap: $spacingSmall;
+			}
+		}
+	}
+
+
+}
+
+
+@media (min-width: 782px) {
+
+	.footer-main {
+		& .footer-newsletter {
+			border-left: 1px solid #fff;
+			padding-left: var(--wp--preset--spacing--50);
+		}
+		& .footer-colophon {
+			padding-top: var(--wp--preset--spacing--50);
+		}
+	}
+}
+
+.wp-block-social-links .wp-social-link-houzz svg {
+
+	padding-left: 0.15em;
+	padding-right: 0.15em;
+}

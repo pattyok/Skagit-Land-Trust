@@ -1,0 +1,78 @@
+@import "../../global/src/_custom-vars.css";
+
+.wp-block-button {
+
+	& .wp-block-button__link {
+
+		&.has-background {
+			font-weight: 900 !important;
+		}
+
+		&.has-primary-background-color {
+
+			&:hover {
+				background-color: var(--wp--custom--color-alt-button-hover) !important;
+				color: #fff;
+				text-decoration: none;
+			}
+
+			&:visited {
+				color: #fff;
+			}
+		}
+	}
+
+	&.is-style-arrow-link {
+		padding: 0;
+
+		& .wp-block-button__link {
+			background-color: transparent;
+			padding: 0;
+			text-transform: none;
+			color: var(--wp--preset--color--primary);
+			text-align: left;
+			font-size: var(--font-size-cta);
+			border: none;
+			position: relative;
+			display: flex;
+			align-items: center;
+
+			&::after {
+				background-color: currentcolor;
+				content: "";
+				display: inline-block;
+				height: 23px;
+				width: 21px;
+				margin-left: 6px;
+
+				mask-image: url(../../images/cta_arrow.svg);
+				mask-size: 23px auto;
+				mask-repeat: no-repeat;
+				mask-position: center right;
+				transform-origin: left;
+				will-change: transform;
+				transition: all 0.2s ease-in-out;
+			}
+
+			&:hover {
+				box-shadow: none !important;
+				transform: none;
+				text-decoration: none;
+
+				&::after {
+					transform: translateX(5px);
+				}
+			}
+
+		}
+	}
+}
+
+
+@media screen and (max-width: 599px) {
+
+	.wp-block-buttons.mobile-left {
+		justify-content: flex-start !important;
+	}
+}
+

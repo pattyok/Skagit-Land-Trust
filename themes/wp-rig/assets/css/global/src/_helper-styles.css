@@ -1,0 +1,26 @@
+@media (--mobile-only) {
+
+	.center-mobile {
+		display: flex;
+		justify-content: center;
+	}
+
+	.hidden-mobile {
+		display: none;
+	}
+}
+
+@media (--tablet-up) {
+
+	.hidden-tablet-up {
+		display: none;
+	}
+
+	.alignleft {
+		float: left;
+	}
+
+	.alignright {
+		float: right;
+	}
+}

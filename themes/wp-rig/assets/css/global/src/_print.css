@@ -1,0 +1,26 @@
+.print-only {
+	display: none;
+}
+
+@media print {
+
+	.print-only {
+		display: block;
+	}
+
+	.top-navigation,
+	.header-nav-wrapper,
+	.footer-section .widget_wrapper .widget_block:first-child,
+	.single-post .page-header,
+	.blog-post-featured-image,
+	.post-footer,
+	.post-col-right {
+		display: none;
+	}
+
+	.site-header .site-description {
+		display: block;
+		position: relative;
+	}
+
+}

@@ -1,0 +1,153 @@
+
+/*
+<button class="hamburger" type="button">
+	<span class="hamburger-box">
+		<span class="hamburger-inner"></span>
+	</span>
+</button>
+*/
+
+.hamburger-box,
+.search-toggle-box {
+	width: 25px;
+	height: 20px;
+	display: inline-block;
+	position: relative;
+}
+
+.hamburger-inner {
+	display: block;
+	top: 50%;
+	margin-top: -2px;
+}
+
+.hamburger-inner,
+.hamburger-inner::before,
+.hamburger-inner::after {
+	width: 25px;
+	height: 2px;
+	background-color: $hamburgerColor;
+	border-radius: 0;
+	position: absolute;
+	transition-property: transform;
+	transition-duration: 0.15s;
+	transition-timing-function: ease;
+}
+
+.hamburger-inner::before,
+.hamburger-inner::after {
+	content: "";
+	display: block;
+}
+
+.hamburger-inner::before {
+	top: -8px;
+}
+
+.hamburger-inner::after {
+	bottom: -8px;
+}
+
+/*
+   * Spring
+   */
+.hamburger--spring .hamburger-inner {
+	top: 2px;
+	transition: background-color 0s 0.13s linear;
+}
+
+.hamburger--spring .hamburger-inner::before {
+	top: 7px;
+	transition: top 0.1s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1), transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.hamburger--spring .hamburger-inner::after {
+	top: 14px;
+	transition: top 0.2s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1), transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.nav--toggled-on .hamburger--spring .hamburger-inner {
+	transition-delay: 0.22s;
+	background-color: transparent !important;
+}
+
+.nav--toggled-on .hamburger--spring .hamburger-inner::before {
+	top: 0;
+	transition: top 0.1s 0.15s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.13s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1);
+	transform: translate3d(0, 10px, 0) rotate(45deg);
+}
+
+.nav--toggled-on .hamburger--spring .hamburger-inner::after {
+	top: 0;
+	transition: top 0.2s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.13s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1);
+	transform: translate3d(0, 10px, 0) rotate(-45deg);
+}
+
+button.search-toggle:active,
+button.search-toggle:hover {
+	background-color: transparent;
+	border-color: transparent;
+}
+
+button.search-toggle {
+	background-color: transparent;
+	border-color: transparent;
+}
+
+.search-toggle-box {
+	position: relative;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.search-toggle-box .search-toggle__circle {
+	position: absolute;
+	display: block;
+	width: 20px;
+	height: 20px;
+	top: -2px;
+	border: $searchIconBorder2x;
+	transform: rotate(-45deg);
+	border-radius: 100%;
+	transition: height 0.5s, width 0.5s, transform 0.5s, border-radius 0.5s, background-color 0.25s cubic-bezier(1, 0.48, 0.99, 0.6), -webkit-transform 0.5s;
+}
+
+.search-toggle-box .search-toggle__rectangle {
+	position: absolute;
+	width: 8px;
+	transform: rotate(45deg) translate3d(13px, 10px, 0);
+	border: $searchIconBorder;
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;
+	-webkit-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	background-color: $searchIconColor;
+}
+
+.search-toggle-box:hover .search-toggle__circle,
+.search-toggle-box:hover .search-toggle__rectangle {
+	border-color: #454543;
+}
+
+.nav--toggled-on .search-toggle .search-toggle__circle {
+	width: 25px;
+	border: $searchIconBorder;
+	background-color: $searchIconColor;
+	height: 0;
+	top: 0;
+	transform: rotate(-45deg) translate3d(-6px, 6px, 0);
+	border-radius: 0;
+
+}
+
+.nav--toggled-on .search-toggle .search-toggle__rectangle {
+	width: 25px;
+	height: 0;
+	border: $searchIconBorder;
+	background-color: $searchIconColor;
+
+	-webkit-transform: rotate(45deg) translate3d(-2px, 15px, 0);
+
+	transform: rotate(45deg) translate3d(-2px, 15px, 0);
+	border-radius: 0;
+}

@@ -1,0 +1,12 @@
+.footer-main > .wp-block-group,
+.page-content > .wp-block-group {
+
+
+	.wp-block-group {
+
+		&.is-content-justification-center {
+			text-align: center;
+		}
+	}
+
+}

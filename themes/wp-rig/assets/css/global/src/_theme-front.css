@@ -1,0 +1,35 @@
+.wp-block-carkeek-blocks-custom-archive.is-carousel {
+	--slick-arrow-color: #000;
+
+	& .ck-custom-archive__list {
+		display: none;
+		padding-left: 1rem;
+		padding-right: 1rem;
+
+		&.slick-initialized {
+			display: block;
+		}
+
+		& .slick-slide {
+
+			& > div {
+				width: 100%;
+			}
+		}
+
+		& .ck-columns-item {
+			padding-left: 4px;
+			padding-right: 4px;
+		}
+
+		& .slick-next {
+			right: -30px;
+			top: 40%;
+		}
+
+		& .slick-prev {
+			left: -30px;
+			top: 40%;
+		}
+	}
+}

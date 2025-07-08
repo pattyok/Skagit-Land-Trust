@@ -1,0 +1,238 @@
+
+/*--------------------------------------------------------------
+# Forms
+--------------------------------------------------------------*/
+
+/* stylelint-disable */
+
+textarea {
+	width: 100%;
+}
+
+/* stylelint-enable */
+
+/* stylelint-disable */
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+a.button,
+.page-content .wFormContainer input[type="submit"],
+.menu-button a,
+.tribe-block__event-website a {
+	border: $btnBorder;
+	border-radius: $btnBorderRadius;
+	background-color: $btnBackground;
+	color: $btnText;
+	font-size: $btnFontSize;
+	font-family: $btnFont;
+	font-weight: $btnFontWeight;
+	line-height: 1.25 !important;
+	padding: var(--padding-button);
+	cursor: pointer;
+	transition: all 0.5s ease;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	letter-spacing: 0.25px;
+	white-space: nowrap;
+	background-image: url(../../images/cta_arrow.svg);
+	background-repeat: no-repeat;
+	background-position: right 16px center;
+	padding-right: 3rem;
+	&:focus-visible {
+		border-color: #aaa #bbb #bbb;
+	}
+	&:hover,
+	&:active {
+		background-color: $btnBackgroundHover;
+		background-image: url(../../images/cta_arrow_white.svg);
+		color: $btnTextHover;
+		text-decoration: none;
+		border: $btnBorderHover;
+	}
+
+}
+
+a.button.is-style-cta,
+a.is-style-cta {
+	background-color: transparent;
+	color: var(--color-link);
+	font-size: calc(17 / 16 * 1rem);
+	font-size: var(--font-size-cta);
+	padding-left: 0;
+	text-transform: none;
+	font-weight: 700;
+	font-weight: var(--font-weight--bold);
+}
+
+a.button.is-style-cta::after,
+a.is-style-cta::after {
+	content: "\203A";
+	padding-left: 5px;
+	-webkit-transition: padding 0.3s linear;
+	transition: padding 0.3s linear;
+}
+
+a.button.is-style-cta:hover,
+a.is-style-cta:hover {
+	color: var(--color-link-active);
+	text-decoration: none;
+}
+
+a.button.is-style-cta:hover::after,
+a.is-style-cta:hover::after {
+	content: "\203A";
+	padding-left: 7px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"],
+input[type="zip"],
+textarea {
+	color: $formsColor;
+	border: 1px solid var(--color-border-dark);
+	padding: var(--padding-button) !important;
+	font-size: calc(16 / 16 * 1rem);
+	font-size: var(--font-size-forms);
+	font-family: $formsFont;
+	width: 100%;
+	line-height: 1;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+input[type="range"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="week"]:focus,
+input[type="time"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="color"]:focus,
+input[type="zip"]:focus,
+textarea:focus {
+	color: #111;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/** background image is fa-chevron-down svg
+		more info here: https://css-tricks.com/probably-dont-base64-svg/ && here https://codepen.io/geoffyuen/pen/zGKQQW
+**/
+
+select:not([multiple]) {
+
+	display: block;
+	padding: 0.75rem 1rem;
+	width: 100%;
+	max-width: 100%;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	font-size: calc(15 / 16 * 1rem);
+	font-size: var(--font-size-forms);
+	font-family: $formsFont;
+	appearance: none;
+	border: 1px solid var(--color-border-dark);
+	border-radius: 0;
+	background-color: #fff;
+	background-image: url(../../images/angle-down.svg);
+	background-repeat: no-repeat, repeat;
+	background-position: right 0.7em top 50%, 0 0;
+	background-size: 0.65em auto, 100%;
+}
+
+/** Select 2 **/
+
+.select2-container--default .select2-selection--single {
+	border: 1px solid var(--color-border-dark);
+	border-radius: 0;
+	padding: 0.75rem 1rem;
+	height: auto;
+	background-image: url(../images/angle-down.svg);
+	background-repeat: no-repeat, repeat;
+	background-position: right 0.7em top 50%, 0 0;
+	background-size: 0.65em auto, 100%;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+	border: none;
+
+}
+
+
+.footer-main {
+
+	& .gform_footer {
+		padding-top: 0;
+	}
+}
+
+.page-content-search {
+	margin-top: 3rem;
+	margin-bottom: 3rem;
+
+	& form {
+		display: flex;
+		max-width: 600px;
+		flex-wrap: wrap;
+		padding: 0;
+
+		& input {
+			width: 80%;
+		}
+
+		& label {
+			flex-basis: 100%;
+			font-weight: 600;
+		}
+	}
+}
+.wp-block-template-part {
+	& p {
+		margin-bottom: 0;
+	}
+}
+.has-primary-background-color {
+	& .um .um-field-label {
+		color: #fff;
+	}
+	& a.um-link-alt {
+		color: #fff !important;
+	}
+}
+
+input[type=submit].um-button {
+	text-transform: uppercase !important;
+	font-weight: 700;
+}

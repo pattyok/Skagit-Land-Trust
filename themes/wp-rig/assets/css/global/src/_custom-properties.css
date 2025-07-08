@@ -1,0 +1,115 @@
+/**
+ * Custom Properties
+ * aka CSS variables.
+ *
+ * @link: https://developer.mozilla.org/en-US/docs/Web/CSS/--*
+ **/
+
+:root {
+	--global-font-size: 16;
+	--global-font-line-height: 1.6;
+	--line-height--tall: 1.56667;
+	--line-height--extra: 1.8;
+
+	--form-field-font-family: var(--wp--preset--font-family--global);
+	--font-family-fa: "Font Awesome 6 Pro";
+
+	--font-family-icons: carkeek-blocks;
+	--content-width: 90vw;
+	--content-width-wide: 90vw;
+
+
+	--padding-responsive: calc((50vw - (var(--content-width)/2)));
+	--padding-responsive-wide: calc((50vw - (var(--content-width-wide)/2)));
+
+	--dropdown-symbol-width: 0.7em;
+
+	--gutter-width-page: 20px;
+
+	--wp--preset--color--gray-100: #e3e3e3;
+
+	--wp--preset--color--gray-300: #a8a9ac;
+	--wp--preset--color--gray-400: #6b6b6b;
+	--wp--preset--color--gray-800: #3d3d3d;
+	--wp--preset--color--background: #fff;
+
+	--navigation-font-family: var(--wp--preset--font-family--global);
+
+	--global-text-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+	--color-error: #cf2e2e;
+	--color-quote-border: #000;
+	--color-quote-citation: #6c7781;
+	--color-caption: #6c7781;
+	--color-border: #61698b;
+	--color-border-dark: #979797;
+	--dashed-border: 2px  dashed  var(--color-border);
+	--solid-border: 2px  solid  var(--color-border);
+
+	--font-size-button: calc(20 / var(--global-font-size) * 1rem);
+	--font-size-forms: calc(18 / var(--global-font-size) * 1rem);
+	--font-size-caption: calc(18 / var(--global-font-size) * 1rem);
+	--font-size-cta: calc(24  / var(--global-font-size) * 1rem);
+	--font-size-quote: calc(22 / var(--global-font-size) * 1rem);
+	--font-size-nav: calc(20 / var(--global-font-size) * 1rem);
+
+	--padding-button: 1rem 1.5rem;
+
+	/* Main family font weights */
+	--font-weight--light: 300; /**book*/
+	--font-weight--regular: 400; /**roman*/
+	--font-weight--medium: 500; /**medium*/
+	--font-weight--bold: 700; /*heavy*/
+	--font-weight--black: 900; /*black*/
+
+	--element-bold: var(--font-weight--bold);
+
+	/* Heading font sizes */
+	--font-size-h1: calc(60 / var(--global-font-size) * 1rem);
+	--font-size-h2-alt: calc(50 / var(--global-font-size) * 1rem);
+	--font-size-h2: calc(44 / var(--global-font-size) * 1rem);
+	--font-size-h3: calc(40 / var(--global-font-size) * 1rem);
+	--font-size-h4: calc(36 / var(--global-font-size) * 1rem);
+	--font-size-h5: calc(22 / var(--global-font-size) * 1rem);
+	--font-size-h6: calc(18 / var(--global-font-size) * 1rem);
+	--heading-spacing: 0.5em;
+
+	--header-height: 100px;
+	--header-image-width: 315px;
+	--ck-fixed-image-ratio: 66%;
+	--ck-featured-image-ratio: 66%;
+	--ck-archive-image-ratio: 72%;
+	--ck-column-gap-vert: 38px;
+	--ck-column-gap: 38px;
+
+	--featured-image-opacity-color: rgba(0, 0, 0, 0.5);
+	--featured-image-opacity: 100;
+	--header-curve-height: 30px;
+
+	--member-menu-btn-max-width: 80px;
+}
+
+@media (--tablet-up) {
+	:root {
+		--header-curve-height: 50px;
+	}
+}
+
+@media (--tablet-wide-up) {
+
+	:root {
+		--content-width: 74vw;
+		--font-size-h1: calc(80 / var(--global-font-size) * 1rem);
+		--font-size-h2-alt: calc(60 / var(--global-font-size) * 1rem);
+		--font-size-h2: calc(50 / var(--global-font-size) * 1rem);
+		--font-size-h3: calc(44 / var(--global-font-size) * 1rem);
+		--font-size-quote: calc(34 / var(--global-font-size) * 1rem);
+	}
+}
+
+@media (--desktop-up) {
+	:root {
+		--font-size-h1: calc(110 / var(--global-font-size) * 1rem);
+		--member-menu-btn-max-width: 125px;
+	}
+}
+
