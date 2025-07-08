@@ -1,6 +1,6 @@
 upgrade/
 uploads/
-plugins/
+plugins/*
 
 
 .DS_Store
