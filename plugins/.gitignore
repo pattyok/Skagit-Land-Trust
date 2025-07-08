@@ -1,0 +1,4 @@
+# Ignore all plugins
+*
+# Except this file
+!.gitignore

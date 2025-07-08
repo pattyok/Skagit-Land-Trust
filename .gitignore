@@ -1,6 +1,7 @@
 upgrade/
 uploads/
 plugins/*
+mu-plugins/*
 
 
 .DS_Store
@@ -14,5 +15,5 @@ themes/*/bower_components/
 !themes/wp-rig
 !themes/lazar-2025
 
-
-!mu-plugins/*/src/plugins
+!plugins/.gitignore
+!mu-plugins/crk-functionality-plugin.php

@@ -1,0 +1,9 @@
+# Ignore everything
+*
+# Don't ignore these directories
+!wp-content/
+!wp-content/plugins/
+!wp-content/plugins/**
+
+# Optional: If you want to be more selective about which plugins to include
+# !wp-content/plugins/specific-plugin-name/
