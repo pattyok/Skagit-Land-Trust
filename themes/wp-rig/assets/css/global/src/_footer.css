@@ -27,6 +27,7 @@
 
 		& a {
 			color: $colorLink;
+			padding-left: 0;
 		}
 	}
 

@@ -318,8 +318,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 				$html .= ' <a class="info-popover" href="#" data-popover="site-credit-pop">Site Credits</a>
 							<div class="gpopover no-list" id="site-credit-pop">
 								<ul class="no-list">
-									<li class="contact-info">Website Design: <a href="https://rhizomecollaborative.com/" target="_blank">The Rhizome Collaborative</a></li>
-								</ul>
+										<li class="contact-info">Website Design: <a href="http://beansnrice.com" target="_blank">Beans n\' Rice</a></li>
+										<li class="contact-info">Website Development: <a href="https://carkeekstudios.com"  target="_blank">Carkeek Studios</a></li>
+									</ul>
 							</div>';
 		}
 		$html .= '</div>';

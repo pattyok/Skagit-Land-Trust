@@ -28,7 +28,12 @@
 	font-family: var(--font-family-fa) !important;
 }
 
-
+button {
+	background-image: none;
+	&:hover {
+		background-image: none;
+	}
+}
 h1 {
 	font-size: 36px;
 }

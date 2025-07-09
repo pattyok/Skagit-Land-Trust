@@ -101,7 +101,7 @@
 			setPageHeaderHeight();
 		} );
 
-		$( '.info-popover' ).gpopover();
+		$( '.info-popover' ).gpopover({width: 300});
 
 		$( '.print-this-js' ).on( 'click', function ( e ) {
 			e.preventDefault();
