@@ -55,6 +55,13 @@ a.button,
 	}
 
 }
+button.modal__close-btn {
+	background-image:none;
+	&:hover {
+		background-image: none;
+	}
+}
+
 
 a.button.is-style-cta,
 a.is-style-cta {
