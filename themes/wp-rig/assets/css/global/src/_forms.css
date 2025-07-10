@@ -38,23 +38,35 @@ a.button,
 	align-items: center;
 	letter-spacing: 0.25px;
 	white-space: nowrap;
-	background-image: url(../../images/cta_arrow.svg);
-	background-repeat: no-repeat;
-	background-position: right 16px center;
-	padding-right: 3rem;
+
+
 	&:focus-visible {
 		border-color: #aaa #bbb #bbb;
 	}
 	&:hover,
 	&:active {
 		background-color: $btnBackgroundHover;
-		background-image: url(../../images/cta_arrow_white.svg);
+
 		color: $btnTextHover;
 		text-decoration: none;
-		border: $btnBorderHover;
+
 	}
 
 }
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	padding-right: 3rem;
+	background-image: url(../../images/cta_arrow.svg);
+	background-repeat: no-repeat;
+	background-position: right 16px center;
+	&:hover,
+	&:active {
+		background-image: url(../../images/cta_arrow_white.svg);
+		border: $btnBorderHover;
+	}
+}
+
 button.modal__close-btn {
 	background-image:none;
 	&:hover {

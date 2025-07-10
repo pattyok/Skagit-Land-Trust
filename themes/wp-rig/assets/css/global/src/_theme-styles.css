@@ -17,14 +17,6 @@
 	--slide-gutter: 0;
 }
 
-.wp-block-carkeek-blocks-extended-gallery {
-	figcaption {
-		background-color: rgba(0, 0, 0, 0.5);
-		color: #fff;
-		margin: 0;
-		padding: 1rem;
-	}
-}
 
 .slick-slide .wp-block-pullquote {
 	color: $global;
@@ -218,4 +210,13 @@
 	}
 }
 
+ul.ck-blocks-gallery-grid.has-caption-under {
+	& .ck-blocks-gallery-grid-item {
+		& figcaption {
+			color: $global;
+			text-align: left;
+			margin-bottom: 0;
+		}
+	}
+}
 
