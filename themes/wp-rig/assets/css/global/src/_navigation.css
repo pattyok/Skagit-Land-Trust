@@ -563,6 +563,7 @@ ul.menu {
 	.main-navigation ul.sub-menu {
 		background-color: $colorSubNavBackground;
 		padding-top: 2.5rem;
+		padding-bottom: 1rem;
 		min-width: 275px;
 
 		& .menu-item > a {

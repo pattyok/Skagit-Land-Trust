@@ -202,7 +202,6 @@ function enable_taxonomy_rest( $args ) {
 	 * @param string $quantity Html passed from template.
 	 */
 	public function woocommerce_cart_qty( $quantity ) {
-		error_log(print_R($quantity, true));
 		if ( strpos( $quantity, 'hidden' ) !== false ) {
 			return '<div class="number-input number-input-fixed">' . $quantity . '</div>';
 		} else {

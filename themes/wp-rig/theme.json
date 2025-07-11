@@ -602,24 +602,20 @@
 		},
 		{
 			"area": "footer",
-			"name": "footer",
-			"title": "Footer"
+			"name": "site-footer",
+			"title": "Site Footer"
 		},
 		{
 			"area": "footer",
-			"name": "footer-columns",
-			"title": "Footer Columns"
+			"name": "service-footer",
+			"title": "Services Footer"
 		},
 		{
 			"area": "footer",
-			"name": "footer-newsletter",
-			"title": "Footer Newsletter"
-		},
-		{
-			"area": "uncategorized",
-			"name": "sidebar",
-			"title": "Sidebar"
+			"name": "projects-footer",
+			"title": "Projects Footer"
 		}
+
 	],
 	"customTemplates": [
 		{

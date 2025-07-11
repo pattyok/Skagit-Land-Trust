@@ -435,7 +435,6 @@ class Component implements Component_Interface, Templating_Component_Interface {
 
 
 	public function update_term_link( $termlink, $term, $taxonomy ) {
-		error_log( 'update_term_link called with term: ' . print_r( $term, true ) );
 		if ( 'services' === $taxonomy && is_object( $term ) && ! empty( $term->slug ) ) {
 			$termlink = home_url( '/our-services/' . $term->slug );
 		}

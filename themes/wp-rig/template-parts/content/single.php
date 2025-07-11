@@ -26,6 +26,14 @@ namespace WP_Rig\WP_Rig;
 	<?php
 		get_template_part( 'template-parts/content/entry-content', get_post_type() );
 	?>
+	<?php if ( !empty(block_template_part( get_post_type() . '-footer' ) ) ) : ?>
+		<div class="single-footer page-content">
+		<?php
+		block_template_part( get_post_type() . '-footer' );
+		?></div>
+	<?php endif; ?>
+	</div>
+
 
 </article><!-- #post-<?php the_ID(); ?> -->
 <?php
