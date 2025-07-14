@@ -56,7 +56,6 @@ hr {
 ul,
 ol {
 	margin: 1.5rem 0;
-	line-height: 1.66667;
 }
 
 ul {
@@ -85,8 +84,9 @@ ul.list-inline {
 	padding: 0;
 }
 
-li.list-inline-item {
+ul.list-inline li {
 	display: inline-block;
+	margin: 0;
 }
 
 dt {
@@ -266,4 +266,8 @@ figcaption {
 	color: var(--color-caption);
 	margin-bottom: 1rem;
 	margin-top: 6px;
+}
+
+.nowrap {
+	white-space: nowrap;
 }

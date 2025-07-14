@@ -316,7 +316,7 @@ function add_dashboard_widgets() {
 		}
 		$documentation_url = '';
 		$content = '<div class="ck-dashboard-widget">';
-		$content .= '<img src="' . esc_url( $logo ) . '" alt="' . esc_attr( get_bloginfo( 'name' ) ) . '" /><h2>' . esc_html( get_bloginfo( 'name' ) ) . '</h2>';
+		$content .= '<img style="width:300px;max-width:100%;height:auto;" src="' . esc_url( $logo ) . '" alt="' . esc_attr( get_bloginfo( 'name' ) ) . '" /><h2>' . esc_html( get_bloginfo( 'name' ) ) . '</h2>';
 
 		$content .= '<p>This site is built with a Custom theme by Carkeek Studios.</p>';
 		if (!empty($documentation_url)) {
