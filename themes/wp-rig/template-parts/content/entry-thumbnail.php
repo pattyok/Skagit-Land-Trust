@@ -27,6 +27,7 @@ if ( ! has_post_thumbnail( $postid ) || post_password_required() || ! post_type_
 }
 $thumb_class = '';
 $thumb_style = '';
+$photo_credit = '';
 
 $is_header   = isset( $args ) && isset( $args['is_header'] ) && true == $args['is_header'];
 $focal_point = get_post_meta( $postid, '_carkeekblocks_featured_image_focal_point', true );
@@ -38,6 +39,7 @@ if ( ! empty( $focal_point ) ) {
 
 }
 if ( $is_header ) {
+	$photo_credit = get_field( 'photo_credit', get_post_thumbnail_id() );
 	$use_opacity = get_option( '_carkeekblocks_featuredimage_use_opacity', false );
 	if ( true == $use_opacity ) {
 		$image_opacity = get_post_meta( $postid, '_carkeekblocks_featured_image_opacity', true );
@@ -65,6 +67,9 @@ if ( is_singular( get_post_type() ) || $is_header ) {
 			)
 		);
 		?>
+		<?php if ( $photo_credit ) : ?>
+			<p class="featured-image-credit"><?php echo wp_kses_post( $photo_credit ); ?></p>
+		<?php endif; ?>
 	</div><!-- .post-thumbnail -->
 
 	<?php

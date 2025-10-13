@@ -11,7 +11,6 @@
 	--line-height--tall: 1.56667;
 	--line-height--extra: 1.8;
 
-	--form-field-font-family: var(--wp--preset--font-family--global);
 	--font-family-fa: "Font Awesome 6 Pro";
 
 	--font-family-icons: carkeek-blocks;
@@ -24,16 +23,17 @@
 
 	--dropdown-symbol-width: 0.7em;
 
-	--gutter-width-page: 20px;
+	--gutter-width-page: 5vw;
+	--gutter-width-page-wide: 5vw;
 
 	--wp--preset--color--gray-100: #e3e3e3;
 
-	--wp--preset--color--gray-300: #a8a9ac;
-	--wp--preset--color--gray-400: #6b6b6b;
+	--wp--preset--color--gray-300: #BEBEBE;
+	--wp--preset--color--gray-400: #AFB4B8;
 	--wp--preset--color--gray-800: #3d3d3d;
 	--wp--preset--color--background: #fff;
 
-	--navigation-font-family: var(--wp--preset--font-family--global);
+	--navigation-font-family: var(--wp--preset--font-family--headings-sans);
 
 	--global-text-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
 	--color-error: #cf2e2e;
@@ -45,10 +45,10 @@
 	--dashed-border: 2px  dashed  var(--color-border);
 	--solid-border: 2px  solid  var(--color-border);
 
-	--font-size-button: calc(20 / var(--global-font-size) * 1rem);
+	--font-size-button: calc(18 / var(--global-font-size) * 1rem);
 	--font-size-forms: calc(18 / var(--global-font-size) * 1rem);
 	--font-size-caption: calc(18 / var(--global-font-size) * 1rem);
-	--font-size-cta: calc(24  / var(--global-font-size) * 1rem);
+	--font-size-cta: calc(18  / var(--global-font-size) * 1rem);
 	--font-size-quote: calc(22 / var(--global-font-size) * 1rem);
 	--font-size-nav: calc(20 / var(--global-font-size) * 1rem);
 
@@ -56,25 +56,25 @@
 
 	/* Main family font weights */
 	--font-weight--light: 300; /**book*/
-	--font-weight--regular: 400; /**roman*/
-	--font-weight--medium: 500; /**medium*/
-	--font-weight--bold: 700; /*heavy*/
+	--font-weight--regular: 500; /**roman*/
+	--font-weight--medium: 600; /**medium*/
+	--font-weight--demi-bold: 700; /**demi-bold*/
+	--font-weight--bold: 800; /*extra bold*/
 	--font-weight--black: 900; /*black*/
 
 	--element-bold: var(--font-weight--bold);
 
 	/* Heading font sizes */
-	--font-size-h1: calc(60 / var(--global-font-size) * 1rem);
-	--font-size-h2-alt: calc(50 / var(--global-font-size) * 1rem);
-	--font-size-h2: calc(44 / var(--global-font-size) * 1rem);
-	--font-size-h3: calc(40 / var(--global-font-size) * 1rem);
-	--font-size-h4: calc(36 / var(--global-font-size) * 1rem);
-	--font-size-h5: calc(22 / var(--global-font-size) * 1rem);
+	--font-size-h1: calc(38 / var(--global-font-size) * 1rem);
+	--font-size-h2: calc(32 / var(--global-font-size) * 1rem);
+	--font-size-h3: calc(28 / var(--global-font-size) * 1rem);
+	--font-size-h4: calc(23 / var(--global-font-size) * 1rem);
+	--font-size-h5: calc(20 / var(--global-font-size) * 1rem);
 	--font-size-h6: calc(18 / var(--global-font-size) * 1rem);
 	--heading-spacing: 0.5em;
 
 	--header-height: 100px;
-	--header-image-width: 315px;
+	--header-image-width: 200px;
 	--ck-fixed-image-ratio: 66%;
 	--ck-featured-image-ratio: 66%;
 	--ck-archive-image-ratio: 72%;
@@ -98,17 +98,22 @@
 
 	:root {
 		--content-width: 74vw;
-		--font-size-h1: calc(80 / var(--global-font-size) * 1rem);
-		--font-size-h2-alt: calc(60 / var(--global-font-size) * 1rem);
-		--font-size-h2: calc(50 / var(--global-font-size) * 1rem);
-		--font-size-h3: calc(44 / var(--global-font-size) * 1rem);
+		--gutter-width-page: 13vw;
+
+		--font-size-h1: calc(64 / var(--global-font-size) * 1rem);
+		--font-size-h2: calc(44 / var(--global-font-size) * 1rem);
+		--font-size-h3: calc(36 / var(--global-font-size) * 1rem);
+
 		--font-size-quote: calc(34 / var(--global-font-size) * 1rem);
 	}
 }
 
 @media (--desktop-up) {
 	:root {
-		--font-size-h1: calc(110 / var(--global-font-size) * 1rem);
+		--content-width: 64vw;
+		--content-width-wide: 80vw;
+		--gutter-width-page: 18vw;
+		--gutter-width-page-wide: 10vw;
 		--member-menu-btn-max-width: 125px;
 	}
 }

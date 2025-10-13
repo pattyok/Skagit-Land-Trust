@@ -2,15 +2,31 @@
 	display: none;
 }
 
-.gform_wrapper.gravity-theme select {
-	padding: var(--padding-button) !important;
+.gform_wrapper.gravity-theme {
+	& .gfield_label {
+		font-size: 1.125rem;
+		font-weight: var(--font-weight--regular);
+	}
+	& .gform_checkbox,
+	& .gform_radio {
+		& label {
+			font-size: 0.90375rem;
+		}
+	}
+	& select {
+		padding: var(--padding-button) !important;
+	}
 }
 
-.gform_wrapper.gravity-theme .gfield_label {
-    font-size: var(--wp--preset--font-size--base);
-	font-weight: var(--font-weight--regular);
+
+@media only screen and (max-width: 641px) {
+    .gform_wrapper.gravity-theme input:not([type=radio]):not([type=checkbox]):not([type=image]):not([type=file]) {
+        line-height: 1;
+        min-height: 32px;
+    }
 }
 
-.gform_wrapper.gravity-theme .gfield_checkbox label, .gform_wrapper.gravity-theme .gfield_radio label {
-    font-size: var(--wp--preset--font-size--small);
+.gform_wrapper.gravity-theme .field_description_above .description, .gform_wrapper.gravity-theme .field_description_above .gfield_description, .gform_wrapper.gravity-theme .field_description_above .gsection_description, .gform_wrapper.gravity-theme .field_description_above .instruction {
+	margin-top: 0;
+	padding: 0;
 }

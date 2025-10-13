@@ -1,3 +1,5 @@
+@import "../../global/src/_custom-media.css";
+
 .wp-block-image {
 
 
@@ -46,24 +48,24 @@
 
 		&.alignleft {
 			padding-right: 1.75rem;
-			padding-left: var(--padding-responsive-image);
+			padding-left: var(--gutter-width-page);
 
 
 			& figcaption {
 				padding-right: 1.75rem;
-				padding-left: var(--padding-responsive-image);
+				padding-left: var(--gutter-width-page);
 				text-align: left;
 			}
 		}
 
 		&.alignright {
 			padding-left: 1.75rem;
-			padding-right: var(--padding-responsive-image);
+			padding-right: var(--gutter-width-page);
 
 
 			& figcaption {
 				padding-left: 1.75rem;
-				padding-right: var(--padding-responsive-image);
+				padding-right: var(--gutter-width-page);
 				text-align: right;
 			}
 		}

@@ -31,12 +31,16 @@ namespace WP_Rig\WP_Rig;
 
 	<header id="masthead" class="site-header">
 		<div class="site-header--inner">
-			<?php get_template_part( 'template-parts/header/navigation-top' ); ?>
+
 			<?php get_template_part( 'template-parts/header/branding' ); ?>
+			<div class="header-top hide-mobile-menu">
+				<?php get_template_part( 'template-parts/header/navigation-top' ); ?>
+			</div>
 			<div class="header-nav-wrapper">
 				<?php get_template_part( 'template-parts/header/before-navigation' ); ?>
 				<?php get_template_part( 'template-parts/header/navigation' ); ?>
-				<?php get_template_part( 'template-parts/header/after-navigation' ); ?>
+				<?php get_template_part( 'template-parts/header/search' ); ?>
+
 			</div>
 		</div>
 

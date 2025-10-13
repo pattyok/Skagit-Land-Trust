@@ -13,7 +13,7 @@ themes/*/bower_components/
 
 
 !themes/wp-rig
-!themes/lazar-2025
+!themes/skagit-land-trust
 
 !plugins/.gitignore
 !mu-plugins/crk-functionality-plugin.php

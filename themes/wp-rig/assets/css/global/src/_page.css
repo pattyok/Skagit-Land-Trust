@@ -3,13 +3,12 @@
 	position: relative;
 	padding: 0;
 	max-width: 100%;
-	margin-bottom: var(--wp--preset--spacing--30);
 
 	& .post-thumbnail {
 		border-bottom: none;
 		height: 52vw;
 		min-height: 350px;
-		max-height: 750px;
+		max-height: 700px;
 
 		&.has-image-opacity {
 			--featured-image-opacity: 100;
@@ -35,13 +34,47 @@
 
 
 	& .entry-title {
+
 		padding-top: $spacingDefault;
 		max-width: 100%;
 		margin: 0 var(--padding-responsive-wide);
 		text-align: center;
 		& h1 {
 			margin: 0;
+		}
+	}
+	&.has-post-thumbnail {
 
+		& .entry-title {
+			padding-top: 0;
+			position: absolute;
+			width: 90%;
+			top: 50%;
+			left: 50%;
+			margin: 0;
+			transform: translate(-50%, -50%);
+			text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+			& h1 {
+				color: #fff;
+			}
+		}
+
+		& .featured-image-credit {
+			position: absolute;
+			bottom: 1rem;
+			right: 1rem;
+			color: #fff;
+			font-size: 1.0625rem;
+			text-align: right;
+			font-weight: 500;
+			text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+			& a {
+				color: #fff;
+				text-decoration: none;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
 		}
 	}
 

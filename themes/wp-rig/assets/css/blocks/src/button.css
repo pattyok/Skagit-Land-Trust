@@ -3,10 +3,7 @@
 .wp-block-button {
 
 	& .wp-block-button__link {
-
-		&.has-background {
-			font-weight: 900 !important;
-		}
+		word-break: normal;
 
 		&.has-primary-background-color {
 
@@ -28,8 +25,9 @@
 		& .wp-block-button__link {
 			background-color: transparent;
 			padding: 0;
-			text-transform: none;
-			color: var(--wp--preset--color--primary);
+			text-transform: uppercase;
+			color: var(--wp--preset--color--accent);
+			font-weight: 900;
 			text-align: left;
 			font-size: var(--font-size-cta);
 			border: none;
@@ -64,6 +62,35 @@
 				}
 			}
 
+		}
+	}
+	&.is-style-down-arrow {
+		& .wp-block-button__link {
+			font-size: 0;
+			border: none;
+
+			&::after {
+				background-color: currentcolor;
+				content: "";
+				display: inline-block;
+				height: 40px;
+				width: 40px;
+
+				mask-image: url(../../images/arrow-down.svg);
+				mask-size: 40px auto;
+				mask-repeat: no-repeat;
+				mask-position: center center;
+				transform-origin: top;
+				will-change: transform;
+				transition: all 0.2s ease-in-out;
+			}
+			&:hover {
+				color: var(--wp--preset--color--accent);
+				background-color: transparent;
+				&::after {
+					transform: translateY(7px);
+				}
+			}
 		}
 	}
 }

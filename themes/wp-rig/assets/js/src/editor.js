@@ -3,6 +3,8 @@
 document.addEventListener( 'DOMContentLoaded', function () {
 	wp.plugins.unregisterPlugin( 'block-directory' );
 	wp.blocks.unregisterBlockType( 'core/gallery' );
+	wp.blocks.unregisterBlockType( 'core/quote' );
+	wp.blocks.unregisterBlockType( 'core/details' );
 	wp.blocks.registerBlockStyle( 'core/video', {
 		name: 'overlay-caption',
 		label: 'Overlay Caption',
@@ -50,15 +52,18 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
 	wp.blocks.unregisterBlockStyle( 'core/quote', 'large' );
 
-	wp.blocks.registerBlockStyle( 'core/separator', {
-		name: 'thick',
-		label: 'Thick Line',
-	} );
 
 	wp.blocks.registerBlockStyle( 'core/button', [
 		{
 			name: 'arrow-link',
-			label: 'Arrow Link',
+			label: 'Call to Action'
+		},
+	] );
+
+	wp.blocks.registerBlockStyle( 'core/button', [
+		{
+			name: 'down-arrow',
+			label: 'Down Arrow'
 		},
 	] );
 
@@ -69,12 +74,28 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		},
 	] );
 
-	wp.blocks.registerBlockStyle( 'core/media-text', [
+	wp.blocks.registerBlockStyle( 'core/cover', [
 		{
-			name: 'offset',
-			label: 'Offset',
+			name: 'quote-background',
+			label: 'Quote Background',
 		},
 	] );
+
+
+	wp.blocks.registerBlockStyle( 'core/group', [
+		{
+			name: 'half-tone',
+			label: 'Half Tone Background',
+		},
+	] );
+
+	wp.blocks.registerBlockStyle( 'core/group', [
+		{
+			name: 'equal-height',
+			label: 'Circle',
+		},
+	] );
+
 
 	wp.blocks.registerBlockStyle( 'core/columns', [
 		{
@@ -91,6 +112,36 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		},
 	] );
 
+	wp.blocks.registerBlockStyle( 'core/media-text', [
+		{
+			name: 'stacked',
+			label: 'Stacked',
+		},
+	] );
+	wp.blocks.registerBlockStyle( 'core/media-text', [
+		{
+			name: 'stacked-icon',
+			label: 'Icon on Top',
+		},
+	] );
+
+	wp.blocks.registerBlockStyle( 'core/media-text', [
+		{
+			name: 'side-icon',
+			label: 'Icon on Side',
+		},
+	] );
+
+	wp.blocks.registerBlockVariation( 'core/buttons', {
+		name: 'buttons-standard',
+		title: 'Buttons',
+		icon: 'button',
+		isDefault: true,
+		innerBlocks: [ [ 'core/button', { className: 'is-style-arrow-link' } ] ],
+		scope: [ 'inserter' ],
+		keywords: [ 'button', 'buttons', 'call to action', 'cta' ],
+	} );
+
 	wp.blocks.registerBlockVariation( 'core/media-text', {
 		name: 'media-text-standard',
 		title: 'Media Text',
@@ -102,7 +153,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 			[
 				'core/buttons',
 				{},
-				[ [ 'core/button', { className: 'is-style-cta' } ] ],
+				[ [ 'core/button', { className: 'is-style-arrow-link' } ] ],
 			],
 		],
 		attributes: {
@@ -128,7 +179,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		title: 'Page Intro',
 		isDefault: true,
 		attributes: { layout: { inherit: true }, className: 'page-intro' },
-		innerBlocks: [ [ 'core/paragraph', { fontSize: 'extra-large' } ] ],
+		innerBlocks: [ [ 'core/paragraph', { fontSize: 'large', align: "center" } ] ],
 		scope: [ 'inserter' ],
 		keywords: [ 'intro', 'page-intro' ],
 	} );
@@ -164,3 +215,4 @@ wp.hooks.addFilter(
 	'wprig-theme',
 	setBlockDefaults
 );
+

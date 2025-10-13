@@ -121,18 +121,19 @@ button.search-toggle {
 	border-bottom-right-radius: 2px;
 	-webkit-transition: all 0.5s ease;
 	transition: all 0.5s ease;
-	background-color: $searchIconColor;
+	background-color: $searchIconBGColor;
 }
 
 .search-toggle-box:hover .search-toggle__circle,
 .search-toggle-box:hover .search-toggle__rectangle {
-	border-color: #454543;
+	border-color: $searchIconBorderHover;
+	background-color: $searchIconBGColorHover;
 }
 
 .nav--toggled-on .search-toggle .search-toggle__circle {
 	width: 25px;
 	border: $searchIconBorder;
-	background-color: $searchIconColor;
+	background-color: $searchIconBGColor;
 	height: 0;
 	top: 0;
 	transform: rotate(-45deg) translate3d(-6px, 6px, 0);
@@ -144,7 +145,7 @@ button.search-toggle {
 	width: 25px;
 	height: 0;
 	border: $searchIconBorder;
-	background-color: $searchIconColor;
+	background-color: $searchIconBGColor;
 
 	-webkit-transform: rotate(45deg) translate3d(-2px, 15px, 0);
 

@@ -26,20 +26,13 @@ if ( ! wp_rig()->is_primary_nav_menu_active() ) {
 
 
 	<div class="primary-menu-container" id="primary-menu-container">
-		<?php if ( is_active_sidebar( 'menu-extras' ) ) : ?>
-
-			<div class="menu-extras hide-desktop-menu">
-				<?php dynamic_sidebar( 'menu-extras' ); ?>
-			</div>
-
-		<?php endif; ?>
 		<?php wp_rig()->display_primary_nav_menu( array( 'menu_id' => 'primary-menu' ) ); ?>
-		<?php if ( is_active_sidebar( 'menu-extras' ) ) : ?>
 
-			<div class="menu-extras hide-mobile-menu">
-				<?php dynamic_sidebar( 'menu-extras' ); ?>
-			</div>
 
-			<?php endif; ?>
+		<div class="menu-extras hide-desktop-menu">
+			<?php get_template_part( 'template-parts/header/navigation-top' ); ?>
+		</div>
+
+
 		</div><!-- .primary-menu-container -->
 </nav><!-- #site-navigation -->

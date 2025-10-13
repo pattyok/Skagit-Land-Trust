@@ -75,9 +75,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	public function initialize() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'action_enqueue_styles' ), 50 );
 		add_action( 'wp_head', array( $this, 'action_preload_styles' ) );
-		add_action( 'after_setup_theme', array( $this, 'action_add_editor_styles' ) );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'action_add_editor_styles' ), 50 );
 		add_action( 'after_setup_theme', array( $this, 'action_add_block_styles' ) );
-		add_action( 'enqueue_block_editor_assets', array( $this, 'action_add_block_scripts' ), 50 );
 		//This is necessary to load fa to the site editor. THough Im not sure if its workking.
 		add_action( 'enqueue_block_editor_content_assets', array( $this, 'action_add_block_scripts' ), 50 );
 
@@ -201,35 +200,38 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		// Enqueue Google Fonts.
 		$google_fonts_url = $this->get_google_fonts_url();
 		if ( ! empty( $google_fonts_url ) ) {
-			add_editor_style( $this->get_google_fonts_url() );
+			wp_enqueue_style( 'wp-rig-google-fonts', $google_fonts_url, array(), null ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 		}
 
 		// Enqueue Typekit fonts if using.
 		$typekit_fonts_url = $this->get_typekit_fonts_url();
 		if ( ! empty( $typekit_fonts_url ) ) {
-			add_editor_style( 'wp-rig-typekit', $typekit_fonts_url, array(), null ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+			error_log( 'adding typekit' );
+			wp_enqueue_style( 'wp-rig-typekit', $typekit_fonts_url, array(), null ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 		}
 
 		// Enqueue block editor stylesheet.
 		add_editor_style( 'assets/css/global/editor-styles.min.css' );
-	}
-	/**
-	 * Enqueues WordPress theme styles for the editor.
-	 */
-	public function action_add_block_scripts() {
-		// Enqueue Fontawesome kit if using.
 
 		$fontawesome_kit_url = $this->get_fontawesome_fonts_url();
 		if ( ! empty( $fontawesome_kit_url ) ) {
 			wp_enqueue_script( 'wp-rig-fa', $fontawesome_kit_url, array(), null, array( 'in_footer' => true ) ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 		}
 	}
+	// /**
+	//  * Enqueues WordPress theme styles for the editor.
+	//  */
+	// public function action_add_block_scripts() {
+	// 	// Enqueue Fontawesome kit if using.
+
+
+	// }
 	/**
 	 * Enqueues block styles
 	 */
 	public function action_add_block_styles() {
 		$styled_blocks = array(
-			'core'           => array( 'button', 'column', 'cover', 'group', 'media-text', 'list', 'separator', 'image', 'navigation', 'quote' ),
+			'core'           => array( 'button', 'column', 'cover', 'group', 'media-text', 'list', 'separator', 'image', 'navigation', 'pullquote' ),
 			'carkeek-blocks' => array( 'accordion', 'custom-archive', 'extended-gallery' ),
 		);
 		foreach ( $styled_blocks as $prefix => $blocks ) {
@@ -385,7 +387,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		}
 
 		$google_fonts = array(
-			'Bebas Neue' => '400',
+
 		);
 
 		/**
@@ -443,7 +445,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 * @return string Adobe Typekit URL, or empty string if no typekit should be used.
 	 */
 	protected function get_typekit_fonts_url(): string {
-		return 'https://use.typekit.net/pkn6lzx.css';
+		return 'https://use.typekit.net/esy5bdb.css';
 	}
 
 	/**

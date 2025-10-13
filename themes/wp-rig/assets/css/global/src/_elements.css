@@ -170,11 +170,13 @@ a.wp-block-button__link:hover {
 button.facetwp-load-more,
 .arrow-link > a,
 a.arrow-link {
+	font-family: var(--wp--preset--font-family--headings-sans);
 	border: none;
 	padding: 0;
 	text-align: left;
 	font-size: var(--font-size-cta);
-	font-weight: 900;
+	text-transform: uppercase;
+	font-weight: 800;
 	text-decoration: none;
 	display: flex !important;
 	align-items: center;
@@ -190,7 +192,7 @@ a.arrow-link {
 
 }
 
-.wp-block-button__link,
+.is-style-cta .wp-block-button__link,
 button.facetwp-load-more,
 .arrow-link > a,
 a.arrow-link {
@@ -201,12 +203,12 @@ a.arrow-link {
 		background-color: currentcolor;
 		content: "";
 		display: inline-block;
-		height: 15px;
-		width: 10px;
-		margin-left: 1rem;
+		height: 22px;
+		width: 21px;
+		margin-left: 6px;
 
 		mask-image: url(../../images/cta_arrow.svg);
-		mask-size: 10px auto;
+		mask-size: 22px auto;
 		mask-repeat: no-repeat;
 		mask-position: center right;
 		transform-origin: left;
