@@ -1,0 +1,25 @@
+{
+	"name": "carkeek-site-blocks",
+	"version": "0.1.0",
+	"description": "Blocks custom designed for this site",
+	"author": "The WordPress Contributors",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"start": "wp-scripts start"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^30.25.0",
+		"classnames": "^2.3.2",
+		"reactjs-popup": "^2.0.5"
+	},
+	"dependencies": {
+		"@10up/block-components": "^1.21.4"
+	}
+}

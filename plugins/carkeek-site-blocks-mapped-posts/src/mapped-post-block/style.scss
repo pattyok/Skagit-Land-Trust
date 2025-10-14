@@ -1,0 +1,457 @@
+:root {
+    --am-map-height: 650px;
+    --am-list-width: 0;
+    --color-theme-green: #21bf73;
+    --color-theme-blue: #41a7b3;
+    --color-icon-orange: #d85609;
+    --color-icon-green: #0e854e;
+    --color-icon-blue: #473892;
+}
+
+.wp-block-carkeek-blocks-mapped-posts-block,
+.page-content > .wp-block-carkeek-blocks-mapped-posts-block {
+    padding-right: 0;
+    padding-left: 0;
+    width: 100%;
+    max-width: 100%;
+}
+#mapped-posts-data {
+    display: none;
+}
+
+.archive-map-wrapper {
+    position: relative;
+
+    .archive-filter-reset {
+        padding: 10px;
+        background-color: transparent;
+        border: none;
+        text-decoration: underline;
+        color: var(--color-link);
+    }
+
+    .archive-map {
+        position: relative;
+    }
+
+    .archive-filter-list {
+        font-size: 16px;
+        margin-top: 1rem;
+        margin-left: calc(-1 * var(--gutter-width) / 2);
+        margin-right: calc(-1 * var(--gutter-width) / 2);
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        input[type="checkbox"] {
+            -webkit-appearance: none;
+            background-color: #fff;
+            border: 1px solid var(--color-theme-grey-med-light);
+            height: 16px;
+            width: 16px;
+            display: inline-block;
+            position: relative;
+            margin-right: 5px;
+            margin-bottom: 2px;
+			flex: 0 0 16px;
+            &:checked {
+                &:after {
+                    content: "\f00c";
+                    font-family: var(--font-family-icon);
+                    font-size: 13px;
+                    position: absolute;
+                    left: 1px;
+                    top: -1px;
+                }
+            }
+        }
+        .archive-filters > li > input[type="checkbox"] {
+            margin-bottom: 0;
+        }
+		.archive-filter-header {
+			display: flex;
+			margin-bottom: 1rem;
+			justify-content: space-between;
+			& h2 {
+				margin-bottom: 0;
+			}
+		}
+        .archive-filters {
+            display: grid;
+            align-items: start;
+            grid-template-areas:
+                "science education"
+                "science stewardship";
+            & > li > label {
+                font-weight: var(--font-weight-bold);
+            }
+            & label {
+                display: inline-flex;
+                align-items: flex-start;
+            }
+            & ul {
+                margin-top: 10px;
+            }
+			& ul li {
+				display: flex;
+			}
+            & h2 {
+                grid-area: header-left;
+            }
+            & button {
+                grid-area: header-right;
+            }
+        }
+
+        .filter-citizen-science {
+            grid-area: science;
+            & .archive-filter-icon {
+                background-color: var(--color-icon-blue);
+            }
+        }
+        .filter-education {
+            grid-area: education;
+
+            & .archive-filter-icon {
+                background-color: var(--color-icon-orange);
+            }
+        }
+        .filter-stewardship {
+            grid-area: stewardship;
+            & .archive-filter-icon {
+                background-color: var(--color-icon-green);
+            }
+        }
+    }
+
+    .leaflet-container {
+        width: 100%;
+        height: var(--am-map-height);
+    }
+
+    .map-details {
+        background-color: #fff;
+        &.is-loading {
+            background-color: #ccc;
+            opacity: 0.7;
+        }
+        & header {
+            background-color: var(--wp--preset--color--grey-dark);
+            color: var(--wp--preset--color--yellow);
+            font-size: 16px;
+            font-style: italic;
+            font-weight: var(--font-weight-bold);
+            padding: 0.5rem 1rem;
+            position: relative;
+            & button {
+                border: none;
+                padding: 0 10px;
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                height: 100%;
+                background-color: var(--wp--preset--color--yellow);
+                color: var(--wp--preset--color--grey-dark);
+            }
+        }
+        & figure {
+            margin-bottom: 0;
+        }
+        & .project-title {
+            background-color: var(--wp--preset--color--grey-dark);
+            font-size: 18px;
+            text-align: center;
+            padding: 1rem;
+            margin-bottom: 0;
+            & a {
+                color: #fff;
+            }
+        }
+        & .project-details {
+            padding: 1rem;
+            font-size: 15px;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        & .project-facts-number {
+            color: var(--wp--preset--color--teal-med);
+            font-weight: var(--font-weight-bold);
+            font-size: 36px;
+            margin-bottom: 0;
+        }
+        & .project-location {
+            color: var(--wp--preset--color--teal-med);
+            font-weight: var(--font-weight-bold);
+            font-style: italic;
+            font-size: 18px;
+        }
+        & .project-facts-title {
+            font-size: 16px;
+            font-style: italic;
+            margin-bottom: 0;
+        }
+
+        & .project-facts {
+            margin-top: 1rem;
+        }
+    }
+
+	.leaflet-popup-content-wrapper,
+	.leaflet-popup-tip {
+		background-color: #323e48;
+		color: #fff;
+	}
+}
+
+.archive-map-top {
+    padding-left: var(--gutter-width);
+    padding-right: var(--gutter-width);
+    margin: 0 auto;
+    max-width: var(--content-width-wide);
+}
+.archive-map-intro {
+	padding-bottom: 3rem;
+}
+
+.archive-filter-icon {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+	flex: 1 0 20px;
+}
+
+.leaflet-marker-icon,
+.archive-filter-icon {
+    border-radius: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+    &.citizen-science {
+        background-color: var(--color-icon-blue);
+    }
+    &.education {
+        background-color: var(--color-icon-orange);
+    }
+    &.stewardship {
+        background-color: var(--color-icon-green);
+    }
+    &.birds {
+        background-image: url(img/icon-cs-birds.svg);
+    }
+    &.crab {
+        background-image: url(img/icon-cs-crab.svg);
+    }
+    &.fish {
+        background-image: url(img/icon-cs-fish.svg);
+    }
+    &.invasive-species {
+        background-image: url(img/icon-cs-invasive-species.svg);
+    }
+    &.marine-flora {
+        background-image: url(img/icon-cs-marine-flora.svg);
+    }
+    &.nearshore {
+        background-image: url(img/icon-cs-nearshore.svg);
+    }
+    &.water-quality {
+        background-image: url(img/icon-cs-water-droplet.svg);
+    }
+    &.state-parks {
+        background-image: url(img/icon-edu-person.svg);
+    }
+    &.beach-clean-up {
+        background-image: url(img/icon-stw-beach-clean-up.svg);
+    }
+    &.fishing-line {
+        background-image: url(img/icon-stw-fish-hook.svg);
+    }
+    &.wharf-display {
+        background-image: url(img/icon-edu-whale-wharf.svg);
+    }
+    &.public-education-events {
+        background-image: url(img/icon-edu-edu-events.svg);
+    }
+	&.shoreline-signage {
+        background-image: url(img/icon-stw-signage.svg);
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .archive-map-wrapper {
+        .archive-filter-list {
+            margin-right: 0;
+            margin-left: 0;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .archive-map-wrapper {
+        .archive-map-top {
+            display: flex;
+            & > * {
+                width: 50%;
+            }
+        }
+        .archive-map-intro {
+            padding-right: var(--gutter-width);
+        }
+        .archive-filter-list {
+            margin-top: 0;
+        }
+        .archive-filters ul {
+            margin-left: 1rem;
+        }
+        .map-details {
+            & figure {
+                height: 170px;
+                position: relative;
+                & img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+            .project-details {
+                height: calc(100% - 263px);
+                overflow-y: auto;
+            }
+        }
+    }
+}
+
+.leaflet-marker-icon.has-shadow > span:after {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+    display: block;
+    height: 3px;
+    width: 20px;
+    border-radius: 100%;
+    transform: rotate(-15deg);
+    position: absolute;
+    left: 17px;
+    bottom: -7px;
+}
+
+
+.leaflet-popup-content-wrapper {
+    .map-archive-popup {
+        width: 215px;
+        font-family: var(--font-family-global);
+        font-size: 14px;
+
+        h2 {
+            font-size: 18px;
+        }
+        img {
+            width: 100%;
+            height: auto;
+        }
+        .popup-title {
+            display: block;
+            font-size: 16px;
+            font-style: italic;
+        }
+
+        .popup-link {
+            display: block;
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        .wp-block-mapped-posts-archive__text-link {
+            font-size: 18px;
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+            font-weight: var(--font-weight-bold);
+            display: block;
+        }
+        a.wp-block-mapped-posts-archive__text-link {
+            color: var(--color-theme-green);
+            &:hover {
+                color: var(--color-theme-green-light-links);
+            }
+        }
+    }
+}
+
+
+.archive-map-wrapper {
+    .leaflet-bar {
+        border-radius: 0;
+        box-shadow: none;
+        border: 1px solid var(--color-border);
+        a {
+            border-radius: 0 !important;
+        }
+    }
+
+    .leaflet-bottom {
+        z-index: 400;
+    }
+
+    .leaflet-pane {
+        z-index: unset;
+        &.leaflet-popup-pane {
+            z-index: 700;
+        }
+        &.leaflet-marker-pane {
+            z-index: 600;
+        }
+    }
+
+	.marker-cluster-small {
+		background-color: rgba(0, 125, 132, 0.6);
+	}
+
+	.marker-cluster-small div {
+		background-color: rgba(0, 125, 132, 0.6);
+	}
+
+	.marker-cluster-medium {
+		background-color: rgba(0, 125, 132, 0.6);
+	}
+
+	.marker-cluster-medium div {
+		background-color: rgba(0, 125, 132, 0.6);
+	}
+
+	.marker-cluster-large {
+		background-color: rgba(0, 125, 132, 0.6);
+	}
+
+	.marker-cluster-large div {
+		background-color: rgba(0, 125, 132, 0.6);
+	}
+
+	.marker-cluster div {
+		color: #fff;
+		font-family: var(--global-font-family);
+	}
+}
+
+@media screen and (min-width: 1024px) {
+    .archive-map-wrapper {
+        .map-details {
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: translateX(300px);
+            transition: transform 0.3s ease;
+            width: 300px;
+            height: 100%;
+
+            &.show-details {
+                transform: translateX(0px);
+            }
+        }
+    }
+}

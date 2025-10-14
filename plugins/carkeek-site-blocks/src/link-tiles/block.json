@@ -1,0 +1,50 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "carkeek-blocks/link-tiles",
+  "version": "0.1.0",
+  "title": "Link Tiles",
+  "category": "widgets",
+  "icon": "grid-view",
+  "description": "Block that displays a group of link-tiles.",
+  "supports": {
+	"reusable": false,
+	"html": false,
+	"align": [ "full", "wide" ],
+	"spacing": {
+		"padding": true,
+		"margin": ["top", "bottom"],
+		"blockGap": true
+	},
+	"layout": {
+		"default": {
+			"type": "grid",
+			"gridTemplateColumns":  "var(--ck-link-tiles-columns, 3fr)"
+		},
+		"allowEditing": false
+	}
+  },
+  "attributes": {
+	"columns": {
+		"type": "number",
+		"default": 2
+	},
+	"columnsTablet": {
+		"type": "number",
+		"default": 2
+	},
+	"columnsMobile": {
+		"type": "number",
+		"default": 1
+	},
+	"imageAspectRatio": {
+		"type": "string",
+		"default": "landscape-43"
+	}
+  },
+  "keywords": ["link","tiles","wa"],
+  "textdomain": "carkeek-block",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

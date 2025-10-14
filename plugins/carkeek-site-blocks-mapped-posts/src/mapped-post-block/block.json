@@ -1,0 +1,83 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "carkeek-blocks/mapped-posts-block",
+	"version": "2.0.4",
+	"title": "Mapped Posts Block",
+	"category": "widgets",
+	"icon": "location-alt",
+	"description": "Create a map from a list of posts",
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"color": {
+			"background": true,
+			"text": true
+		}
+	},
+	"keywords": [ "map", "posts", "archive" ],
+	"textdomain": "carkeek-blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./script.js",
+	"render": "file:./template.php",
+	"attributes": {
+		"numberOfPosts": {
+		  "type": "number",
+		  "default": 3
+		},
+		"postTypeSelected": {
+		  "type": "string"
+		},
+		"addressFieldType": {
+		  "type": "string"
+		},
+		"addressFieldSelected": {
+		  "type": "string"
+		},
+		"latFieldSelected": {
+		  "type": "string"
+		},
+		"lngFieldSelected": {
+		  "type": "string"
+		},
+		"popupImage": {
+		  "type": "boolean",
+		  "default": true
+		},
+		"popupTitle": {
+		  "type": "boolean",
+		  "default": true
+		},
+		"popupExcerpt": {
+		  "type": "boolean",
+		  "default": true
+		},
+		"excerptLength": {
+		  "type": "number",
+		  "default": 25
+		},
+		"mapAddFilter": {
+		  "type": "boolean",
+		  "default": false
+		},
+		"taxonomySelected": {
+			"type": "string"
+		},
+		"filterItemsByTaxonomy": {
+			"type": "boolean",
+			"default": false
+		  },
+        "filterItemsTaxonomySelected": {
+			"type": "string"
+		},
+        "filterItemsTaxonomyTermsSelected": {
+			"type": "array"
+		},
+		"clusterMarkers": {
+			"type": "boolean",
+			"default": false
+		  }
+	  }
+}

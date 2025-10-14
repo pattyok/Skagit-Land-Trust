@@ -2,3 +2,5 @@ node_modules
 node_modules/**
 themes/wp-rig
 themes/wp-rig/**
+plugins/**/src
+plugins/**/src/**
