@@ -7,6 +7,7 @@ var _ = require('lodash');
 
 import Pins from './Pins.js';
 import Filters from './Filters.js';
+import Legend from './Legend.js';
 
 function MapCluster(props) {
     const { zoom,
@@ -56,6 +57,11 @@ function MapCluster(props) {
 
 	const intro = document.getElementById('mapped-posts-map-intro').innerHTML;
 
+	const legendItems  = [
+		{ slug: 'public', label: 'Public Access' },
+		{ slug: 'private', label: 'No Public Access' }
+	]
+
 	/** this method for getting the baselayer is specific to esri, to get the attribution correct, for other services you can use inside the <Map>
      * <TileLayer
         attribution='<a href="https://www.maptiler.com/copyright/" target="_blank" >&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
@@ -94,8 +100,9 @@ function MapCluster(props) {
             {mapReady &&
                 <Pins fitBounds={true} paddingTopLeft={[50, 50]} cluster={cluster} data={visibleLocations}  />
             }
-            <ZoomControl position="topleft" />
+            <ZoomControl position="topright" />
         	<AttributionControl position="bottomleft" />
+			<Legend items={legendItems} position="topleft" />
         </MapContainer>
 
         </div>

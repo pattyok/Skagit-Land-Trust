@@ -181,13 +181,29 @@ a.arrow-link {
 	display: flex !important;
 	align-items: center;
 
+	&::after {
+		background-color: currentcolor;
+		content: "";
+		display: inline-block;
+		height: 23px;
+		width: 21px;
+		margin-left: 6px;
+
+		mask-image: url(../../images/cta_arrow.svg);
+		mask-size: 23px auto;
+		mask-repeat: no-repeat;
+		mask-position: center right;
+		transform-origin: left;
+		will-change: transform;
+		transition: all 0.2s ease-in-out;
+	}
+
 	&:hover {
-		background-color: transparent !important;
-		color: $primary !important;
-		border: none !important;
-		box-shadow: none !important;
-		transform: none;
-		text-decoration: none;
+
+
+		&::after {
+			transform: translateX(5px);
+		}
 	}
 
 }

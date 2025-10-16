@@ -72,10 +72,14 @@ class CarkeekMappedPosts_Register {
 	 * through the block editor in the corresponding context.
 	 *
 	 * @see https://developer.wordpress.org/reference/functions/register_block_type/
+	 *
+	 * The fancy version of the location-details is not being used but keeping it around for a while, we may make use of it later.
+	 * I think we have to switch away from ACF to register the fields to make it work though.
 	 */
 	function carkeek_blocks_mapped_posts_block_block_init() {
 		register_block_type( plugin_dir_path( dirname( __FILE__ ) ) . 'build/mapped-post-block' );
 		register_block_type( plugin_dir_path( dirname( __FILE__ ) ) . 'build/location-details' );
+		register_block_type( plugin_dir_path( dirname( __FILE__ ) ) . 'build/location-map' );
 	}
 
 
@@ -83,7 +87,8 @@ class CarkeekMappedPosts_Register {
 
 	/** Enqueue assets not auto included */
 	function carkeek_blocks_mapped_posts_block_enqueue_assets() {
-		if ( has_block( 'carkeek-blocks/mapped-posts-block' ) ) {
+		if ( has_block( 'carkeek-site-blocks/mapped-posts-block' ) || has_block( 'carkeek-site-blocks/location-map' ) ) {
+			error_log('enqueuing script styles');
 			$dir        = plugin_dir_path( dirname( __FILE__ ) );
 			$shared_css = 'build/mapped-post-block/script.css';
 			wp_enqueue_style(

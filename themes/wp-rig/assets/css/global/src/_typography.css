@@ -74,6 +74,12 @@ h6,
 	font-weight: var(--font-weight--medium);
 }
 
+.all-caps {
+	text-transform: uppercase;
+	font-family: $fontFamilyHeadingsSans;
+	font-weight: 800;
+}
+
 .entry-header h1.entry-title,
 .page-header .page-title {
 	line-height: 1.4;

@@ -6,7 +6,6 @@ import FilterCheckbox from "./filters/FilterCheckbox.js";
 import FilterRadio from "./filters/FilterRadio.js";
 
 const FilterList = ({ locations, categories, onUpdateLocations, label }) => {
-	console.log('FilterList render, label:', label);
 	const [selectedSearch, setSelectedSearch] = useState(null);
 	const [selectedCats, setSelectedCats] = useState(null);
 	const [selectedType, setSelectedType] = useState(null);
@@ -90,7 +89,6 @@ const FilterList = ({ locations, categories, onUpdateLocations, label }) => {
 	const filterLocationsCat = () => {
 		let toFilter = [];
 		toFilter = _.clone(locations);
-		console.log('Filtering locations, total:', toFilter.length, 'selectedCats:', selectedCats);
 
 		if (selectedCats && selectedCats.length > 0 ) {
 			const visible = []
@@ -128,16 +126,13 @@ const FilterList = ({ locations, categories, onUpdateLocations, label }) => {
 
 	function getFilterOptions(data, key1) {
 		let options = [];
-		if (data && data.length > 0) {
-			const vals = _.map(data, item => item['acf']);
-			console.log('Filter values:', vals);
-			// Extract all loc_type objects, filter out falsy, and get unique by 'value'
-			const options = _.chain(vals)
-				.map(item => item[key1])
-				.filter(Boolean)
-				.uniqBy('value')
-				.value()
-				.sort((a, b) => { return a.label.localeCompare(b.label) });
+		//manuallly doing this because acf returns values only - could programmatically get labels if needed
+		if (key1 === 'loc_type') {
+			options = [
+				{ label: 'Easement', value: 'easement' },
+				{ label: 'Trust-Assisted', value: 'trust-assisted' },
+				{ label: 'Trust-Owned', value: 'trust-owned' }
+			];
 			return options;
 		}
 		return options;

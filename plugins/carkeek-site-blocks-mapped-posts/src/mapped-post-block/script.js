@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 //import { render } from 'react-dom';
 import "leaflet/dist/leaflet.css";
+import "./shared.scss";
 import L from 'leaflet';
 import { render } from 'react-dom';
 import { getMarkerData, getCategoryData } from './components/getData';
@@ -65,7 +66,6 @@ function App(props){
     }
 
     const updateVisibleMarkers = (markers) => {
-		console.log('Updating visible markers:', markers);
 		setMarkersState( (prevState) => {
 			if (_.isEqual(prevState.visible, markers)) {
 				return prevState;
@@ -125,7 +125,7 @@ function App(props){
   useEffect(() => {
     getCategoryData(taxUrl, resolveCategories);
   }, [setCatState]);
-  console.log('Rendering map, markers:', markersState, 'categories:', catState);
+
   return(
     <Map
     isMapLoading={markersState.loadingMarkers}

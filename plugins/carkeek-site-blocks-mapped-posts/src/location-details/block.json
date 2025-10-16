@@ -10,8 +10,12 @@
 	"example": {},
 	"supports": {
 		"multiple": false,
-		"typography": {
-			"fontSize": true
+		"align": ["wide", "full"],
+		"color": {
+			"gradients": false,
+			"link": false,
+			"background": true,
+			"text": true
 		}
 	},
 	"usesContext": [ "postId", "postType" ],

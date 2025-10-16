@@ -43,23 +43,25 @@ function MappedPostsArchiveEdit(props) {
     } = attributes;
 
 
-    let latlngfieldOptions = [];
+    const[latlngfieldOptions, setLatlngfieldOptions] = React.useState([]);
 
-    if (postTypes && postTypeSelected) {
-        const typeObj = postTypes.find(({ slug }) => slug === postTypeSelected);
-        if (typeObj.metafields) {
-            latlngfieldOptions =
-                typeObj.metafields &&
-                typeObj.metafields.map(type => ({
-                    value: type.meta_key,
-                    label: type.meta_key
+	useEffect(() => {
+		let latlngfieldOptions = [];
+		if (postTypes && postTypeSelected) {
+			const typeObj = postTypes.find(({ slug }) => slug === postTypeSelected);
+			console.log('typeObj:', typeObj);
+
+			if (typeObj.metafields) {
+				latlngfieldOptions =
+					typeObj.metafields &&
+					typeObj.metafields.map(type => ({
+						value: type.meta_key,
+						label: type.meta_key
                 }));
-        }
-    }
-    if (!postTypeSelected) {
-        const selectAnItem = { value: null, label: "Select a Post Type" };
-        latlngfieldOptions.unshift(selectAnItem);
-    }
+			}
+		}
+		setLatlngfieldOptions(latlngfieldOptions);
+	}, [addressFieldType, postTypes, postTypeSelected]);
 
 
     useEffect(() => {
@@ -114,8 +116,8 @@ function MappedPostsArchiveEdit(props) {
                         options={latlngfieldOptions}
                         value={addressFieldSelected}
                     />
-					)}
-					{addressFieldType === 'latlng' && (
+				)}
+				{addressFieldType === 'latlng' && (
 						<>
                     <SelectControl
                         label={__("Lat Field", "carkeek-blocks")}
@@ -134,12 +136,14 @@ function MappedPostsArchiveEdit(props) {
                         value={lngFieldSelected}
                     />
 					</>
-					)}
+)}
                 </>
             )}
         </>
     );
-
+	console.log('postTypeSelected:', postTypeSelected);
+	console.log( 'addressFieldType:', addressFieldType );
+	console.log( 'latlngfieldOptions:', latlngfieldOptions );
     const taxonomySelect = (
         <>
             <ToggleControl

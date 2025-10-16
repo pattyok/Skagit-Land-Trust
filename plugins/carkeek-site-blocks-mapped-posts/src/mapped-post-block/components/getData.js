@@ -1,7 +1,6 @@
 import axios from 'axios'
 
 const getData = (page, url, data, resolve, reject) => {
-	console.log('Fetching data from:', `${url}&page=${page}`);
 	const query = `${url}&page=${page}`
     axios.get(query)
     .then(response => {

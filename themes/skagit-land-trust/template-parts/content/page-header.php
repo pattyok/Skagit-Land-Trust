@@ -95,11 +95,8 @@ if ( is_404() ) {
 	$iframe     = get_field( 'blog_video_link' );
 	$has_video  = false;
 
-	if ( is_singular( 'post' ) || is_singular( 'projects' ) ) {
+	if ( is_singular( 'post' ) ) {
 		$hide_image = true;
-	}
-	if ( is_singular( 'projects' ) ) {
-		$hide_title = true;
 	}
 
 

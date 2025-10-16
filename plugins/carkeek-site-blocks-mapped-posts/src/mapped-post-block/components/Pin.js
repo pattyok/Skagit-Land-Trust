@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
-import { Marker, Popup } from "react-leaflet";
+import { Marker, Popup, Tooltip } from "react-leaflet";
 import L from "leaflet";
-import iconsvg from "./marker";
+import iconsvg from "../../resources/marker";
 
 const Pin = props => {
     const markerRef = useRef(null);
@@ -37,9 +37,9 @@ const Pin = props => {
                 dangerouslySetInnerHTML={{ __html: title }}
             />
             <ul className="popup-data no-bullets">
-				{data.loc_location && <li className="popup-label"><span className="popup-location" title="Location"></span> {data.loc_location}</li>}
-				{data.loc_acreage && <li className="popup-label"><span className="popup-acreage" title="Acreage"></span> {`${data.loc_acreage} acres`}</li>}
-				<li className="popup-label"><span className="popup-access" title="Access"></span>
+				{data.loc_location && <li className="location-data-item"><span className="icon-location" title="Location"></span> {data.loc_location}</li>}
+				{data.loc_acreage && <li className="location-data-item"><span className="icon-acreage" title="Acreage"></span> {`${data.loc_acreage} acres`}</li>}
+				<li className="location-data-item"><span className="icon-access" title="Access"></span>
 				{data.loc_open_to_the_public ? "Open to the Public" : "Not open to the Public"}</li>
 				</ul>
 			</div>
@@ -51,6 +51,9 @@ const Pin = props => {
 			icon={getMyIcon()}
         >
             <Popup minWidth={325} ref={markerRef}>{popup}</Popup>
+			<Tooltip>
+				<span dangerouslySetInnerHTML={{ __html: title + ',<br/>' + data.loc_location }} />
+			</Tooltip>
         </Marker>
     );
 };

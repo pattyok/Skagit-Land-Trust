@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
-  "name": "carkeek-blocks/mapped-posts-block",
+  "name": "carkeek-site-blocks/mapped-posts-block",
   "version": "2.0.4",
   "title": "Mapped Posts Block",
   "category": "widgets",
@@ -13,6 +13,11 @@
       "wide",
       "full"
     ],
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": false
+    },
     "color": {
       "background": true,
       "text": true

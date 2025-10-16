@@ -38,7 +38,7 @@ if ( isset( $attributes['addressFieldType'] ) && 'acf' === $attributes['addressF
 	$address_field = $attributes['latFieldSelected'] . '|' . $attributes['lngFieldSelected'];
 }
 
-		$data_url = $base_url . $attributes['postTypeSelected'] . '?per_page=100&show_on_map=true&_fields=featured_image,featured_media,id,link,title,project,cat,date,acf,' . $data_taxes . $tax_filter;
+		$data_url = $base_url . $attributes['postTypeSelected'] . '?per_page=100&show_on_map=true&_fields=featured_image,featured_media,id,link,title,project,cat,date,meta,acf,' . $data_taxes . $tax_filter;
 
 		$data_url = apply_filters( 'ck_maparchive_dataurl', $data_url, $attributes );
 ?>

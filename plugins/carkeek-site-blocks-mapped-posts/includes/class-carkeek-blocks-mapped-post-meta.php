@@ -24,6 +24,60 @@ class CarkeekMappedPosts_Post_Meta {
 	 */
 	public function __construct() {
 		add_action( 'rest_api_init', array( $this, 'pass_metafields_to_restapi' ) );
+		//add_action( 'init', array( $this, 'register_meta_fields' ), 20 ); // Using ACF for now...
+	}
+
+
+	/**
+	 * Create our own meta fields so we can edit them in the block editor.
+	 */
+	public function register_meta_fields( ) {
+		$post_type = 'skgt_location';
+		$fields = array(
+			array(
+				'key' => 'loc_type',
+				'type' => 'string',
+			),
+			array(
+				'key' => 'loc_location',
+				'type' => 'string',
+			),
+			array(
+				'key' => 'loc_lat',
+				'type' => 'string',
+			),
+			array(
+				'key' => 'loc_long',
+				'type' => 'string',
+			),
+			array(
+				'key' => 'loc_acreage',
+				'type' => 'string',
+			),
+			array(
+				'key' => 'loc_date_added',
+				'type' => 'string',
+			),
+			array(
+				'key' => 'loc_date_added_notes',
+				'type' => 'string',
+			),
+			array(
+				'key' => 'loc_open_to_the_public',
+				'type' => 'boolean',
+			)
+		);
+		foreach ( $fields as $field ) {
+			register_post_meta(
+				$post_type,
+				$field['key'],
+				array(
+					'show_in_rest' => true,
+					'single'       => true,
+					'type'         => $field['type'],
+				)
+			);
+		}
 	}
 
 	/**

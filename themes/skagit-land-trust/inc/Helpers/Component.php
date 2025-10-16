@@ -395,25 +395,21 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$post_type = $post->post_type;
 		}
 
-		$landing_pages = get_field( 'acf_landing_page', 'options' );
+		$landing_pages = get_field( 'acf_landing_page', 'options' ); //set this up as a repeater with post type and landing page.
+
 		$post_types    = wp_list_pluck( $landing_pages, 'landing_page', 'post_type' );
-		$parent        = 0; // not using parents in this theme.
+		$parent        = 0; //default to no parent
+		$title_id = $post->ID;
+		$is_h1 = true;
 		if ( isset( $post_types[ $post_type ] ) ) {
-			$title_id = $post_types[ $post_type ];
-			// $parent   = get_post_parent( $title_id );
-			$is_h1 = false;
-		} else {
-			$title_id = $post->ID;
-			// $parent   = $post->post_parent;
-			$is_h1 = true;
+			$parent = $post_types[ $post_type ];
+			$link_parent = true;
 		}
-		$link_parent = false;
-		$is_h1       = true;
 		if ( 0 !== $parent && ! empty( $parent ) ) {
 			if ( $link_parent ) {
-				echo '<a class="entry-parent-link" href="' . esc_url( get_the_permalink( $parent ) ) . '">' . wp_kses_post( get_the_title( $parent ) ) . '</a>';
+				echo '<a class="entry-parent-link all-caps" href="' . esc_url( get_the_permalink( $parent ) ) . '">' . wp_kses_post( get_the_title( $parent ) ) . '</a>';
 			} else {
-				echo '<div class="entry-parent-link">' . wp_kses_post( get_the_title( $parent ) ) . '</div>';
+				echo '<div class="entry-parent-link all-caps">' . wp_kses_post( get_the_title( $parent ) ) . '</div>';
 			}
 		}
 		if ( $is_h1 ) {
