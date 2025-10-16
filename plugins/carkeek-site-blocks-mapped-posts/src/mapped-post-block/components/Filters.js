@@ -1,123 +1,204 @@
 var _ = require("lodash");
-import React from "react";
+import React, { useRef, useState, useEffect, use } from "react";
+import FilterDropdown from './filters/FilterDropdown.js';
+import FilterCheckboxTax from "./filters/FilterCheckboxTax.js";
+import FilterCheckbox from "./filters/FilterCheckbox.js";
+import FilterRadio from "./filters/FilterRadio.js";
 
-const FilterList = ({ options, selectedOptions, onChange, title, reset, locations }) => {
-	/** Because we are pulling categories from the projects we can't just request unempty cats, so we filter on actual using */
-	const catUsing = _.uniq(_.flatten(_.map(locations, 'cat.ids')));
+const FilterList = ({ locations, categories, onUpdateLocations, label }) => {
+	console.log('FilterList render, label:', label);
+	const [selectedSearch, setSelectedSearch] = useState(null);
+	const [selectedCats, setSelectedCats] = useState(null);
+	const [selectedType, setSelectedType] = useState(null);
+	const [viewMode, setViewMode] = useState('search');
+	const [filterActive, setFilterActive] = useState(false);
 
-	const ListItem = ({ label, value, catChildren, parent, slug, color }) => {
-        const selected = _.includes(selectedOptions, value);
-        let icon = "";
-        if (parent !== 0) {
-            icon = (
-                <span
-                    aria-hidden="true"
-                    className={`archive-filter-icon ${slug}`}
-                ></span>
-            );
-        }
+	const [typeOptions, setTypeOptions] = useState([]);
 
-        const handleCheckboxClicked = e => {
-            const myChildrenIds = _.map(catChildren, "id");
+	function checkFilterActive() {
+		if (selectedCats && selectedCats.length > 0) {
+			return true;
+		}
+		if (selectedType && selectedType.length > 0) {
+			return true;
+		}
+		if (selectedSearch) {
+			return true;
+		}
+		return false;
+	}
 
-            if (e.target && e.target.type === "checkbox") {
-                const selectedOptionId = parseInt(e.target.value);
-                const parentId = parseInt(parent);
-                let newSelectedOptions = _.cloneDeep(selectedOptions);
-                // is currently selected
-                if (_.includes(selectedOptions, selectedOptionId)) {
-                    // remove selected value from options list
-                    _.pull(newSelectedOptions, selectedOptionId);
-                    // remove children from selected list
-                    _.pullAll(newSelectedOptions, myChildrenIds);
-                } else {
-                    // is not currently selected
-                    // Add selected key to optionsList
-                    //newSelectedOptions.push(selectedOptionId);
-                    newSelectedOptions = _.concat(
-                        selectedOptions,
-                        selectedOptionId,
-                        myChildrenIds
-                    );
-                }
+	//Actions to run when filters change all based on the state changes.
+	useEffect(() => {
+		if (locations && locations.length > 0){
+			filterLocationsCat();
+		}
+	}, [selectedCats, locations]);
 
-                //if parent is currently selected, we remove if
-                if (_.includes(selectedOptions, parentId)) {
-                    _.pull(newSelectedOptions, parentId);
-                }
+	useEffect(() => {
+		if (locations && locations.length > 0){
+			filterLocationsACF('loc_type', selectedType);
+		}
+	}, [selectedType, locations]);
 
-                //if the options are empty we add the parent only
-                if (newSelectedOptions.length == 0) {
-                    newSelectedOptions.push(parentId);
-                }
+	useEffect(() => {
+		if (locations && locations.length > 0){
+			filterLocationsVal(selectedSearch?.value, 'id');
+		}
+	}, [selectedSearch, locations]);
 
-                // call onChange function pulled in from Map to track state
-                onChange(newSelectedOptions);
-            }
-        };
+	//Any time any filter changes, check if any are active
+	useEffect(() => {
+		const active = checkFilterActive();
+		setFilterActive(active);
+	}, [selectedCats, selectedType, selectedSearch]);
 
-        let children = null;
-        if (catChildren.length > 0) {
+	//Set options for type filter
+	useEffect(() => {
+		if (locations && locations.length > 0){
+			const options = getFilterOptions(locations, 'loc_type');
+			setTypeOptions(options);
 
-            children = (
-                <ul>
-                    {catChildren.map(cat => {
-						if (catUsing.includes(cat.id)) {
-							return (
-								<ListItem
-									key={cat.id}
-									label={cat.name}
-									value={parseInt(cat.id)}
-									parent={cat.parent}
-									catChildren={cat.children}
-									slug={cat.slug}
-								/>
-							);
-						}
-                    })}
-                </ul>
-            );
-        }
-        return (
-            <li className={`filter-${slug}`}>
-                <input
-                    checked={selected}
-                    type="checkbox"
-                    onChange={e => handleCheckboxClicked(e)}
-                    value={value}
-                    id={`cat-${value}`}
-                />
-                <label htmlFor={`cat-${value}`}>
-                    {icon}
-                    <span dangerouslySetInnerHTML={{ __html: label }}></span>
-                </label>
-                {children}
-            </li>
-        );
-    };
+		}
+	}, [locations]);
+
+	/** Reset all filters when view mode changes */
+	useEffect(() => {
+		resetAll();
+	}, [viewMode]);
+
+
+    const arrayContains = (arr1, arr2) => {
+        return _.intersection(arr1, arr2).length > 0;
+    }
+
+	function filterLocationsVal( value, meta_key ) {
+		if (!value) {
+			onUpdateLocations(locations);
+			return;
+		}
+		const filtered = _.filter(locations, loc => {
+			if (loc[meta_key]) {
+				return loc[meta_key] === value;
+			}
+			return false;
+		});
+		onUpdateLocations(filtered);
+	}
+
+
+	const filterLocationsCat = () => {
+		let toFilter = [];
+		toFilter = _.clone(locations);
+		console.log('Filtering locations, total:', toFilter.length, 'selectedCats:', selectedCats);
+
+		if (selectedCats && selectedCats.length > 0 ) {
+			const visible = []
+			toFilter.map((item) => {
+				if (arrayContains(selectedCats, item.cats)) {
+					visible.push(item);
+				}
+			})
+			onUpdateLocations(visible);
+		} else {
+			onUpdateLocations(toFilter);
+		}
+	}
+
+	//Filter by ACF field value
+	function filterLocationsACF( meta_key, selected ) {
+		if (!selected || selected.length === 0) {
+			onUpdateLocations(locations);
+			return;
+		}
+		const filtered = _.filter(locations, loc => {
+			if (loc.acf && loc.acf[meta_key]) {
+				//check if loc.acf[meta_key] is an object or single value.
+				if (typeof loc.acf[meta_key] === 'object' && loc.acf[meta_key] !== null) {
+					return arrayContains(selected, [loc.acf[meta_key].value]);
+				}
+				return arrayContains(selected, [loc.acf[meta_key]]);
+			}
+			return false;
+		});
+		onUpdateLocations(filtered);
+	}
+
+
+
+	function getFilterOptions(data, key1) {
+		let options = [];
+		if (data && data.length > 0) {
+			const vals = _.map(data, item => item['acf']);
+			console.log('Filter values:', vals);
+			// Extract all loc_type objects, filter out falsy, and get unique by 'value'
+			const options = _.chain(vals)
+				.map(item => item[key1])
+				.filter(Boolean)
+				.uniqBy('value')
+				.value()
+				.sort((a, b) => { return a.label.localeCompare(b.label) });
+			return options;
+		}
+		return options;
+
+	}
+
+	const resetAll = () => {
+		setSelectedSearch(null);
+		setSelectedCats(null);
+		setSelectedType(null);
+		setFilterActive(false);
+		//Reset locations to all
+		onUpdateLocations(locations);
+	}
+
 
     return (
 			<>
 			<div class="archive-filter-header">
-			<h2>{title}</h2>
-			<button className="archive-filter-reset" onClick={reset}>
-				Reset all Filters
-			</button>
+				<FilterRadio
+					options={[
+						{ label: 'Property Name', value: 'search' },
+						{ label: 'Property Type', value: 'loc_type' },
+						{ label: 'Activities', value: 'category' }
+					]}
+					label={label}
+					selectedOption={viewMode}
+					setSelectedOption={setViewMode}
+					groupName="view-mode"
+				/>
+
 			</div>
-            <ul className="archive-filters">
-                {options.map(cat => {
-						return (
-							<ListItem
-								key={cat.id}
-								label={`${cat.name}`}
-								value={parseInt(cat.id)}
-								parent={cat.parent}
-								catChildren={cat.children}
-								slug={cat.slug}
-							/>
-						);
-                })}
-            </ul>
+			<div class="archive-filters-content">
+			{viewMode === 'search' &&
+				<FilterDropdown
+					title="Search by Property"
+					options={locations}
+					setSelectedOption={setSelectedSearch}
+					selected={selectedSearch}
+				/>
+			}
+			{viewMode === 'category' &&
+				<FilterCheckboxTax
+					options={categories}
+					setSelectedOptions={setSelectedCats}
+					selectedOptions={selectedCats ? selectedCats : []}
+				/>
+			}
+			{viewMode === 'loc_type' &&
+				<FilterCheckbox
+					options={typeOptions}
+					setSelectedOptions={setSelectedType}
+					selectedOptions={selectedType ? selectedType : []}
+				/>
+			}
+			{filterActive &&
+			<button className="archive-filter-reset" onClick={resetAll}>
+				Reset Filter
+			</button>
+			}
+			</div>
 			</>
     );
 };

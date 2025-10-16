@@ -75,6 +75,7 @@ class CarkeekMappedPosts_Register {
 	 */
 	function carkeek_blocks_mapped_posts_block_block_init() {
 		register_block_type( plugin_dir_path( dirname( __FILE__ ) ) . 'build/mapped-post-block' );
+		register_block_type( plugin_dir_path( dirname( __FILE__ ) ) . 'build/location-details' );
 	}
 
 

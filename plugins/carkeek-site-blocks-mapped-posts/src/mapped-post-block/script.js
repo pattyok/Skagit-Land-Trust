@@ -2,20 +2,19 @@ import { useEffect, useState } from 'react';
 //import { render } from 'react-dom';
 import "leaflet/dist/leaflet.css";
 import L from 'leaflet';
-const { render } = wp.element;
+import { render } from 'react-dom';
 import { getMarkerData, getCategoryData } from './components/getData';
 import Map from './components/Map';
 import {
   BrowserRouter as Router,
 } from "react-router-dom";
 
-import './style.scss';
 import _ from 'lodash';
 //with help from https://www.smashingmagazine.com/2020/06/rest-api-react-fetch-axios/
 
 //http://genuine-skagit-valley.local/wp-json/wp/v2/ck_members?per_page=100&_fields=id,title,excerpt,ck_business_type,acf.member_address
 function App(props){
-  const { dataUrl, taxUrl, tax, cluster, address, addressType } = props;
+  const { dataUrl, taxUrl, tax, cluster, address, taxonomy, filterLabel } = props;
     const [markersState, setMarkersState] = useState({
       loadingMarkers: true,
       markers: null,
@@ -29,33 +28,28 @@ function App(props){
     });
 
 
-		let latField, lngField;
+	let latField, lngField;
 
-			const latlng = address.split('|');
-			latField = latlng[0];
-			lngField = latlng[1];
-
-
-
-		const isLatitude = num => isFinite(num) && Math.abs(num) <= 90;
-		const isLongitude = num => isFinite(num) && Math.abs(num) <= 180;
+	const latlng = address.split('|');
+	latField = latlng[0];
+	lngField = latlng[1];
+	const isLatitude = num => isFinite(num) && Math.abs(num) <= 90;
+	const isLongitude = num => isFinite(num) && Math.abs(num) <= 180;
 
     const resolveMarkers = (markers) =>  {
         let usable = [];
         //only use if have lat lng
         markers.forEach( (marker) => {
-
-					//marker.acf.member_address.lat
-					const lat = _.get(marker, latField);
-					const lng = _.get(marker, lngField);
-          if (lat && lng && isLatitude(lat) && isLongitude(lng) && marker.cat && marker.cat.ids) {
-						marker.position = [lat, lng];
-
-						usable.push(marker);
-
-          } else {
-						console.log('Skipping marker with invalid lat lng:', marker);
-					}
+			//marker.acf.member_address.lat
+			const lat = parseFloat(_.get(marker, `acf.${latField}`));
+			const lng = parseFloat(_.get(marker, `acf.${lngField}`));
+			if (lat && lng && isLatitude(lat) && isLongitude(lng)) {
+				marker.position = [lat, lng];
+				marker.cats = marker.skgt_location_cat ? marker.skgt_location_cat : [];
+				usable.push(marker);
+			} else {
+				console.log('Skipping marker with invalid lat lng:', marker);
+			}
         });
         updateVisibleMarkers(usable);
         setMarkersState( (prevState) => {
@@ -71,17 +65,17 @@ function App(props){
     }
 
     const updateVisibleMarkers = (markers) => {
-      setMarkersState( (prevState) => {
-        if (_.isEqual(prevState.visible, markers)) {
-          return prevState;
-        }
-        return {
-          ...prevState,
-          visible: markers,
-          bounds: setBounds(markers)
-        }
-      });
-
+		console.log('Updating visible markers:', markers);
+		setMarkersState( (prevState) => {
+			if (_.isEqual(prevState.visible, markers)) {
+				return prevState;
+			}
+			return {
+				...prevState,
+				visible: markers,
+				bounds: setBounds(markers)
+			}
+		});
     }
 
     const setBounds = (markers) => {
@@ -112,14 +106,14 @@ function App(props){
 
 
   const resolveCategories = (categories) => {
-		let hierarchy = [];
+	let hierarchy = [];
     sortCategoriesHierarchically(categories, hierarchy, 0);
     setCatState( (prevState) => {
       return {
         ...prevState,
         loadingCategories: false,
         categories: hierarchy,
-				ids: _.map(categories, "id")
+		ids: _.map(categories, "id")
       }
     });
   }
@@ -131,18 +125,21 @@ function App(props){
   useEffect(() => {
     getCategoryData(taxUrl, resolveCategories);
   }, [setCatState]);
+  console.log('Rendering map, markers:', markersState, 'categories:', catState);
   return(
     <Map
     isMapLoading={markersState.loadingMarkers}
     isCatLoading={catState.loadingCategories}
     categories={catState.categories}
-		allCategories={catState.ids}
+	//allCategories={catState.ids} // setting this to all categories causes all to be selected at start
+	allCategories={[]}
     locations={markersState.markers}
     visibleLocations={markersState.visible}
     visibleBounds={markersState.bounds}
     onUpdateLocations={updateVisibleMarkers}
     taxFilter={tax}
-		cluster={cluster}
+	filterLabel={filterLabel}
+	cluster={cluster}
     zoom="6"
     />
   )
@@ -150,13 +147,13 @@ function App(props){
 
 if (document.getElementById('mapped-posts-map')){
     const mapEl = document.getElementById('mapped-posts-map');
-
+	const filterLabel = mapEl.getAttribute('data-filter-label');
     const dataUrl = mapEl.getAttribute('data-items');
     const taxUrl = mapEl.getAttribute('data-taxurl');
     const taxonomy = mapEl.getAttribute('data-taxonomy');
-		const cluster = mapEl.getAttribute('data-cluster');
-		const addressType = mapEl.getAttribute('data-addresstype');
-		const address = mapEl.getAttribute('data-address');
+	const cluster = mapEl.getAttribute('data-cluster');
+	const addressType = mapEl.getAttribute('data-addresstype');
+	const address = mapEl.getAttribute('data-address');
 
-    render(<Router><App dataUrl={dataUrl} cluster={cluster} taxUrl={taxUrl} tax={taxonomy} address={address} addressType={addressType} /></Router>, document.getElementById('mapped-posts-map'));
+    render(<Router><App filterLabel={filterLabel} dataUrl={dataUrl} cluster={cluster} taxUrl={taxUrl} tax={taxonomy} address={address} addressType={addressType} /></Router>, document.getElementById('mapped-posts-map'));
 }

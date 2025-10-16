@@ -110,7 +110,7 @@
         {
             "key": "field_68ed60369c8c0",
             "label": "Location Type",
-            "name": "location_type",
+            "name": "loc_type",
             "aria-label": "",
             "type": "select",
             "instructions": "",
@@ -127,7 +127,7 @@
                 "trust-owned": "Trust-Owned"
             },
             "default_value": false,
-            "return_format": "value",
+            "return_format": "array",
             "multiple": 0,
             "allow_null": 0,
             "allow_in_bindings": 0,
@@ -177,5 +177,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1760387393
+    "modified": 1760480629
 }

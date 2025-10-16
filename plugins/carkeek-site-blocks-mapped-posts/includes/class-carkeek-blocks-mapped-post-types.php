@@ -236,7 +236,13 @@ class CarkeekMappedPosts_CustomPost {
 	 * @param object $request current request.
 	 */
 	public function acf_to_rest_api_locations( $response, $post, $request ) {
-
+		error_log( 'In acf_to_rest_api_locations' );
+		//add the featured image
+		if ( !empty( $response->data['featured_media'] ) ) {
+			error_log( 'Getting featured image' );
+			$img = wp_get_attachment_image_src( $response->data['featured_media'], 'medium' );
+			$response->data['featured_image'] = $img[0];
+		}
 		if ( ! function_exists( 'get_fields' ) ) {
 			return $response;
 		}
@@ -245,19 +251,8 @@ class CarkeekMappedPosts_CustomPost {
 			$acf                   = get_fields( $post->id );
 			$response->data['acf'] = $acf;
 			// get the data for the associated project.
-			$project = $acf['acf_project_associated_project'];
-			if ( ! empty( $project ) ) {
-				$response->data['project']      = array(
-					'title'      => get_the_title( $project ),
-					'location'   => get_the_title( $post ),
-					'id'         => $project,
-					'link'       => get_the_permalink( $project ),
-					'popup_desc' => self::get_popup_description( $post->id, $project ),
-				);
-				$response->data['cat']['ids']   = wp_get_post_terms( $project, 'sws_project_cat', array( 'fields' => 'ids' ) );
-				$response->data['cat']['slugs'] = wp_get_post_terms( $project, 'sws_project_cat', array( 'fields' => 'slugs' ) );
-			}
 		}
+		error_log(print_r($response->data, true));
 		return $response;
 	}
 

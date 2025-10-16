@@ -27,6 +27,10 @@
 		  "type": "number",
 		  "default": 3
 		},
+		"filterLabel": {
+		  "type": "string",
+		  "default": "Filter by:"
+		},
 		"postTypeSelected": {
 		  "type": "string"
 		},

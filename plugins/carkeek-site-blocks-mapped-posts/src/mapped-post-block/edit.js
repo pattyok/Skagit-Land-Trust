@@ -39,7 +39,7 @@ function MappedPostsArchiveEdit(props) {
         filterItemsByTaxonomy,
         filterItemsTaxonomySelected,
         filterItemsTaxonomyTermsSelected,
-        mapTitle
+        filterLabel
     } = attributes;
 
 
@@ -283,7 +283,16 @@ function MappedPostsArchiveEdit(props) {
 						template={ innerBlocksTemplate }
 						/>
 						</div>
-						<div className="archive-filter-list">[FILTER PLACEHOLDER]</div>
+						<div className="archive-filter-list">
+							<RichText
+								tagName="div"
+								className="archive-map-title"
+								placeholder={__("Filter Label", "carkeek-blocks")}
+								value={filterLabel}
+								onChange={filterLabel => setAttributes({ filterLabel })}
+							/>
+							[FILTER PLACEHOLDER]
+						</div>
                     </div>
                     <div className="archive-map">[MAP PLACEHOLDER]</div>
                 </div>

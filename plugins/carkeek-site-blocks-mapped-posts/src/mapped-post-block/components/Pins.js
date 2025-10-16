@@ -30,18 +30,17 @@ import Pin from './Pin.js';
 					<Pin
 						key={item.id}
 						itemId={item.id}
-						project={item.project ? item.project.title : ""}
-						projectId={item.project ? item.project.id : ""}
 						title={item.title.rendered}
-						cat={item.cat.slugs.join(" ")}
-						excerpt={item.project ? item.project.popup_desc : ""}
-						link={item.project ? item.project.link : ""}
-						center={[
-							item.acf.acf_project_location.lat,
-							item.acf.acf_project_location.lng
-						]}
+						type={item.acf.loc_type}
+						icon={item.acf.loc_open_to_the_public ? "public" : "private"}
+						//cat={item.cat.slugs.join(" ")}
+						cat = {item.cats ? item.cats.join(" ") : ""}
+						center={item.position}
+						data={item.acf}
+						link={item.link ? item.link : ""}
 						onItemClick={onItemClick}
 						groupRef={groupRef}
+						image={item.featured_image ? item.featured_image : null}
 					/>
 				);
 				//}
@@ -54,7 +53,8 @@ import Pin from './Pin.js';
 								if (data.length > 0 && layer) {
 										map.fitBounds(layer.getBounds(), {
 												paddingTopLeft: paddingTopLeft,
-												paddingBottomRight: [50, 50]
+												paddingBottomRight: [50, 50],
+												maxZoom: 12
 										}); //zoom to cover visible markers
 								}
 						}, [data, map, groupRef]);
@@ -84,7 +84,8 @@ import Pin from './Pin.js';
 						if (fitBounds) {
 								map.fitBounds(bounds, {
 										paddingTopLeft: paddingTopLeft,
-										paddingBottomRight: [50, 50]
+										paddingBottomRight: [50, 50],
+										maxZoom: 12
 								});
 						} else {
 								map.setView(bounds.getCenter(), map.getZoom());

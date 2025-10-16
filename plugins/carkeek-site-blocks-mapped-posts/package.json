@@ -16,7 +16,8 @@
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^30.25.0",
-		"classnames": "^2.3.2"
+		"classnames": "^2.3.2",
+		"html-entities": "^2.6.0"
 	},
 	"dependencies": {
 		"leaflet": "^1.9.3",
@@ -28,6 +29,8 @@
 		"react-leaflet": "^4.2.0",
 		"react-leaflet-cluster": "^2.1.0",
 		"react-router-dom": "^6.6.2",
-		"react-tabs": "^4.2.1"
+		"react-select": "^5.10.2",
+		"react-tabs": "^4.2.1",
+		"save-dev": "^0.0.1-security"
 	}
 }

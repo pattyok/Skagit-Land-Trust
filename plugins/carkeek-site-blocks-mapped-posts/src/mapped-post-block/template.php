@@ -38,7 +38,7 @@ if ( isset( $attributes['addressFieldType'] ) && 'acf' === $attributes['addressF
 	$address_field = $attributes['latFieldSelected'] . '|' . $attributes['lngFieldSelected'];
 }
 
-		$data_url = $base_url . $attributes['postTypeSelected'] . '?per_page=100&show_on_map=true&_fields=id,link,title,project,cat,date,acf,' . $data_taxes . $tax_filter;
+		$data_url = $base_url . $attributes['postTypeSelected'] . '?per_page=100&show_on_map=true&_fields=featured_image,featured_media,id,link,title,project,cat,date,acf,' . $data_taxes . $tax_filter;
 
 		$data_url = apply_filters( 'ck_maparchive_dataurl', $data_url, $attributes );
 ?>
@@ -48,6 +48,7 @@ if ( isset( $attributes['addressFieldType'] ) && 'acf' === $attributes['addressF
 		<?php echo wp_kses_post( $content ); ?>
 	</div>
 	<div id="mapped-posts-map"
+		data-filter-label="<?php echo esc_attr( $attributes['filterLabel'] ); ?>"
 		data-post="<?php echo esc_attr( $attributes['postTypeSelected'] ); ?>"
 		data-thumb="<?php echo esc_attr( $attributes['popupImage'] ); ?>"
 		data-taxonomy="<?php echo esc_attr( $data_taxes ); ?>"
