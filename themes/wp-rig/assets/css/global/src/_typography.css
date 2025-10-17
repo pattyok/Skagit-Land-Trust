@@ -31,6 +31,7 @@ h1,
 .has-h-2-font-size,
 h2,
 .h2 {
+	line-height: 1.25;
 	font-family: $fontFamilyHeadings;
 	color: var(--wp--preset--color--primary);
 	font-size: var(--font-size-h2);
@@ -40,6 +41,7 @@ h2,
 .has-h-3-font-size,
 h3,
 .h3 {
+	line-height: 1.25;
 	font-family: $fontFamilyHeadingsSans;
 	color: var(--wp--preset--color--primary);
 	font-size: var(--font-size-h3);
@@ -49,6 +51,7 @@ h3,
 .has-h-4-font-size,
 h4,
 .h4 {
+	line-height: 1.15;
 	font-family: $fontFamilyHeadingsSans;
 	color: var(--wp--preset--color--global);
 	font-size: var(--font-size-h4);
@@ -59,6 +62,7 @@ h4,
 .has-h-5-font-size,
 h5,
 .h5 {
+	line-height: 1.15;
 	color: var(--wp--preset--color--global);
 	font-family: $fontFamilyHeadingsSans;
 	font-size: var(--font-size-h5);
@@ -68,6 +72,7 @@ h5,
 .has-h-6-font-size,
 h6,
 .h6 {
+	line-height: 1.15;
 	color: var(--wp--preset--color--global);
 	font-family: $fontFamilyHeadingsSans;
 	font-size: var(--font-size-h6);
