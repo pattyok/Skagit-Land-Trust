@@ -75,8 +75,8 @@
 			background-color: var(--wp--preset--color--secondary);
 			color: #fff;
 		}
-		.css-b62m3t-container {
-			z-index: 2000;
+		.react-select-container {
+			z-index: 1100;
 		}
 		& > label > span {
 			border: 0;
@@ -315,9 +315,21 @@ ul.archive-filters-list {
         }
     }
 
-    .leaflet-bottom {
-        z-index: 400;
-    }
+	/** Fade map controls when popup is open because we cannot control with z-index on account of the way to dom is structured **/
+	.leaflet-control {
+	transition: opacity 1s;
+	}
+
+	.leaflet-container:has(.leaflet-popup)
+	:is(.leaflet-control-container, .leaflet-control-container *) {
+	pointer-events: none;
+	}
+
+	.leaflet-container:has(.leaflet-popup) .leaflet-control {
+	opacity: 0;
+	}
+
+
 
 	.map-legend  {
 		background: #fff;
@@ -330,11 +342,12 @@ ul.archive-filters-list {
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
+		font-size: 1rem;
 
 	}
 	.map-legend-icon {
-		width: 26px;
-		height: 36px;
+		width: 20px;
+		height: 25px;
 		& svg {
 			width: 100%;
 			height: auto;

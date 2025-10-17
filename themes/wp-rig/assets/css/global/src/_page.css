@@ -147,12 +147,11 @@
 	}
 
 	& .page-title {
-		color: #fff;
-		font-size: var(--font-size-h3);
+		font-size: var(--font-size-h2);
 	}
 
 	& .search-entry--content h2 {
-		font-size: var(--font-size-h4);
+		font-size: var(--font-size-h3);
 	}
 
 	& .entry-summary {

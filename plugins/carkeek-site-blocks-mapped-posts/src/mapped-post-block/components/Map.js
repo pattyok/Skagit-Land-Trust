@@ -54,6 +54,7 @@ function MapCluster(props) {
 			boundsOptions: { padding: [50, 100], maxZoom: 12 },
     	}
 	}
+	console.log('boundsOptions:', boundsOptions);
 
 	const intro = document.getElementById('mapped-posts-map-intro').innerHTML;
 

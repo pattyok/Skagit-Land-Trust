@@ -118,7 +118,7 @@
 			transform: translate3d(100%, 0, 0);
 			will-change: transform;
 			background-color: $colorNavBackgroundMobile;
-			z-index: 1000;
+			z-index: 1500;
 			opacity: 0;
 			transition: transform 0.6s ease;
 
@@ -341,18 +341,28 @@ ul.menu {
 	height: 100%;
 }
 
-.main-navigation .menu-item a {
-	font-family: var(--navigation-font-family);
-	display: flex;
-	gap: 5px;
-	width: 100%;
-	padding: 1.5625rem;
-	text-decoration: none;
-	text-align: left;
-	color: $colorNavLinkMobile;
-	font-size: $menuFontSize;
-	border-bottom: 1px solid $colorBorders;
-	background-color: $colorNavBackgroundMobile;
+.main-navigation .menu-item {
+	& a {
+		font-family: var(--navigation-font-family);
+		display: flex;
+		gap: 5px;
+		width: 100%;
+		padding: 1.5625rem;
+		text-decoration: none;
+		text-align: left;
+		color: $colorNavLinkMobile;
+		font-size: $menuFontSize;
+		border-bottom: 1px solid $colorBorders;
+		background-color: $colorNavBackgroundMobile;
+	}
+
+	&:hover {
+		& > a {
+			background-color: $colorNavLinkHoverBG;
+			color: $colorNavLinkHover;
+			text-decoration: none;
+		}
+	}
 }
 
 .main-navigation .menu-item-icon a {
@@ -501,14 +511,21 @@ ul.menu {
 		}
 	}
 
-	.main-navigation .menu-item a {
-		border: none;
-		background-color: transparent;
-		color: $colorNavLink;
-		text-align: left;
+	.main-navigation .menu-item {
+		& a {
+			border: none;
+			background-color: transparent;
+			color: $colorNavLink;
+			text-align: left;
 
-		display: flex;
-		align-items: center;
+			display: flex;
+			align-items: center;
+		}
+		&:hover {
+			& > a {
+				background-color: transparent;
+			}
+		}
 	}
 
 	.main-navigation ul.menu > li {
@@ -548,13 +565,14 @@ ul.menu {
 		}
 	}
 
-
-
 	.main-navigation ul.sub-menu {
 		background-color: $colorSubNavBackground;
 		padding-top: 1rem;
 		padding-bottom: 1rem;
 		min-width: 275px;
+		border: 1px solid $colorSubNavBackground;
+		border-top: none;
+		z-index: 1200;
 
 		& .menu-item > a {
 			color: $colorSubNavLink;
