@@ -1,7 +1,7 @@
-.wp-block-pullquote  {
+.wp-block-pullquote {
 	border: none;
 	& p {
-		font-size: var(--font-size-xlarge);
+		font-size: var(--wp--preset--font-size--x-large);
 		font-weight: 700;
 	}
 	& cite {

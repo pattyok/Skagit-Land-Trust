@@ -23,10 +23,10 @@
 
 
 	& .gpopover {
-		color: var(--wp--preset--color--global);
+		color: var(--wp--preset--color--contrast);
 
 		& a {
-			color: $colorLink;
+			color: var(--wp--preset--color--accent) !important;
 			padding-left: 0;
 		}
 	}
