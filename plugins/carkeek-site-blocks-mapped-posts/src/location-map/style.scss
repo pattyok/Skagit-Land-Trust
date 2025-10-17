@@ -1,6 +1,6 @@
 .location-map-wrapper {
 	width: 100%;
-	height: 400px;
+	height: 350px;
 	position: relative;
 	& .leaflet-container {
 		width: 100%;
@@ -8,5 +8,11 @@
 	}
 	& .data-geo {
 		display: none;
+	}
+}
+
+@media (min-width: 768px) {
+	.location-map-wrapper {
+		height: 450px;
 	}
 }

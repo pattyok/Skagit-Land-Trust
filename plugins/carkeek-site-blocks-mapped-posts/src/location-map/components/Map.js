@@ -12,12 +12,7 @@ function MapCluster(props) {
 
     return (
                 <MapContainer
-                    zoom={
-                        locations.geoJson &&
-                        locations.geoJson.features.length > 0
-                            ? 13
-                            : 9
-                    }
+                    zoom={11}
                     zoomControl={false}
                     scrollWheelZoom={false}
                     whenCreated={setMap}

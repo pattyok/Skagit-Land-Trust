@@ -5,10 +5,12 @@
 	& .wp-block-button__link {
 		word-break: normal;
 
+		&.has-accent-background-color,
 		&.has-primary-background-color {
 
 			&:hover {
-				background-color: var(--wp--custom--color-alt-button-hover) !important;
+				background-color: transparent !important;
+				border-color: currentColor;
 				color: #fff;
 				text-decoration: none;
 			}
