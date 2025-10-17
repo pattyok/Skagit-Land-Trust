@@ -248,6 +248,11 @@
 					"blockGap": "var:preset|spacing|50"
 				}
 			},
+			"core/column": {
+				"spacing": {
+					"blockGap": "var:preset|spacing|30"
+				}
+			},
 			"core/buttons": {
 				"spacing": {
 					"blockGap": "16px"
