@@ -93,11 +93,11 @@ function MapCluster(props) {
 
         <MapContainer {...mapProps} zoom={zoom} maxZoom={18} minZoom={8} zoomControl={false} attributionControl={false} ref={mapRef} scrollWheelZoom={false} boundsOptions={boundsOptions}>
 		<VectorBasemapLayer
-					name="ArcGIS:Streets"
-					token={
-						"AAPTxy8BH1VEsoebNVZXo8HurDipqhpEp1BTW9kCT8CIbsLhsRKSL8bzWv9KE1VvWJRZH_mMQtfek8WWYOd8X3BajIUD1ZTeWIpL0Voyxxiho5XgmUJlu9yj24UVxvGnBhKtM42sXmkSeukhRL0gQCW3QuyEpjZ7ukBs1qF0UJxTONlNnZgb7_4T__jlaXIJh1xsHgWEmDf7uJ-1kSz10DOQCzF7VAWfhh3C8V5Nj9o6q1o.AT1_ayS4xCp7"
-					}
-				/>
+			name="ArcGIS:Streets"
+			token={
+				"AAPTxy8BH1VEsoebNVZXo8HurDipqhpEp1BTW9kCT8CIbsLhsRKSL8bzWv9KE1VvWJRZH_mMQtfek8WWYOd8X3BajIUD1ZTeWIpL0Voyxxiho5XgmUJlu9yj24UVxvGnBhKtM42sXmkSeukhRL0gQCW3QuyEpjZ7ukBs1qF0UJxTONlNnZgb7_4T__jlaXIJh1xsHgWEmDf7uJ-1kSz10DOQCzF7VAWfhh3C8V5Nj9o6q1o.AT1_ayS4xCp7"
+			}
+		/>
             {mapReady &&
                 <Pins fitBounds={true} paddingTopLeft={[50, 50]} cluster={cluster} data={visibleLocations}  />
             }

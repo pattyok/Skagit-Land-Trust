@@ -135,3 +135,11 @@ ul.ck-blocks-gallery-grid.fixed-images li.ck-blocks-gallery-grid-item img {
 	justify-content: center;
 	gap: 0.3rem;
 }
+
+.wp-block-carkeek-blocks-extended-gallery {
+	--slide-gutter: var(--wp--preset--spacing--20);
+}
+
+.home .wp-block-carkeek-blocks-extended-gallery {
+	--slide-gutter: 0;
+}
