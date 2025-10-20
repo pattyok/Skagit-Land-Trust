@@ -83,7 +83,9 @@ export function stylesAfterReplacementStream() {
 		cssnano({
 			preset: [
 			  'default',
-			  { cssDeclarationSorter: false }
+			  { cssDeclarationSorter: false,
+				mergeRules: false
+			   }
 			]
 		  }),
 	];

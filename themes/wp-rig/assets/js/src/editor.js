@@ -5,6 +5,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	wp.blocks.unregisterBlockType( 'core/gallery' );
 	wp.blocks.unregisterBlockType( 'core/quote' );
 	wp.blocks.unregisterBlockType( 'core/details' );
+	wp.blocks.unregisterBlockType( 'carkeek-blocks/button-expand-collapse' );
 	wp.blocks.registerBlockStyle( 'core/video', {
 		name: 'overlay-caption',
 		label: 'Overlay Caption',
