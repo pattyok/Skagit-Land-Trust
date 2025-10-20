@@ -158,7 +158,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		],
 		attributes: {
 			align: 'wide',
-			verticalAlignment: 'top',
+			verticalAlignment: 'middle',
 			imageFill: false,
 		},
 		scope: [ 'inserter' ],
