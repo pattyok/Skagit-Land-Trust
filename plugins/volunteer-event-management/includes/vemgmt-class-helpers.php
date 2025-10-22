@@ -50,6 +50,23 @@ class VEMgmt_Helpers {
 
 	}
 
+	/** Get Formatted Shift Dates and Times */
+	public static function get_formatted_shift_times( $shift_id, $date_format = 'M j, Y', $time_format = 'g:i a' ) {
+		$start_date = get_post_meta( $shift_id, 'vol_shift_start_date', true );
+		$start_time = get_post_meta( $shift_id, 'vol_shift_start_time', true );
+		$end_time = get_post_meta( $shift_id, 'vol_shift_end_time', true );
+
+		//format is unreliable from meta, so parse and reformat
+		$dt_start = DateTime::createFromFormat( 'm/d/Y H:i:s', $start_date . ' ' . $start_time );
+		$dt_end = DateTime::createFromFormat( 'm/d/Y H:i:s', $start_date . ' ' . $end_time );
+
+		return array(
+			'start_date' => $dt_start->format( $date_format ),
+			'start_time' => $dt_start->format( $time_format ),
+			'end_time'   => $dt_end->format( $time_format ),
+		);
+	}
+
 	/** Make register links for the shifts */
 	public static function get_shift_data_for_job( $event_id, $reg_link, $date_format = 'M j, Y', $time_format = 'g:i a' ) {
 		$shift_data = array();
@@ -57,27 +74,26 @@ class VEMgmt_Helpers {
 		if ( empty( $shifts ) ) {
 			return $shift_data;
 		}
-		error_log( print_r( $shifts, true ) );
+
 		foreach ( $shifts as $shift ) {
 
-			$start_date = get_post_meta( $shift->ID, 'vol_shift_start_date', true );
-			$start_time = get_post_meta( $shift->ID, 'vol_shift_start_time', true );
-			$end_time = get_post_meta( $shift->ID, 'vol_shift_end_time', true );
-			//format is unreliable from meta, so parse and reformat
-			$dt_start = DateTime::createFromFormat( 'm/d/Y H:i:s', $start_date . ' ' . $start_time );
-			$dt_end = DateTime::createFromFormat( 'm/d/Y H:i:s', $start_date . ' ' . $end_time );
-			$start_date = $dt_start->format( $date_format );
-			$start_time = $dt_start->format( $time_format );
-			$end_time = $dt_end->format( $time_format );
+			$shift_times = self::get_formatted_shift_times( $shift->ID, $date_format, $time_format );
 
 			$vol_needed = get_post_meta( $shift->ID, 'vol_shift_volunteers_needed', true );
 			$shift_id = get_post_meta( $shift->ID, 'vol_shift_id', true );
 			$shift_data[] = array(
-				"start_date" => $start_date,
-				"start_time" => $start_time,
-				"end_time"   => $end_time,
+				"start_date" => $shift_times['start_date'],
+				"start_time" => $shift_times['start_time'],
+				"end_time"   => $shift_times['end_time'],
 				"vol_needed" => $vol_needed,
-				"reg_link"   => esc_url( add_query_arg( array( 'shift_id' => $shift_id, 'event_id' => $event_id ), $reg_link ) ),
+				"reg_link"   => esc_url( add_query_arg(
+					array(
+						'shift_id' => $shift_id,
+						'event_wp_id' => $event_id,
+						'shift_wp_id' => $shift->ID,
+					),
+					$reg_link
+				) ),
 			);
 		}
 		// if shift_data is more than 1, sort by start date/time ascending
@@ -91,10 +107,9 @@ class VEMgmt_Helpers {
 		$last_end_time = $last_shift['end_time'] ?? '';
 		$job_data = array(
 			"shifts" => $shift_data,
-
 			"last_end_time" => $last_end_time,
 		);
-		error_log( print_r( $job_data, true ) );
+
 		return $job_data;
 	}
 }

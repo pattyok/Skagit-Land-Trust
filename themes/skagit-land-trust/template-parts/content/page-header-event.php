@@ -11,8 +11,7 @@ use WP_Rig\WP_Rig\Helpers;
 
 $shift_data = array();
 if ( 'vol_event' == get_post_type() ) {
-	$shift_data = \VEMgmt_Helpers::get_shift_data_for_job( get_the_ID(), '/volunteer-registration/' );
-	error_log( print_r( $shift_data, true ) );
+	$shift_data = \VEMgmt_Helpers::get_shift_data_for_job( get_the_ID(), '/volunteer-registration/', 'l, M j' );
 }
 ?>
 <div class="page-header-event">

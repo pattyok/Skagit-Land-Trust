@@ -120,9 +120,7 @@ if ( ! class_exists( 'VEMgmt' ) ) {
 		 * @return void
 		 */
 		private function includes() {
-
-			// require_once VEMGMT_PLUGIN_DIR . 'includes/class-mappedposts-block-assets.php';
-			//require_once VEMGMT_PLUGIN_DIR . 'includes/vemgmt-post-register.php';
+			require_once VEMGMT_PLUGIN_DIR . 'includes/vemgmt-class-block-register.php';
 			require_once VEMGMT_PLUGIN_DIR . 'includes/vemgmt-class-post-types.php';
 			require_once VEMGMT_PLUGIN_DIR . 'includes/vemgmt-class-object-sync-admin.php';
 			require_once VEMGMT_PLUGIN_DIR . 'includes/vemgmt-class-object-sync.php';
