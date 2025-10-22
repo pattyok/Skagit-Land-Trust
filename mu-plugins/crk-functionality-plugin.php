@@ -108,14 +108,14 @@ function reorder_admin_menu() {
 		5       => '4.659', // posts
 		10      => '57.65498', // Media Library
 
+
 		/* Plugins */
 		6       => '9.59864', // The Events Calendar with other Post Types
-		30      => '30.26456', // WP Jobs Manager with other Post Types
-		26      => '57.98479', // Easy Digital Downloads close to Media Library
 		'16.9'  => '58.56849', // Gravity Forms Close to Media Library
 		'26.7'  => '68.686544', // PublishPress Authors close to Users
 		'58.95' => '80.1264', // Searchwp close to settings
 		3       => '1654987.9867498', // Jetpack
+		'10.000392854349' => '100.5', // Youtube Videos
 	];
 
 	foreach ( $menu_swap as $orig => $new ) {
@@ -175,7 +175,7 @@ function login_styles() {
 	?>
 	<style type="text/css">
 		body.login {
-			background-color:#F5F9E8;
+			background-color:#FAF8F2;
 		}
 		body.login div#login h1 {
 			text-align: center;
@@ -314,7 +314,7 @@ function add_dashboard_widgets() {
 		} else {
 			$logo = get_theme_file_uri( 'assets/images/logo.webp' );
 		}
-		$documentation_url = '';
+		$documentation_url = 'https://docs.google.com/document/d/1_YlqgIUbNFZTNCjO9-gmDgy5drTpEnjpbtMl-cXEmNI/edit?usp=sharing';
 		$content = '<div class="ck-dashboard-widget">';
 		$content .= '<img style="width:300px;max-width:100%;height:auto;" src="' . esc_url( $logo ) . '" alt="' . esc_attr( get_bloginfo( 'name' ) ) . '" /><h2>' . esc_html( get_bloginfo( 'name' ) ) . '</h2>';
 

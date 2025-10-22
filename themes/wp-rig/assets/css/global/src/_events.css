@@ -1,0 +1,36 @@
+.page-header-event {
+	max-width: var(--content-width);
+	margin: var(--wp--preset--spacing--50) auto var(--wp--preset--spacing--70) auto;
+	& h1 {
+		margin-top: 0;
+	}
+	& .entry-parent-link {
+		color: $primary;
+	}
+	& .event-header {
+		display: flex;
+		flex-direction: column-reverse;
+		gap: var(--wp--preset--spacing--30);
+		@media (--tablet-small-up) {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+	& .event-details {
+		display: flex;
+		flex-direction: column;
+		gap: var(--wp--preset--spacing--30);
+		flex-grow: 1;
+	}
+	& .event-meta {
+		font-size: 1.3125rem;
+	}
+	& .meta-label {
+		font-weight: var(--font-weight--bold);
+		color: $primary;
+	}
+
+	& .event-registration-links{
+		align-self: flex-start;
+	}
+}

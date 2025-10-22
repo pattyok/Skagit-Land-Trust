@@ -143,3 +143,21 @@ ul.ck-blocks-gallery-grid.fixed-images li.ck-blocks-gallery-grid-item img {
 .home .wp-block-carkeek-blocks-extended-gallery {
 	--slide-gutter: 0;
 }
+
+.wp-block-carkeek-blocks-custom-archive {
+	& .ck-item-event-date {
+		font-family: var(--wp--preset--font-family--headings);
+		font-weight: 700;
+		font-size: var(--font-size-h3);
+		color: $primary;
+	}
+	&.post-type-vol_event,
+	&.post-type-event {
+		& .ck-custom-archive-title {
+			font-family: var(--wp--preset--font-family--headings-sans);
+			font-weight: 600;
+			font-size: 1.4275rem;
+		}
+	}
+
+}

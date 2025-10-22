@@ -40,7 +40,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 
 		add_filter( 'term_link', array( $this, 'update_term_link' ), 10, 3 );
 		add_action( 'ck_custom_archive_layout_modal_dialog__after_title', array( $this, 'custom_archive_layout_modal_dialog_after_title' ) );
-
+		add_action( 'ck_custom_archive_vol_event__meta_before_title', array( $this, 'custom_vol_event_archive_meta_before_title' ), 10, 2 );
 	}
 
 
@@ -394,7 +394,6 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		if ( empty( $post_type ) ) {
 			$post_type = $post->post_type;
 		}
-
 		$landing_pages = get_field( 'acf_landing_page', 'options' ); //set this up as a repeater with post type and landing page.
 
 		$post_types    = wp_list_pluck( $landing_pages, 'landing_page', 'post_type' );
@@ -405,6 +404,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$parent = $post_types[ $post_type ];
 			$link_parent = true;
 		}
+
 		if ( 0 !== $parent && ! empty( $parent ) ) {
 			if ( $link_parent ) {
 				echo '<a class="entry-parent-link all-caps" href="' . esc_url( get_the_permalink( $parent ) ) . '">' . wp_kses_post( get_the_title( $parent ) ) . '</a>';
@@ -437,6 +437,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		return $termlink;
 	}
 
+	/** Add Job Title to Modal Dialog Content */
 
 	public function custom_archive_layout_modal_dialog_after_title() {
 		$job_title = get_field( 'job_title' );
@@ -444,6 +445,19 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			echo '<p class="ck-modal-item-job-title">' . esc_html( $job_title ) . '</p>';
 		}
 		return;
+	}
+
+	/** Add Event Date before title for Volunteer Events */
+	public function custom_vol_event_archive_meta_before_title($meta_before, $data) {
+		$event_date = get_field( 'event_start_date' );
+		if ( ! empty( $event_date ) ) {
+			//Format date Day, Month Date
+			$event_date = new \DateTime( $event_date );
+			if ( $event_date ) {
+				$meta_before = '<div class="ck-item-event-date">' . esc_html( $event_date->format( 'l, M j' ) ) . '</div>';
+			}
+		}
+		return $meta_before;
 	}
 
 }
