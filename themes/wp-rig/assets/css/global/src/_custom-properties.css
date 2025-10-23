@@ -23,8 +23,8 @@
 
 	--dropdown-symbol-width: 0.7em;
 
-	--gutter-width-page: 5vw;
-	--gutter-width-page-wide: 5vw;
+	--gutter-width-page: calc((100% - var(--content-width)) / 2);
+	--gutter-width-page-wide: calc((100% - var(--content-width-wide)) / 2);
 
 	--wp--preset--color--gray-100: #e3e3e3;
 
@@ -98,7 +98,6 @@
 
 	:root {
 		--content-width: 74vw;
-		--gutter-width-page: 13vw;
 
 		--font-size-h1: calc(64 / var(--global-font-size) * 1rem);
 		--font-size-h2: calc(44 / var(--global-font-size) * 1rem);
@@ -112,8 +111,6 @@
 	:root {
 		--content-width: 64vw;
 		--content-width-wide: 80vw;
-		--gutter-width-page: 18vw;
-		--gutter-width-page-wide: 10vw;
 		--member-menu-btn-max-width: 125px;
 	}
 }
