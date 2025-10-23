@@ -65,7 +65,7 @@
 				},
 				{
 					"name": "X-Small",
-					"size": "20px",
+					"size": "25px",
 					"slug": "30"
 				},
 				{
@@ -329,7 +329,7 @@
 			},
 			"core/group": {
 				"spacing": {
-					"blockGap": "var:preset|spacing|40"
+					"blockGap": "var:preset|spacing|30"
 				}
 			},
 			"core/pullquote": {

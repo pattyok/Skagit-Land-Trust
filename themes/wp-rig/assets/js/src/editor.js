@@ -160,7 +160,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		attributes: {
 			align: 'wide',
 			verticalAlignment: 'middle',
-			imageFill: false,
+			imageFill: true,
 		},
 		scope: [ 'inserter' ],
 		keywords: [ 'image', 'media-text' ],
