@@ -3,6 +3,10 @@
 }
 
 .gform_wrapper.gravity-theme {
+	& .gform_fields {
+		grid-row-gap: 1.5rem;
+	}
+	& .ginput_complex label,
 	& .gfield_label {
 		font-size: 1.125rem;
 		font-weight: var(--font-weight--light);
@@ -15,6 +19,59 @@
 	}
 	& select {
 		padding: var(--padding-button) !important;
+	}
+	& .gsection {
+		border: none;
+	}
+	& .gfield_required {
+		font-size: 1rem;
+		color: var(--color-error);
+	}
+	& .ginput_container_consent,
+	& .gchoice {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+	& .gfield-choice-input {
+		display: grid;
+	}
+
+	/** Show the asterisk on sub labels, hide the default
+	    unless .show-required is added to the field **/
+	& .gfield_contains_required {
+		& .gform-field-label--type-sub {
+			&::after {
+				content: " *";
+				font-size: 1rem;
+				color: var(--color-error);
+			}
+		}
+		&:not(.show-required) {
+			& .gfield_required {
+				display: none;
+			}
+		}
+		&.gfield--type-choice {
+			& .gfield_required {
+				display: inline-block;
+			}
+		}
+	}
+	& .gfield:not(.gfield--input-type-checkbox) {
+		& .gfield_label_before_complex {
+			font-size: var(--font-size-h4);
+			font-weight: 600;
+			margin-top: 1rem;
+
+		}
+	}
+
+	& .gsection_title {
+		font-size: var(--font-size--h4);
+		font-weight: 600;
+		color: $global;
+		margin-bottom: 0;
 	}
 }
 

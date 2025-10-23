@@ -135,7 +135,7 @@ input[type="color"],
 input[type="zip"],
 textarea {
 	color: $formsColor;
-	border: 1px solid var(--color-border-dark);
+	border: 1px solid $colorBorders;
 	padding: var(--padding-button) !important;
 	font-size: calc(16 / 16 * 1rem);
 	font-size: var(--font-size-forms);
@@ -162,6 +162,55 @@ input[type="color"]:focus,
 input[type="zip"]:focus,
 textarea:focus {
 	color: #111;
+}
+
+
+input[type="radio"],
+input[type="checkbox"] {
+	appearance: none;
+	-webkit-appearance: none;
+	background-color: #fff;
+	font: inherit;
+	color: $colorBorders;
+	width: 1.15em;
+	height: 1.15em;
+	border: 0.05em solid $colorBorders;
+
+	transform: translateY(-0.075em);
+	display: grid;
+	place-content: center;
+}
+
+input[type="radio"] {
+	border-radius: 50%;
+	&::before {
+		content: "";
+		width: 0.65em;
+		height: 0.65em;
+		border-radius: 50%;
+		transform: scale(0);
+		transition: 120ms transform ease-in-out;
+		box-shadow: inset 1em 1em var(--form-control-color);
+	}
+	&:checked::before {
+		transform: scale(1);
+	}
+}
+
+input[type="checkbox"] {
+	&::before {
+		content: "";
+		width: 0.55em;
+		height: 1em;
+		transform: scale(0) rotate(45deg);
+		transition: 120ms transform ease-in-out;
+		border-bottom: 5px solid var(--form-control-color);
+      	border-right: 5px solid var(--form-control-color);
+	}
+	&:checked::before {
+		transform: scale(1) rotate(45deg);
+	}
+
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -192,7 +241,7 @@ select:not([multiple]) {
 	font-size: var(--font-size-forms);
 	font-family: $formsFont;
 	appearance: none;
-	border: 1px solid var(--color-border-dark);
+	border: 1px solid $colorBorders;
 	border-radius: 0;
 	background-color: #fff;
 	background-image: url(../../images/angle-down.svg);
@@ -204,7 +253,7 @@ select:not([multiple]) {
 /** Select 2 **/
 
 .select2-container--default .select2-selection--single {
-	border: 1px solid var(--color-border-dark);
+	border: 1px solid $colorBorders;
 	border-radius: 0;
 	padding: 0.75rem 1rem;
 	height: auto;
