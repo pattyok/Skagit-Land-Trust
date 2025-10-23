@@ -233,16 +233,6 @@
 					"radius": "100px"
 				}
 			},
-			"core/button": {
-				"variations": {
-					"outline": {
-						"border": {
-							"color": "currentColor",
-							"width": "4px"
-						}
-					}
-				}
-			},
 			"core/columns": {
 				"spacing": {
 					"blockGap": "var:preset|spacing|50"
@@ -450,10 +440,10 @@
 				":hover":{
 					"color": {
 						"text": "var:preset|color|base",
-						"background": "var:preset|color|primary"
+						"background": "var:preset|color|accent"
 					},
 					"border": {
-						"color": "var:preset|color|primary"
+						"color": "var:preset|color|accent"
 					},
 					"typography": {
 						"textDecoration": "none"
