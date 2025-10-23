@@ -34,6 +34,7 @@
 		& .wp-block-media-text__media img {
 			aspect-ratio: 1.3333;
 			position: relative;
+			height: auto;
 		}
 	}
 	&.is-style-side-icon {

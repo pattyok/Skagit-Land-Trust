@@ -5,12 +5,12 @@
 .gform_wrapper.gravity-theme {
 	& .gfield_label {
 		font-size: 1.125rem;
-		font-weight: var(--font-weight--regular);
+		font-weight: var(--font-weight--light);
 	}
-	& .gform_checkbox,
-	& .gform_radio {
+	& .gfield_checkbox,
+	& .gfield_radio {
 		& label {
-			font-size: 0.90375rem;
+			font-size: 1.125rem;
 		}
 	}
 	& select {

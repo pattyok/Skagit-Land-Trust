@@ -32,10 +32,23 @@ $activities = get_the_terms( get_the_ID(), 'skgt_location_cat' );
 	<?php }
 	endif; ?>
 	</ul>
-	<?php if ( (get_field('loc_open_to_the_public') == true) && ! empty( get_field( 'loc_lat' ) ) && ! empty( get_field( 'loc_long' ) ) ) : ?>
+	<?php if ( (get_field('loc_open_to_the_public') == true)  ) :
+
+		$link_settings = get_field( 'loc_get_directions' );
+		$link_type = isset( $link_settings['link_settings'] ) ? $link_settings['link_settings'] : 'lat_lng';
+		if ( 'hide' === $link_type ) :
+			$link = '';
+		elseif ( 'custom' === $link_type && ! empty( $link_settings['custom_link'] ) ) :
+			$link = $link_settings['custom_link'];
+		else :
+			$link = 'https://www.google.com/maps/search/?api=1&query=' . urlencode( get_field( 'loc_lat' ) . ',' . get_field( 'loc_long' ) );
+		endif;
+		if ( ! empty( $link ) ) :
+		?>
 		<ul class="location-data-list no-bullets">
-		<li class="location-data-link"><a class="arrow-link" href="https://www.google.com/maps/search/?api=1&query=<?php echo esc_html( get_field( 'loc_lat' ) ); ?>,<?php echo esc_html( get_field( 'loc_long' ) ); ?>" target="_blank" rel="noopener noreferrer">Get Directions</a></li>
+		<li class="location-data-link"><a class="arrow-link" href="<?php echo esc_url( $link ); ?>" target="_blank" rel="noopener noreferrer">Get Directions</a></li>
 		</ul>
 		<?php endif; ?>
+	<?php endif; ?>
 
 </div>
