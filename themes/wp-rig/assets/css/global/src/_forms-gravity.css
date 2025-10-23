@@ -48,13 +48,15 @@
 			}
 		}
 		&:not(.show-required) {
-			& .gfield_required {
-				display: none;
+			& .gfield_label_before_complex {
+				& .gfield_required {
+					display: none;
+				}
 			}
 		}
 		&.gfield--type-choice {
 			& .gfield_required {
-				display: inline-block;
+				display: inline-block !important;
 			}
 		}
 	}
@@ -68,7 +70,7 @@
 	}
 
 	& .gsection_title {
-		font-size: var(--font-size--h4);
+		font-size: var(--font-size-h4);
 		font-weight: 600;
 		color: $global;
 		margin-bottom: 0;
@@ -77,10 +79,10 @@
 
 
 @media only screen and (max-width: 641px) {
-    .gform_wrapper.gravity-theme input:not([type=radio]):not([type=checkbox]):not([type=image]):not([type=file]) {
-        line-height: 1;
-        min-height: 32px;
-    }
+	.gform_wrapper.gravity-theme input:not([type=radio]):not([type=checkbox]):not([type=image]):not([type=file]) {
+		line-height: 1;
+		min-height: 32px;
+	}
 }
 
 .gform_wrapper.gravity-theme .field_description_above .description, .gform_wrapper.gravity-theme .field_description_above .gfield_description, .gform_wrapper.gravity-theme .field_description_above .gsection_description, .gform_wrapper.gravity-theme .field_description_above .instruction {
