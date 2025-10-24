@@ -95,3 +95,11 @@ select.tribe-editor__venue__select {
 .is-layout-flow > * + * {
 	margin-block-start: var(--wp--preset--spacing--30);
 }
+figure.alignright,
+figure.alignleft {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}

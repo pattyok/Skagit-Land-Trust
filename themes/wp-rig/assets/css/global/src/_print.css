@@ -8,15 +8,12 @@
 		display: block;
 	}
 
-	.top-navigation,
-	.header-nav-wrapper,
-	.footer-section .widget_wrapper .widget_block:first-child,
-	.single-post .page-header,
-	.blog-post-featured-image,
-	.post-footer,
-	.post-col-right {
+	.site-header,
+	.page-header .post-thumbnail,
+	.footer-main {
 		display: none;
 	}
+
 
 	.site-header .site-description {
 		display: block;

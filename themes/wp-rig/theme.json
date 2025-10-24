@@ -497,13 +497,13 @@
 		},
 		{
 			"area": "footer",
-			"name": "service-footer",
-			"title": "Services Footer"
+			"name": "post-footer",
+			"title": "Post Footer"
 		},
 		{
 			"area": "footer",
-			"name": "projects-footer",
-			"title": "Projects Footer"
+			"name": "location-footer",
+			"title": "Location Footer"
 		}
 
 	],

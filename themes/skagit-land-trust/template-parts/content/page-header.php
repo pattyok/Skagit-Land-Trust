@@ -99,6 +99,9 @@ if ( is_404() ) {
 	$header_class   = '';
 	$header_content = '';
 	$header_style   = '';
+	if ('post' === get_post_type() ) {
+		$hide_title = true;
+	}
 
 	if ( ! empty( $iframe ) ) {
 		$has_video     = true;

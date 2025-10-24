@@ -14,18 +14,25 @@ namespace WP_Rig\WP_Rig;
 
 	<?php if ( get_post_type() == 'post' ) : ?>
 		<div class="entry-header">
-		<div class="entry-title">
-			<?php
-			the_title( '<h1>', '</h1>' );
-			?>
+			<div class="entry-title">
+				<?php
+				wp_rig()->make_breadcrumbs( get_post_type() );
+				?>
+			</div>
+			<div class="entry-meta">
+				<div class="entry-date"><?php the_date(); ?></div>
+				<?php wp_rig()->make_social_share_links( true ); ?>
+
+			</div>
 		</div>
-		<div class="entry-date"><?php the_date(); ?></div>
-	</div>
 	<?php endif; ?>
 
 	<?php
 		get_template_part( 'template-parts/content/entry-content', get_post_type() );
 	?>
+	<?php if ( is_singular( 'skgt_location' ) ) : ?>
+		<?php //get_template_part( 'template-parts/content/related-posts' ); ?>
+	<?php endif; ?>
 	<?php if ( !empty(block_template_part( get_post_type() . '-footer' ) ) ) : ?>
 		<div class="single-footer page-content">
 		<?php
@@ -36,19 +43,5 @@ namespace WP_Rig\WP_Rig;
 
 
 </article><!-- #post-<?php the_ID(); ?> -->
-<?php
-	if ( get_post_type() == 'post' ) {
-		?>
-		<footer class="single-footer">
-		<?php
-		get_template_part( 'template-parts/content/pagination', get_post_type() );
-		?>
-		</footer>
-	<?php
-	}
 
-if ( comments_open() ) {
-	comments_template();
-}
-?>
 

@@ -67,9 +67,9 @@ a.button,
 		}
 		&:hover,
 		&:active {
-			background-color: var(--wp--preset--color--primary);
+			background-color: var(--wp--preset--color--accent);
 			color: #fff;
-			border-color: var(--wp--preset--color--primary);
+			border-color: #fff;
 			text-decoration: none;
 		}
 	}

@@ -1,8 +1,9 @@
 @import "../../global/src/_custom-media.css";
+@import "../../global/src/_custom-vars.css";
 
 .wp-block-image {
 
-
+	&:not(.is-resized),
 	&.alignright:not(.is-resized),
 	&.alignleft:not(.is-resized) {
 
@@ -20,7 +21,8 @@
 	}
 
 	& figcaption {
-		font-style: italic;
+		font-size: 1.0625rem;
+		color: $global;
 	}
 
 }
@@ -55,6 +57,7 @@
 				padding-right: 1.75rem;
 				padding-left: var(--gutter-width-page);
 				text-align: left;
+				display: block;
 			}
 		}
 
@@ -67,6 +70,7 @@
 				padding-left: 1.75rem;
 				padding-right: var(--gutter-width-page);
 				text-align: right;
+				display: block;
 			}
 		}
 	}

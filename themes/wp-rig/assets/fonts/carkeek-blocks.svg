@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg">
-<metadata>Copyright (C) 2023 by original authors @ fontello.com</metadata>
+<metadata>Copyright (C) 2025 by original authors @ fontello.com</metadata>
 <defs>
 <font id="carkeek-blocks" horiz-adv-x="1000" >
 <font-face font-family="carkeek-blocks" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
@@ -43,6 +43,14 @@
 <glyph glyph-name="left-dir" unicode="&#xe811;" d="M357 600v-500q0-14-10-25t-26-11-25 11l-250 250q-10 11-10 25t10 25l250 250q11 11 25 11t26-11 10-25z" horiz-adv-x="357.1" />
 
 <glyph glyph-name="right-dir" unicode="&#xe812;" d="M321 350q0-14-10-25l-250-250q-11-11-25-11t-25 11-11 25v500q0 15 11 25t25 11 25-11l250-250q10-10 10-25z" horiz-adv-x="357.1" />
+
+<glyph glyph-name="bluesky-brands-solid" unicode="&#xe813;" d="M797 274c-7 1-14 2-20 3 7-1 13-2 20-3z m-234 132c-51 100-190 284-319 375-124 87-171 72-202 58-36-16-42-71-42-103s18-265 29-304c38-128 174-171 300-157 6 1 12 1 19 2-6-1-13-2-19-2-184-28-347-94-133-332 235-244 322 52 367 202 44-150 96-435 362-202 200 202 55 305-128 332-7 0-14 1-20 2 7-1 13-2 20-2 125-14 260 29 299 157 11 39 29 272 29 304s-6 87-42 103c-31 14-78 29-202-58-129-91-267-275-318-375z" horiz-adv-x="1125" />
+
+<glyph glyph-name="x-twitter-brands-solid" unicode="&#xe814;" d="M698 756l138 0-302-344 355-468-278 0-217 284-248-284-139 0 323 368-340 444 284 0 197-259 227 259z m-49-730l77 0-493 652-82 0 498-652z" horiz-adv-x="875" />
+
+<glyph glyph-name="right-open-1" unicode="&#xf006;" d="M0 0q0 25 18 43l305 304-305 304q-18 18-18 44t18 43 44 18 43-18l390-391-390-391q-19-18-43-18t-44 18q-18 18-18 44z" horiz-adv-x="495.1" />
+
+<glyph glyph-name="left-open-1" unicode="&#xf007;" d="M0 353l391 391q18 18 43 18 24 0 43-18 18-18 18-44t-18-43l-304-304 304-305q18-17 18-43t-18-43q-18-18-43-18t-43 18z" horiz-adv-x="495.1" />
 
 <glyph glyph-name="twitter" unicode="&#xf099;" d="M904 622q-37-54-90-93 0-8 0-23 0-73-21-145t-64-139-103-117-144-82-181-30q-151 0-276 81 19-2 43-2 126 0 224 77-59 1-105 36t-64 89q19-3 34-3 24 0 48 6-63 13-104 62t-41 115v2q38-21 82-23-37 25-59 64t-22 86q0 49 25 91 68-83 164-133t208-55q-5 21-5 41 0 75 53 127t127 53q79 0 132-57 61 12 115 44-21-64-80-100 52 6 104 28z" horiz-adv-x="928.6" />
 

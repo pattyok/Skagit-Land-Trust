@@ -176,7 +176,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	private function make_twitter_button( $text = null ) {
 		$url   = get_the_permalink();
 		$title = get_the_title();
-		$tweet = '<a class="share-link" href="http://twitter.com/intent/tweet?text=' . $title . '&url=' . $url . '"' . $this->make_new_window() . ' title="Share on Twitter"><i class="icon-twitter" aria-hidden="true"></i>' . $text . '</a>';
+		$tweet = '<a class="share-link" href="http://twitter.com/intent/tweet?text=' . $title . '&url=' . $url . '"' . $this->make_new_window() . ' title="Share on Twitter"><i class="icon-x-twitter" aria-hidden="true"></i>' . $text . '</a>';
 		return $tweet;
 	}
 
@@ -203,6 +203,19 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$tweet = '<a class="share-link" href="http://www.linkedin.com/shareArticle?mini=true&url=' . $title . '&url=' . $url . '" ' . $this->make_new_window() . ' title="Share on LinkedIn"><i class="icon-linkedin" aria-hidden="true"></i>' . $text . '</a>';
 		return $tweet;
 	}
+	/**
+	 * Make Bluesky Links
+	 *
+	 * @param string $text optional text before the icon.
+	 */
+	private function make_bluesky_button( $text = null ) {
+		$url   = get_the_permalink();
+		$title = get_the_title();
+		$tweet = '<a class="share-link" href="https://bsky.app/intent/compose?text=' . $title . '&url=' . $url . '" ' . $this->make_new_window() . ' title="Share on Bluesky"><i class="icon-bluesky" aria-hidden="true"></i>' . $text . '</a>';
+		return $tweet;
+	}
+
+
 
 	/**
 	 * Make Print Link
@@ -224,6 +237,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		<li class="list-inline-item social-share-links__label label">Share: </li>
 		<li class="list-inline-item">' . $this->make_fb_button() . '</li>
 		<li class="list-inline-item">' . $this->make_twitter_button() . '</li>
+		<li class="list-inline-item">' . $this->make_bluesky_button() . '</li>
 		<li class="list-inline-item">' . $this->make_linkedin_button() . '</li>
 		<li class="list-inline-item">' . $this->make_email_button() . '</li>
 		<li class="list-inline-item">' . $this->make_print_button() . '</li>
