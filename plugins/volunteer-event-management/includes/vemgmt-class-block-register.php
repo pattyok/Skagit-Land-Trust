@@ -76,7 +76,7 @@ class VEMgmt_Register {
 	 * I think we have to switch away from ACF to register the fields to make it work though.
 	 */
 	function register_blocks() {
-		register_block_type( plugin_dir_path( dirname( __FILE__ ) ) . 'build/event-details' );
+		register_block_type( plugin_dir_path( dirname( __FILE__ ) ) . 'build/event-registration' );
 	}
 
 

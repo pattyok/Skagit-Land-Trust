@@ -31,7 +31,7 @@ namespace WP_Rig\WP_Rig;
 		get_template_part( 'template-parts/content/entry-content', get_post_type() );
 	?>
 	<?php if ( is_singular( 'skgt_location' ) ) : ?>
-		<?php //get_template_part( 'template-parts/content/related-posts' ); ?>
+		<?php get_template_part( 'template-parts/content/related-posts' ); ?>
 	<?php endif; ?>
 	<?php if ( !empty(block_template_part( get_post_type() . '-footer' ) ) ) : ?>
 		<div class="single-footer page-content">

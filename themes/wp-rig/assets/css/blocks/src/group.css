@@ -29,6 +29,11 @@
 			transform: translate(-50%, -50%);
 		}
 	}
+	&.page-intro,
+	&.is-style-page-intro {
+		padding-left: 2rem;
+		padding-right: 2rem;
+	}
 }
 
 @media (max-width: 780px) {
@@ -59,6 +64,11 @@
 		&.is-style-half-tone {
 			padding-top: var(--wp--preset--spacing--50);
 			background: linear-gradient(to bottom, var(--wp--preset--color--secondary) 43.33%, #fff 43.33%);
+		}
+		&.page-intro,
+		&.is-style-page-intro {
+			padding-left: 3rem;
+			padding-right: 3rem;
 		}
 	}
 }

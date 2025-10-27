@@ -464,11 +464,15 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	/** Add Event Date before title for Volunteer Events */
 	public function custom_vol_event_archive_meta_before_title($meta_before, $data) {
 		$event_date = get_field( 'event_start_date' );
+		$meta_before = '';
+		if ( has_term( 'featured', 'skgt_event_category' ) ) {
+			$meta_before .= '<div class="ck-item-event-featured">Featured Volunteer Opportunity</div>';
+		}
 		if ( ! empty( $event_date ) ) {
 			//Format date Day, Month Date
 			$event_date = new \DateTime( $event_date );
 			if ( $event_date ) {
-				$meta_before = '<div class="ck-item-event-date">' . esc_html( $event_date->format( 'l, M j' ) ) . '</div>';
+				$meta_before .= '<div class="ck-item-event-date">' . esc_html( $event_date->format( 'l, M j' ) ) . '</div>';
 			}
 		}
 		return $meta_before;

@@ -25,7 +25,10 @@ class VEMgmt_Helpers {
 	public function __construct() {
 		//add_action( 'rest_api_init', array( $this, 'pass_metafields_to_restapi' ) );
 		//add_action( 'init', array( $this, 'register_meta_fields' ), 20 ); // Using ACF for now...
+
+		add_filter( 'query_vars', array( $this, 'custom_query_vars' ) );
 	}
+
 
 	/** Get all shifts for an event
 
@@ -71,6 +74,7 @@ class VEMgmt_Helpers {
 	public static function get_shift_data_for_job( $event_id, $reg_link, $date_format = 'M j, Y', $time_format = 'g:i a' ) {
 		$shift_data = array();
 		$shifts = get_field( 'event_shifts', $event_id );
+
 		if ( empty( $shifts ) ) {
 			return $shift_data;
 		}
@@ -88,9 +92,8 @@ class VEMgmt_Helpers {
 				"vol_needed" => $vol_needed,
 				"reg_link"   => esc_url( add_query_arg(
 					array(
-						'shift_id' => $shift_id,
-						'event_wp_id' => $event_id,
-						'shift_wp_id' => $shift->ID,
+						'wp_event_id' => $event_id,
+						'wp_shift_id' => $shift->ID,
 					),
 					$reg_link
 				) ),
@@ -112,6 +115,15 @@ class VEMgmt_Helpers {
 
 		return $job_data;
 	}
+
+	/** Add custom query vars so we can use them to process the form */
+	public function custom_query_vars( $vars ) {
+		$vars[] = 'wp_event_id';
+		$vars[] = 'wp_shift_id';
+		return $vars;
+	}
+
+
 }
 
 return new VEMgmt_Helpers();

@@ -1,13 +1,19 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "volunteer-event-management/event-details",
+	"name": "volunteer-event-management/event-registration",
 	"version": "0.1.2",
-	"title": "Event Details",
+	"title": "Event Registration",
 	"category": "widgets",
 	"icon": "admin-home",
-	"description": "Add event meta to the registration page.",
+	"description": "A form wrapper that displays the event registration form.",
 	"example": {},
+	"attributes": {
+		"formID": {
+			"type": "string",
+			"default": ""
+		}
+	},
 	"supports": {
 		"multiple": false,
 		"align": ["wide", "full"],
