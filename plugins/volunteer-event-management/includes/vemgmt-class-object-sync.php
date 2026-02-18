@@ -88,45 +88,8 @@ class VEMgmt_Object_Sync {
 		if ( 'GW_Volunteers__Volunteer_Job__c' === $object_type ) {
 			$pull_allowed = false;
 
-			//if ( $object['GW_Volunteers__Display_on_Website__c'] == true) {
-				if ( ! empty( $object['GW_Volunteers__First_Shift__c'] ) ) {
-					try {
-						$dt_utc      = new DateTime( $object['GW_Volunteers__First_Shift__c'], new DateTimeZone( 'UTC' ) );
-						$dt_pacific  = clone $dt_utc;
-						$dt_pacific->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) );
-						$now = new DateTime( 'now', new DateTimeZone( 'America/Los_Angeles' ) );
-
-						// Only allow pull if the first shift is now or in the future
-						if ( $dt_pacific->getTimestamp() >= $now->getTimestamp() ) {
-							$pull_allowed = true;
-						} else {
-							$pull_allowed = false;
-						}
-					} catch ( Exception $e ) {
-						// If parsing fails, default to allowing the pull when display flag is set
-						$pull_allowed = true;
-					}
-				}
-			//}
-		} elseif ( 'GW_Volunteers__Volunteer_Shift__c' === $object_type ) {
-			$pull_allowed = false;
-			if ( ! empty( $object['GW_Volunteers__Start_Date_Time__c'] ) ) {
-				try {
-					$dt_utc      = new DateTime( $object['GW_Volunteers__Start_Date_Time__c'], new DateTimeZone( 'UTC' ) );
-					$dt_pacific  = clone $dt_utc;
-					$dt_pacific->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) );
-					$now = new DateTime( 'now', new DateTimeZone( 'America/Los_Angeles' ) );
-
-					// Only allow pull if the first shift is now or in the future
-					if ( $dt_pacific->getTimestamp() >= $now->getTimestamp() ) {
-						$pull_allowed = true;
-					} else {
-						$pull_allowed = false;
-					}
-				} catch ( Exception $e ) {
-					// If parsing fails, default to allowing the pull when display flag is set
-					$pull_allowed = true;
-				}
+			if ( $object['GW_Volunteers__Display_on_Website__c'] == true) {
+				$pull_allowed = true;
 			}
 		}
 		self::log( $pull_allowed );

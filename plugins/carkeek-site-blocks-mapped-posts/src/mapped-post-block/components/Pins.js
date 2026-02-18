@@ -50,6 +50,8 @@ import Pin from './Pin.js';
 				if (fitBounds) {
 						useEffect(() => {
 								const layer = groupRef.current; //get leaflet.markercluster instance
+								console.log('fitting bounds cluster', layer);
+								console.log(layer.getBounds());
 								if (data.length > 0 && layer) {
 										map.fitBounds(layer.getBounds(), {
 												paddingTopLeft: paddingTopLeft,
@@ -79,7 +81,7 @@ import Pin from './Pin.js';
 		}
 
 		useEffect(() => {
-
+				console.log('fitting bounds', bounds);
 				if (data.length > 0 && map) {
 						if (fitBounds) {
 								map.fitBounds(bounds, {
