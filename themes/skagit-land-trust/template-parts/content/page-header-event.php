@@ -38,7 +38,7 @@ $shift_data = \VEMgmt_Helpers::get_shift_data_for_job( get_the_ID(), '/volunteer
 
 					<li class="meta-value meta-signup">
 
-					<?
+					<?php
 					if ( $shift['vol_needed'] > 0 ) {
 							echo '<a class="button" href="' . esc_url( $shift['reg_link'] ) . '">Sign Up</a>';
 					} else {
