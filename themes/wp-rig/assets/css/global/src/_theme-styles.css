@@ -90,11 +90,35 @@ ul.ck-blocks-gallery-grid.fixed-images li.ck-blocks-gallery-grid-item img {
 .carkeek-archive.is-grid {
 	--modal-header-padding: 0;
 	& .ck-custom-archive-title_link {
-		color: $global;
+		color: var(--wp--preset--color--accent);
+		font-family: var(--wp--preset--font-family--headings-sans);
+		font-weight: 600;
+		font-size: var(--font-size-h4);
 	}
-	& a.ck-custom-archive-title_link:hover {
+
+	& .ck-modal-item-image:hover {
 		text-decoration: none;
+		& .ck-custom-archive-title_link {
+			text-decoration: underline;
+		}
 	}
+	& .ck-custom-archive-title_link:hover {
+		text-decoration: none;
+		& .ck-custom-archive-title {
+			text-decoration: underline;
+		}
+	}
+
+	&.post-type-people {
+		& .ck-custom-archive-item-meta-before-excerpt {
+			color: $global;
+			font-weight: 400;
+			text-decoration: none;
+		}
+
+	}
+
+
 	& .ck-custom-archive-excerpt {
 		font-size: 1.1875rem;
 	}
@@ -165,6 +189,7 @@ ul.ck-blocks-gallery-grid.fixed-images li.ck-blocks-gallery-grid-item img {
 		font-weight: 700;
 		font-size: var(--font-size-h3);
 		color: $primary;
+
 	}
 	& .ck-item-event-featured {
 		font-family: var(--wp--preset--font-family--headings-sans);

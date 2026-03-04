@@ -206,7 +206,6 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		// Enqueue Typekit fonts if using.
 		$typekit_fonts_url = $this->get_typekit_fonts_url();
 		if ( ! empty( $typekit_fonts_url ) ) {
-			error_log( 'adding typekit' );
 			wp_enqueue_style( 'wp-rig-typekit', $typekit_fonts_url, array(), null ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 		}
 

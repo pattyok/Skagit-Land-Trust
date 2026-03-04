@@ -442,7 +442,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			//Format date Day, Month Date
 			$event_date = new \DateTime( $event_date );
 			if ( $event_date ) {
-				$meta_before .= '<div class="ck-item-event-date">' . esc_html( $event_date->format( 'l, M j, Y' ) ) . '</div>';
+				$meta_before .= '<div class="ck-item-event-date">' . esc_html( $event_date->format( 'l, M j' ) ) . '</div>';
 			}
 		}
 		return $meta_before;
@@ -457,7 +457,6 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			'compare' => '>=',
 			'type'    => 'DATETIME',
 		);
-		error_log( print_r( $args, true ) );
 		return $args;
 	}
 
