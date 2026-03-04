@@ -2,7 +2,7 @@
 	display: none;
 }
 
-.gform_wrapper.gravity-theme {
+.page .gform_wrapper.gravity-theme {
 	& .gform_fields {
 		grid-row-gap: 1.5rem;
 	}

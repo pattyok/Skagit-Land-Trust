@@ -132,16 +132,16 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		foreach ( $css_files as $handle => $data ) {
 			$version = wp_rig()->get_asset_version( $css_dir . $data['file'] );
 			$asset   = $css_uri . wp_rig()->get_asset_path( $data['file'] );
-
+			$deps	= array();
 			/*
 			* Enqueue global stylesheets immediately and register the other ones for later use
 			* (unless preloading stylesheets is disabled, in which case stylesheets should be immediately
 			* enqueued based on whether they are necessary for the page content).
 			*/
 			if ( $data['global'] || ! $preloading_styles_enabled && is_callable( $data['preload_callback'] ) && call_user_func( $data['preload_callback'] ) ) {
-				wp_enqueue_style( $handle, $asset, array(), $version, $data['media'] );
+				wp_enqueue_style( $handle, $asset, $deps, $version, $data['media'] );
 			} else {
-				wp_register_style( $handle, $asset, array(), $version, $data['media'] );
+				wp_register_style( $handle, $asset, $deps, $version, $data['media'] );
 			}
 
 			wp_style_add_data( $handle, 'precache', true );

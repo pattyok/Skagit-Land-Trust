@@ -21,6 +21,7 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"],
+.button,
 a.button,
 .page-content .wFormContainer input[type="submit"],
 .menu-button a,
@@ -81,6 +82,18 @@ button.modal__close-btn {
 	background-image:none;
 	&:hover {
 		background-image: none;
+	}
+}
+.button-disabled,
+a.button-disabled {
+	background-color: $colorBorders;
+	border-color: $colorBorders;
+	color: #fff;
+	cursor: not-allowed;
+	&:hover {
+		background-color: $colorBorders;
+		border-color: $colorBorders;
+		color: #fff;
 	}
 }
 

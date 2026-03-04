@@ -5,9 +5,9 @@
         {
             "key": "field_68f7d325df62f",
             "label": "Event Start Date",
-            "name": "event_start_date",
+            "name": "event_start_date_time",
             "aria-label": "",
-            "type": "date_picker",
+            "type": "date_time_picker",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -16,28 +16,10 @@
                 "class": "",
                 "id": ""
             },
-            "display_format": "m\/d\/Y",
-            "return_format": "l, M j",
+            "display_format": "F j, Y g:i a",
+            "return_format": "F j, Y g:i a",
             "first_day": 1,
             "default_to_current_date": 0,
-            "allow_in_bindings": 0
-        },
-        {
-            "key": "field_68f80cbbdd9be",
-            "label": "Event Start Time",
-            "name": "event_start_time",
-            "aria-label": "",
-            "type": "time_picker",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "display_format": "g:i a",
-            "return_format": "g:i a",
             "allow_in_bindings": 0
         },
         {
@@ -178,5 +160,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1761337310
+    "modified": 1772584334
 }

@@ -41,6 +41,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		add_filter( 'term_link', array( $this, 'update_term_link' ), 10, 3 );
 		add_action( 'ck_custom_archive_layout_modal_dialog__after_title', array( $this, 'custom_archive_layout_modal_dialog_after_title' ) );
 		add_action( 'ck_custom_archive_vol_event__meta_before_title', array( $this, 'custom_vol_event_archive_meta_before_title' ), 10, 2 );
+
+		add_filter ( 'carkeek_block_custom_post_layout_vol_event__query_args', array( $this, 'carkeek_block_event_archive_query' ), 10, 2 );
 	}
 
 
@@ -305,7 +307,6 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	public function sitefooter_add_custom_shortcode() {
 		add_shortcode( 'site_copy', array( $this, 'site_footer_do_custom_shortcode' ) );
 		add_shortcode( 'newsletter_shortform', array( $this, 'email_short_form_do_shortcode' ) );
-		add_shortcode(  'echo_account_link', array( $this, 'echo_account_link_shortcode' ) );
 
 
 	}
@@ -366,37 +367,6 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	</form>';
 		return $html;
 	}
-
-	/** Shortcode to get account links based on user role
-	 * type can be collaborate or library
-	 * [echo_account_link type="collaborate" label="Collaborate"]
-	*/
-	public function echo_account_link_shortcode( $atts) {
-		$atts = shortcode_atts(
-			array(
-				'type' => 'collaborate',
-				'label'  => 'Collaborate',
-			),
-			$atts,
-			'echo_account_link'
-		);
-		$html = '';
-		if ( is_user_logged_in() ) {
-			$links = get_field( 'echo_' . $atts['type'] . '_links', 'option' );
-			$role = UM()->user()->get_role();
-			/** convert links to array by role */
-			foreach( $links as $link ) {
-				$links[ $link['role'] ] = $link['page'];
-			}
-			if ( isset( $links[ $role ] ) ) {
-				$html = '<a href="' . $links[ $role ] . '">' . $atts['label'] . '</a>';
-			}
-		} else {
-			$html .= '';
-		}
-		return $html;
-	}
-
 
 
 	/** Make custom header breadcrumb
@@ -463,7 +433,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 
 	/** Add Event Date before title for Volunteer Events */
 	public function custom_vol_event_archive_meta_before_title($meta_before, $data) {
-		$event_date = get_field( 'event_start_date' );
+		$event_date = get_field( 'event_start_date_time' );
 		$meta_before = '';
 		if ( has_term( 'featured', 'skgt_event_category' ) ) {
 			$meta_before .= '<div class="ck-item-event-featured">Featured Volunteer Opportunity</div>';
@@ -472,10 +442,23 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			//Format date Day, Month Date
 			$event_date = new \DateTime( $event_date );
 			if ( $event_date ) {
-				$meta_before .= '<div class="ck-item-event-date">' . esc_html( $event_date->format( 'l, M j' ) ) . '</div>';
+				$meta_before .= '<div class="ck-item-event-date">' . esc_html( $event_date->format( 'l, M j, Y' ) ) . '</div>';
 			}
 		}
 		return $meta_before;
+	}
+
+	/** Limit Event query to Events with and end date in the future */
+	public function carkeek_block_event_archive_query( $args, $data ) {
+		$args['meta_key'] = 'event_start_date_time';
+		$args['meta_query'] = array(
+			'key'     => 'event_start_date_time',
+			'value'   => current_time('Y-m-d H:i:s'),
+			'compare' => '>=',
+			'type'    => 'DATETIME',
+		);
+		error_log( print_r( $args, true ) );
+		return $args;
 	}
 
 }

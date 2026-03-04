@@ -137,8 +137,17 @@ class VEMgmt_Object_Sync {
 				$dt_pacific->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) );
 
 				// Update both date and time using Pacific time
-				update_post_meta( $wordpress_id, 'event_start_date', $dt_pacific->format( 'm/d/Y' ) );
-				update_post_meta( $wordpress_id, 'event_start_time', $dt_pacific->format( 'H:i:s' ) );
+				update_post_meta( $wordpress_id, 'event_start_date_time', $dt_pacific->format( 'Y-m-d H:i:s' ) );
+			}
+			if (isset( $sf_object['GW_Volunteers__Description__c'])) {
+				$description = $sf_object['GW_Volunteers__Description__c'];
+				// remove any style declarations that might be assigned
+				$description = preg_replace( '/style="[^"]*"/', '', $description );
+				// Update the post content with the cleaned description
+				wp_update_post( array(
+					'ID'           => $wordpress_id,
+					'post_content' => $description,
+				) );
 			}
 		}
 		if ( 'GW_Volunteers__Volunteer_Shift__c' === $sf_object['attributes']['type'] ) {
@@ -149,17 +158,18 @@ class VEMgmt_Object_Sync {
 				$dt_pacific = clone $dt_utc;
 				$dt_pacific->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) );
 				// Update both date and time using Pacific time
-				update_post_meta( $wordpress_id, 'vol_shift_start_date', $dt_pacific->format( 'm/d/Y' ) );
-				update_post_meta( $wordpress_id, 'vol_shift_start_time', $dt_pacific->format( 'H:i:s' ) );
+				update_post_meta( $wordpress_id, 'vol_shift_start_date_time', $dt_pacific->format( 'Y-m-d H:i:s' ) );
+
 				// Take duration from Salesforce field and calculate end time
 				$duration_hours = isset( $sf_object['GW_Volunteers__Duration__c'] ) ? floatval( $sf_object['GW_Volunteers__Duration__c'] ) : 2.0;
 				$dt_end = clone $dt_pacific;
 				$dt_end->modify( '+' . $duration_hours . ' hours' );
-				update_post_meta( $wordpress_id, 'vol_shift_end_time', $dt_end->format( 'H:i:s' ) );
+				update_post_meta( $wordpress_id, 'vol_shift_end_date_time', $dt_end->format( 'Y-m-d H:i:s' ) );
 
 				// Update relationship on job post if ACF Relationship field is used
 				if( class_exists('ACF') ) :
 				$job_sf_id = isset( $sf_object['GW_Volunteers__Volunteer_Job__c'] ) ? $sf_object['GW_Volunteers__Volunteer_Job__c'] : '';
+
 				if ( ! empty( $job_sf_id ) ) {
 					$args = array(
 						'post_type'      => 'vol_event',
@@ -173,8 +183,11 @@ class VEMgmt_Object_Sync {
 						$relationship_field = 'event_shifts'; // ACF Relationship field name on vol_shift post type
 						$job_post_id = $job_posts[0]->ID;
 						$existing_shifts = get_field( $relationship_field, $job_post_id );
+
 						if ( ! is_array( $existing_shifts ) ) {
 							$existing_shifts = array();
+						} else {
+							$existing_shifts = wp_list_pluck( $existing_shifts, 'ID' ); // Get array of shift post IDs
 						}
 						// Add current shift to the relationship field if not already present
 						if ( ! in_array( $wordpress_id, $existing_shifts ) ) {

@@ -46,10 +46,10 @@
         },
         {
             "key": "field_68f818a77c5d0",
-            "label": "Start Date",
-            "name": "vol_shift_start_date",
+            "label": "Start Date Time",
+            "name": "vol_shift_start_date_time",
             "aria-label": "",
-            "type": "date_picker",
+            "type": "date_time_picker",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -58,36 +58,18 @@
                 "class": "",
                 "id": ""
             },
-            "display_format": "m\/d\/Y",
-            "return_format": "l, M j",
+            "display_format": "F j, Y g:i a",
+            "return_format": "F j, Y g:i a",
             "first_day": 1,
             "default_to_current_date": 0,
             "allow_in_bindings": 0
         },
         {
-            "key": "field_68f818eb495da",
-            "label": "Start Time",
-            "name": "vol_shift_start_time",
-            "aria-label": "",
-            "type": "time_picker",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "display_format": "g:i a",
-            "return_format": "g:i a",
-            "allow_in_bindings": 0
-        },
-        {
             "key": "field_68f86459f7ace",
             "label": "End Time",
-            "name": "vol_shift_end_time",
+            "name": "vol_shift_end_date_time",
             "aria-label": "",
-            "type": "time_picker",
+            "type": "date_time_picker",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -96,8 +78,10 @@
                 "class": "",
                 "id": ""
             },
-            "display_format": "g:i a",
-            "return_format": "g:i a",
+            "display_format": "m\/d\/Y g:i a",
+            "return_format": "d\/m\/Y g:i a",
+            "first_day": 1,
+            "default_to_current_date": 0,
             "allow_in_bindings": 0
         },
         {
@@ -202,27 +186,6 @@
             "bidirectional_target": [
                 "field_68f8600acd074"
             ]
-        },
-        {
-            "key": "field_68f864b92549a",
-            "label": "",
-            "name": "",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
         }
     ],
     "location": [
@@ -244,5 +207,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1761111791
+    "modified": 1772584779
 }

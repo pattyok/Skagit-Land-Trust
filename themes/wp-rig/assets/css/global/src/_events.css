@@ -30,7 +30,30 @@
 		color: $primary;
 	}
 
-	& .event-registration-links{
-		align-self: flex-start;
+	& .meta-signup {
+
+		& .button {
+			margin-top: 1rem;
+			max-width: 125px;
+		}
+	}
+	& .full-shift-note {
+		font-size: 0.875rem;
+		color: $gray800;
+		font-style: italic;
 	}
 }
+
+.wp-block-volunteer-event-management-event-registration {
+	& .event-meta {
+		font-family: var(--wp--preset--font-family--headings-sans);
+		border-bottom: 1px solid $colorBorders;
+		padding-bottom: 1rem;
+		margin-bottom: 1rem;
+		& a {
+			font-size: var(--font-size-h4);
+			font-weight: var(--font-weight--bold);
+		}
+	}
+}
+

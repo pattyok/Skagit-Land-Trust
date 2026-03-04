@@ -55,15 +55,21 @@ class VEMgmt_Helpers {
 
 	/** Get Formatted Shift Dates and Times */
 	public static function get_formatted_shift_times( $shift_id, $date_format = 'M j, Y', $time_format = 'g:i a' ) {
-		$start_date = get_post_meta( $shift_id, 'vol_shift_start_date', true );
-		$start_time = get_post_meta( $shift_id, 'vol_shift_start_time', true );
-		$end_time = get_post_meta( $shift_id, 'vol_shift_end_time', true );
-
-		//format is unreliable from meta, so parse and reformat
-		$dt_start = DateTime::createFromFormat( 'm/d/Y H:i:s', $start_date . ' ' . $start_time );
-		$dt_end = DateTime::createFromFormat( 'm/d/Y H:i:s', $start_date . ' ' . $end_time );
+		$start_date_time = get_post_meta( $shift_id, 'vol_shift_start_date_time', true );
+		$end_date_time = get_post_meta( $shift_id, 'vol_shift_end_date_time', true );
+		if ( empty( $start_date_time ) || empty( $end_date_time ) ) {
+			return array(
+				'start_date_time' => '',
+				'start_date' => '',
+				'start_time' => '',
+				'end_time'   => '',
+			);
+		}
+		$dt_start = DateTime::createFromFormat( 'Y-m-d H:i:s', $start_date_time );
+		$dt_end = DateTime::createFromFormat( 'Y-m-d H:i:s', $end_date_time );
 
 		return array(
+			'start_date_time' => $start_date_time,
 			'start_date' => $dt_start->format( $date_format ),
 			'start_time' => $dt_start->format( $time_format ),
 			'end_time'   => $dt_end->format( $time_format ),
@@ -85,19 +91,26 @@ class VEMgmt_Helpers {
 
 			$vol_needed = get_post_meta( $shift->ID, 'vol_shift_volunteers_needed', true );
 			$shift_id = get_post_meta( $shift->ID, 'vol_shift_id', true );
-			$shift_data[] = array(
-				"start_date" => $shift_times['start_date'],
-				"start_time" => $shift_times['start_time'],
-				"end_time"   => $shift_times['end_time'],
-				"vol_needed" => $vol_needed,
-				"reg_link"   => esc_url( add_query_arg(
-					array(
-						'wp_event_id' => $event_id,
-						'wp_shift_id' => $shift->ID,
-					),
-					$reg_link
-				) ),
-			);
+
+			// only include shifts that have a start date/time in the future
+			$dt_start = DateTime::createFromFormat( 'Y-m-d H:i:s', $shift_times['start_date_time'] );
+			$dt_now = new DateTime();
+			if ( $dt_start > $dt_now ) {
+
+				$shift_data[] = array(
+					"start_date" => $shift_times['start_date'],
+					"start_time" => $shift_times['start_time'],
+					"end_time"   => $shift_times['end_time'],
+					"vol_needed" => $vol_needed,
+					"reg_link"   => esc_url( add_query_arg(
+						array(
+							'wp_event_id' => $event_id,
+							'wp_shift_id' => $shift->ID,
+						),
+						$reg_link
+					) ),
+				);
+			}
 		}
 		// if shift_data is more than 1, sort by start date/time ascending
 		usort( $shift_data, function ( $a, $b ) {
