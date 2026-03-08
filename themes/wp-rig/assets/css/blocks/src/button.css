@@ -7,6 +7,9 @@
 
 
 		&.has-primary-background-color {
+			&:visited {
+				color: #fff;
+			}
 
 			&:hover {
 				background-color: #fff !important;
@@ -15,20 +18,19 @@
 				text-decoration: none;
 			}
 
+
+		}
+		&.has-accent-background-color {
 			&:visited {
 				color: #fff;
 			}
-		}
-		&.has-accent-background-color {
 			&:hover {
 				background-color: #fff !important;
 				border-color: currentColor;
 				color: $accent1;
 				text-decoration: none;
 			}
-			&:visited {
-				color: #fff;
-			}
+
 		}
 	}
 
