@@ -22,7 +22,7 @@ get_header();
 		<?php
 		if ( have_posts() ) {
 
-				get_template_part( 'template-parts/content/page-header' );
+				get_template_part( 'template-parts/content/page-header', get_post_type() );
 
 			if ( ! is_singular() ) {
 				?>

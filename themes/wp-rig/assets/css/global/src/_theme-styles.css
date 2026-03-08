@@ -191,12 +191,7 @@ ul.ck-blocks-gallery-grid.fixed-images li.ck-blocks-gallery-grid-item img {
 		color: $primary;
 
 	}
-	& .ck-item-event-featured {
-		font-family: var(--wp--preset--font-family--headings-sans);
-		font-weight: 800;
-		font-size: 1.125rem;
-		text-transform: uppercase;
-	}
+
 	&.post-type-vol_event,
 	&.post-type-event {
 		& .ck-custom-archive-title {
@@ -272,3 +267,56 @@ ul.ck-blocks-gallery-grid.fixed-images li.ck-blocks-gallery-grid-item img {
 		}
 	}
 }
+
+.carkeek-events-archive {
+	& .carkeek-event-card__content {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		justify-content: center;
+	}
+	& .carkeek-event-card__slot {
+		&--date {
+			font-family: var(--wp--preset--font-family--headings);
+			font-weight: 700;
+			font-size: var(--font-size-h3);
+			color: $primary;
+		}
+		&--title {
+			font-family: var(--wp--preset--font-family--headings-sans);
+			font-weight: 600;
+			font-size: var(--font-size-h4);
+			color: $accent1;
+			& a {
+				font-weight: 600;
+			}
+		}
+	}
+	& .ck-event-block-featured {
+		font-family: var(--wp--preset--font-family--headings-sans);
+		font-weight: 800;
+		font-size: 1.125rem;
+		text-transform: uppercase;
+	}
+}
+
+.wp-block-carkeek-events-archive.has-secondary-background-color {
+	& .carkeek-event-card__slot {
+		&--date {
+			color: $white;
+		}
+	}
+}
+
+.carkeek-events-archive__list.is-list {
+	& .carkeek-event-card {
+		display: flex;
+		@media (--tablet-up) {
+			flex-direction: row-reverse;
+		}
+	}
+}
+
+
+
+

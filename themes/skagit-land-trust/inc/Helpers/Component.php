@@ -43,6 +43,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		add_action( 'ck_custom_archive_vol_event__meta_before_title', array( $this, 'custom_vol_event_archive_meta_before_title' ), 10, 2 );
 
 		add_filter ( 'carkeek_block_custom_post_layout_vol_event__query_args', array( $this, 'carkeek_block_event_archive_query' ), 10, 2 );
+
+		add_filter ( 'carkeek_events_block_before_slots', array( $this, 'carkeek_events_block_before_slots' ), 10, 3 );
 	}
 
 
@@ -446,6 +448,20 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			}
 		}
 		return $meta_before;
+	}
+
+	/** Add Featured Event Text before event if in list view */
+	public function carkeek_events_block_before_slots( $content, $post_id, $data ) {
+		if ('list' === $data['postLayout'] ) {
+			if ( has_term( 'featured', 'carkeek_event_category', $post_id ) ) {
+				$content = '<div class="ck-event-block-featured">Featured Event</div>';
+			} else if ( has_term( 'featured', 'skgt_event_category', $post_id ) ) {
+				$content = '<div class="ck-event-block-featured">Featured Volunteer Opportunity</div>';
+			}
+		}
+		return $content;
+
+
 	}
 
 	/** Limit Event query to Events with and end date in the future */
