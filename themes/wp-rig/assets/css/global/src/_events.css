@@ -19,28 +19,69 @@
 	& .event-details {
 		display: flex;
 		flex-direction: column;
-		gap: var(--wp--preset--spacing--30);
+		gap: var(--wp--preset--spacing--40);
 		flex-grow: 1;
+		& p {
+			margin: 0;
+		}
+	}
+	& .event-location {
+		& strong {
+			font-weight: 600;
+		}
 	}
 	& .event-meta {
 		font-size: 1.3125rem;
 	}
-	& .meta-label {
+	& .event-meta-label {
 		font-weight: var(--font-weight--bold);
 		color: $primary;
 	}
 
-	& .meta-signup {
+	& .event-cta {
 
-		& .button {
-			margin-top: 1rem;
-			max-width: 125px;
+		& a {
+			display: inline-block;
+
 		}
 	}
 	& .full-shift-note {
 		font-size: 0.875rem;
 		color: $gray800;
 		font-style: italic;
+	}
+}
+
+.carkeek-event-card__slot {
+	line-height: 1.35;
+}
+
+.carkeek-events-archive.is-grid {
+	gap: 2rem;
+	& img {
+		object-fit: cover;
+		width: 100%;
+		aspect-ratio: 4 / 3;
+		height: auto;
+	}
+	& .carkeek-event-card {
+		display: flex;
+		flex-direction: column;
+		gap: var(--wp--preset--spacing--20);
+	}
+}
+
+.single-carkeek_event {
+	.wp-element-button {
+		background-color: $accent1;
+		color: #fff;
+		border: 2px solid $accent1;
+		&:hover {
+			background-color: #fff;
+			color: $accent1;
+			border: 2px solid $accent1;
+			text-decoration: none;
+		}
 	}
 }
 

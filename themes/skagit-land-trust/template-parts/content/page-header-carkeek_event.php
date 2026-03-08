@@ -26,15 +26,24 @@ $event_link     = \CarkeekEvents_Display::get_event_link_html( $post_id );
 		<div class="event-details">
 
 				<?php if ( $date_range ) : ?>
-				<p class="event-dates"><?php echo wp_kses_post( $date_range ); ?></p>
+					<div class="event-dates">
+						<p class="event-meta-label">Date and Time:</p>
+						<p class="event-dates-value"><?php echo wp_kses_post( $date_range ); ?></p>
+					</div>
 			<?php endif; ?>
 
 			<?php if ( $location_html ) : ?>
-				<div class="event-location"><?php echo wp_kses_post( $location_html ); ?></div>
+
+				<div class="event-location">
+					<p class="event-meta-label">Location:</p>
+					<?php echo wp_kses_post( $location_html ); ?>
+				</div>
 			<?php endif; ?>
 
 			<?php if ( $organizer_html ) : ?>
-				<div class="event-organizer"><?php echo wp_kses_post( $organizer_html ); ?></div>
+
+				<div class="event-organizer">
+					<p class="event-meta-label">Organizer:</p><?php echo wp_kses_post( $organizer_html ); ?></div>
 			<?php endif; ?>
 
 			<?php if ( $event_link ) : ?>

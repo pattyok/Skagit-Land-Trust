@@ -5,16 +5,27 @@
 	& .wp-block-button__link {
 		word-break: normal;
 
-		&.has-accent-background-color,
+
 		&.has-primary-background-color {
 
 			&:hover {
-				background-color: transparent !important;
+				background-color: #fff !important;
 				border-color: currentColor;
-				color: #fff;
+				color: $primary;
 				text-decoration: none;
 			}
 
+			&:visited {
+				color: #fff;
+			}
+		}
+		&.has-accent-background-color {
+			&:hover {
+				background-color: #fff !important;
+				border-color: currentColor;
+				color: $accent1;
+				text-decoration: none;
+			}
 			&:visited {
 				color: #fff;
 			}

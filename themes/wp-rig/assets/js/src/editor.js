@@ -133,6 +133,22 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		},
 	] );
 
+	wp.blocks.registerBlockStyle( 'core/orange-button', [
+		{
+			name: 'orange-button',
+			label: 'Orange Button',
+		},
+	] );
+
+	wp.blocks.registerBlockVariation( 'core/buttons', {
+		name: 'buttons-orange',
+		title: 'Event Buttons',
+		icon: 'button',
+		innerBlocks: [ [ 'core/button', { backgroundColor: 'accent' } ] ],
+		scope: [ 'inserter' ],
+		keywords: [ 'button', 'register', 'event', 'cta' ],
+	} );
+
 	wp.blocks.registerBlockVariation( 'core/buttons', {
 		name: 'buttons-standard',
 		title: 'Buttons',

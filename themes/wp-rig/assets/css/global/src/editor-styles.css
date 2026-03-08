@@ -14,33 +14,8 @@
 @import "_woocommerce.css";
 @import "../../blocks/src/media-text.css";
 
-/** Override UM styles in the editor */
-.fa-classic,
-.fa-regular,
-.fa-solid,
-.far,
-.fas,
-.um-icon-within .fa-classic,
-.um-icon-within .fa-regular,
-.um-icon-within .fa-solid,
-.um-icon-within .far,
-.um-icon-within .fas {
-	font-family: var(--font-family-fa) !important;
-}
 
-button {
-	background-image: none;
-	&:hover {
-		background-image: none;
-	}
-}
-h1 {
-	font-size: 36px;
-}
 
-.components-button.is-tertiary:hover:not(:disabled) {
-	color: #fff;
-}
 
 .block-editor-block-list__layout.is-root-container > [class*="wp-block"] {
 	padding-left: 24px;
@@ -52,22 +27,6 @@ h1 {
 	width: 50%;
 }
 
-button {
-	background-color: #fff;
-	color: var(--wp--preset--color--secondary);
-	border: 1px solid var(--wp--preset--color--secondary);
-
-	&.tribe-editor__btn--label.trigger-dashboard-datetime {
-		border: none;
-		color: #000;
-		font-size: 16px;
-		text-transform: none;
-	}
-}
-
-select.tribe-editor__venue__select {
-	padding: 0 !important;
-}
 
 .hidden-front-end {
 	display: block;

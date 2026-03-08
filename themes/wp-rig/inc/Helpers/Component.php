@@ -44,6 +44,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 
 		add_filter ( 'carkeek_block_custom_post_layout_vol_event__query_args', array( $this, 'carkeek_block_event_archive_query' ), 10, 2 );
 
+		add_filter ( 'carkeek_events_location_display', array( $this, 'carkeek_events_block_location_display' ), 10, 2 );
 		add_filter ( 'carkeek_events_block_before_slots', array( $this, 'carkeek_events_block_before_slots' ), 10, 3 );
 	}
 
@@ -476,5 +477,12 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		return $args;
 	}
 
+	//** Customize Location Display for Events Block - add class arrow-link if the html contains a link */
+	public function carkeek_events_block_location_display( $location_html, $post_id ) {
+		if ( strpos( $location_html, '<a ' ) !== false ) {
+			$location_html = str_replace( '<a ', '<a class="arrow-link" ', $location_html );
+		}
+		return $location_html;
+	}
 }
 
