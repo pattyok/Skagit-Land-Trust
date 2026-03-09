@@ -317,6 +317,20 @@ ul.ck-blocks-gallery-grid.fixed-images li.ck-blocks-gallery-grid-item img {
 	}
 }
 
+.ck-custom-archive__load-more-wrap {
+	margin-bottom: var(--wp--preset--spacing--50) !important;
+	& .button {
+		background-color: transparent;
+		color: var(--wp--preset--color--accent);
+		border: none;
+		&::after {
+			content: "+";
+			display: inline-block;
+			margin-left: 0.25rem;
+		}
+	}
+
+}
 
 
 

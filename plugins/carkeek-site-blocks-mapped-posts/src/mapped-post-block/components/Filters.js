@@ -113,6 +113,17 @@ const FilterList = ({ locations, categories, onUpdateLocations, label }) => {
 			if (loc.acf && loc.acf[meta_key]) {
 				//check if loc.acf[meta_key] is an object or single value.
 				if (typeof loc.acf[meta_key] === 'object' && loc.acf[meta_key] !== null) {
+					//If it's an object, check if it has a value property and compare that to selected
+					if (loc.acf[meta_key].value) {
+						return arrayContains(selected, [loc.acf[meta_key].value]);
+					} else {
+						//If it's an object but doesn't have a value property, check if it's an array and compare to selected
+						if (Array.isArray(loc.acf[meta_key])) {
+							const matchingValue = loc.acf[meta_key].find(value => selected.includes(value));
+							return matchingValue !== undefined;
+						}
+					}
+
 					return arrayContains(selected, [loc.acf[meta_key].value]);
 				}
 				return arrayContains(selected, [loc.acf[meta_key]]);

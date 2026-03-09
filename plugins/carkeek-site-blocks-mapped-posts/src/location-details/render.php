@@ -5,8 +5,10 @@ $activities = get_the_terms( get_the_ID(), 'skgt_location_cat' );
 
 <ul class="location-details-list no-bullets">
 	<?php $loc_type = get_field( 'loc_type' ); ?>
-	<?php if ( ! empty( $loc_type ) && !empty( $loc_type['label'] ) ) : ?>
-		<li><strong>Property Type:</strong> <?php echo esc_html( $loc_type['label'] ); ?></li>
+	<?php if ( ! empty( $loc_type )  ) :
+		$loc_type = implode( ', ', $loc_type );
+		?>
+		<li><strong>Property Type:</strong> <?php echo esc_html( $loc_type ); ?></li>
 	<?php endif; ?>
 	<?php if ( ! empty( get_field( 'loc_date_added_notes' ) ) ) : ?>
 		<li><strong>Date Added:</strong> <?php echo esc_html( get_field( 'loc_date_added_notes' ) ); ?></li>
