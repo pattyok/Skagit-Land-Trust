@@ -45,6 +45,15 @@
 
 		}
 	}
+	& .event-shift {
+		display: flex;
+		flex-direction: column;
+		gap: var(--wp--preset--spacing--30);
+
+		& .button {
+			max-width: 125px;
+		}
+	}
 	& .full-shift-note {
 		font-size: 0.875rem;
 		color: $gray800;
