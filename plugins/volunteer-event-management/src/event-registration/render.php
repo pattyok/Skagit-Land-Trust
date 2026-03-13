@@ -20,15 +20,20 @@ $shift_id = get_query_var( 'wp_shift_id' );
 
 		// need this again in sf format
 		//$shift_time_sf = VEMgmt_Helpers::get_formatted_shift_times( $shift_id, 'y-m-d' );
-		$short_code = sprintf( '[gravityform title="false" description="false" id="%s" field_values="shift_id=%s&amp;job_id=%s&amp;campaign_id=%s&amp;hours=%s&amp;start=%s&amp;event_name=%s&amp;event_link=%s"]',
-			$attributes['formID'],
+		// Use the global form ID from settings; fall back to the per-block attribute for backward compatibility.
+		$vemgmt_settings = get_option( 'vemgmt_settings', array() );
+		$form_id         = ! empty( $vemgmt_settings['form_id'] ) ? $vemgmt_settings['form_id'] : $attributes['formID'];
+
+		$short_code = sprintf( '[gravityform title="false" ajax="true" description="false" id="%s" field_values="shift_id=%s&amp;job_id=%s&amp;campaign_id=%s&amp;hours=%s&amp;start=%s&amp;event_name=%s&amp;event_link=%s&amp;wp_shift_id=%s"]',
+			$form_id,
 			$sf_shift_id,
 			$sf_job_id,
 			$sf_campaign_id,
 			$sf_hours,
 			$sf_shift_times['start_date'],
 			$event_name,
-			$event_link
+			$event_link,
+			$shift_id
 		);
 
 		?>
@@ -45,8 +50,16 @@ $shift_id = get_query_var( 'wp_shift_id' );
 				- <?php echo esc_html( $shift_times['end_time'] ); ?>
 			</li>
 		</ul>
-		<?php echo do_shortcode( $short_code ); ?>
 		<?php
+		//only render the form if there are volunteer shifts available. If there are no shifts, the form will not submit and the user will get an error message.
+		$vol_needed = get_post_meta( $shift_id, 'vol_shift_volunteers_needed', true );
+		if ( $vol_needed > 0 ) {
+			echo do_shortcode( $short_code );
+		} else {
+			?>
+			<p><?php esc_html_e( 'Uh-oh! This shift has no available volunteer spots.', 'wp-rig' ); ?></p>
+			<?php
+		}
 	} else {
 		?>
 		<p><?php esc_html_e( 'Event details are not available. Please check your link and try again.', 'wp-rig' ); ?></p>

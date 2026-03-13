@@ -31,9 +31,9 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		label: 'Stretch Content',
 	} );
 
-	wp.blocks.registerBlockStyle( 'carkeek-blocks/extended-gallery', {
-		name: 'mosaic',
-		label: 'Mosaic Layout',
+	wp.blocks.registerBlockStyle( 'carkeek-blocks/custom-archive', {
+		name: 'borders',
+		label: 'Borders',
 	} );
 
 

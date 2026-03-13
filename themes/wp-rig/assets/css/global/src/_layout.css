@@ -27,8 +27,15 @@
 			margin-top: 0.3rem;
 		}
 	}
+	& > [class*="wp-block"] {
+		margin-bottom: var(--wp--preset--spacing--40);
+	}
 
-	& > [class*="wp-block-"] {
+	& > .wp-block-group,
+	& > .wp-block-cover,
+	& > .wp-block-media-text,
+	& > .wp-block-quote,
+	& > .wp-block-columns {
 		margin-bottom: $spacingDefault;
 
 
@@ -100,7 +107,7 @@
 		}
 
 		& + .wp-block-image {
-			margin-top: var(--wp--preset--spacing--40);
+			margin-top: var(--wp--preset--spacing--30);
 		}
 
 		& + .wp-block-separator {

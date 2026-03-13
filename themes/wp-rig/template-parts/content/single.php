@@ -12,7 +12,7 @@ namespace WP_Rig\WP_Rig;
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'entry page-content single-entry' ); ?>>
 
-	<?php if ( get_post_type() == 'post' ) : ?>
+	<?php if ( get_post_type() == 'post' || get_post_type() == 'acf_take_action' ) : ?>
 		<div class="entry-header">
 			<div class="entry-title">
 				<?php
