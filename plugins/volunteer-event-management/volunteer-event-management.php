@@ -124,6 +124,8 @@ if ( ! class_exists( 'VEMgmt' ) ) {
 			require_once VEMGMT_PLUGIN_DIR . 'includes/vemgmt-class-post-types.php';
 			require_once VEMGMT_PLUGIN_DIR . 'includes/vemgmt-class-object-sync.php';
 			require_once VEMGMT_PLUGIN_DIR . 'includes/vemgmt-class-helpers.php';
+			require_once VEMGMT_PLUGIN_DIR . 'includes/vemgmt-class-settings.php';
+			require_once VEMGMT_PLUGIN_DIR . 'includes/vemgmt-class-form-validation.php';
 		}
 
 		/**
