@@ -2,15 +2,29 @@
 /**
  * Template part for displaying the page header of events
  *
- * @package wp_rig
+ * @package skagit_land_trust
  */
 
 namespace WP_Rig\WP_Rig;
 
 use WP_Rig\WP_Rig\Helpers;
 
-$shift_data = array();
-$shift_data = \VEMgmt_Helpers::get_shift_data_for_job( get_the_ID(), '/volunteer-registration/', 'l, M j' );
+// Resolve settings and messages once before the loop — get_signup_button_html()
+// is called once per shift, so we avoid repeated get_option() calls inside it.
+$vemgmt_settings  = get_option( 'vemgmt_settings', array() );
+$registration_url = ! empty( $vemgmt_settings['registration_base_url'] )
+	? $vemgmt_settings['registration_base_url']
+	: '/volunteer-registration/';
+
+$full_msg   = ! empty( $vemgmt_settings['capacity_error_message'] )
+	? $vemgmt_settings['capacity_error_message']
+	: 'This event is currently full';
+
+$closed_msg = ! empty( $vemgmt_settings['registration_closed_message'] )
+	? $vemgmt_settings['registration_closed_message']
+	: 'Registration is closed for this event';
+
+$shift_data = \VEMgmt_Helpers::get_shift_data_for_job( get_the_ID(), $registration_url, 'l, M j' );
 
 ?>
 <div class="page-header-event">
@@ -30,22 +44,14 @@ $shift_data = \VEMgmt_Helpers::get_shift_data_for_job( get_the_ID(), '/volunteer
 					<ul class="event-meta event-shift no-bullets">
 					<li class="meta-value meta-date">
 						<?php echo esc_html( $shift['start_date'] ); ?><br/>
-						<?php echo esc_html($shift['start_time'] ); ?>
+						<?php echo esc_html( $shift['start_time'] ); ?>
 						<?php if ( $shift['end_time'] ) : ?>
 							- <?php echo esc_html( $shift['end_time'] ); ?>
 						<?php endif; ?>
 					</li>
 
 					<li class="meta-value meta-signup">
-
-					<?php
-					if ( $shift['vol_needed'] > 0 ) {
-							echo '<a class="button" href="' . esc_url( $shift['reg_link'] ) . '">Sign Up</a>';
-					} else {
-						echo '<div class="button button-disabled">Sign Up</div><span class="full-shift-note">This event is currently full</span>';
-					}
-
-					?>
+					<?php echo \VEMgmt_Helpers::get_signup_button_html( $shift, $full_msg, $closed_msg ); ?>
 </li>
 </ul>
 				<?php
