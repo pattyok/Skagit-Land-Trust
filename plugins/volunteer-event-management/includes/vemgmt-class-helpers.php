@@ -94,11 +94,12 @@ class VEMgmt_Helpers {
 	public static function is_registration_open( int $shift_id ): bool {
 		$vol_needed = (int) get_post_meta( $shift_id, 'vol_shift_volunteers_needed', true );
 		if ( $vol_needed <= 0 ) {
+			var_dump( 'closed: no volunteers needed' );
 			return false;
 		}
 
 		$start_str = get_post_meta( $shift_id, 'vol_shift_start_date_time', true );
-		$dt_start  = DateTimeImmutable::createFromFormat( 'Y-m-d H:i:s', $start_str );
+		$dt_start  = DateTimeImmutable::createFromFormat( 'Y-m-d H:i:s', $start_str, wp_timezone() );
 
 		// Fail open: missing or malformed meta should not silently block volunteers.
 		if ( ! $dt_start ) {
@@ -109,8 +110,7 @@ class VEMgmt_Helpers {
 		$cutoff_type  = $settings['cutoff_type'] ?? 'day_before_5pm';
 		$cutoff_hours = max( 1, (int) ( $settings['cutoff_hours'] ?? 24 ) );
 		$dt_cutoff    = self::compute_cutoff( $dt_start, $cutoff_type, $cutoff_hours );
-		$dt_now       = new DateTimeImmutable();
-
+		$dt_now       = current_datetime();
 		return $dt_now < $dt_cutoff;
 	}
 
