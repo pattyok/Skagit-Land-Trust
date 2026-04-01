@@ -77,6 +77,7 @@ class VEMgmt_Register {
 	 */
 	function register_blocks() {
 		register_block_type( plugin_dir_path( dirname( __FILE__ ) ) . 'build/event-registration' );
+		register_block_type( plugin_dir_path( dirname( __FILE__ ) ) . 'build/event-shifts' );
 	}
 
 

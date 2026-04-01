@@ -149,6 +149,13 @@
 		margin-top: var(--wp--preset--spacing--60);
 		margin-bottom: var(--wp--preset--spacing--60);
 	}
+
+}
+
+.single-entry.page-content {
+	& > :first-child {
+		margin-top: 0;
+	}
 }
 
 @media (--tablet-up) {

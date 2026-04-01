@@ -34,6 +34,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 */
 	public function initialize() {
 		add_action( 'init', array( $this, 'sitefooter_add_custom_shortcode' ) );
+		add_action( 'init', array( $this, 'register_template_layouts' ) );
 		add_filter( 'excerpt_more', array( $this, 'my_theme_excerpt_more' ) );
 		add_filter( 'excerpt_length', array( $this, 'my_theme_excerpt_length' ) );
 		add_action( 'acf/init', array( $this, 'acf_google_maps_api' ) );
@@ -484,5 +485,31 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		}
 		return $location_html;
 	}
+
+	/** Register template layouts for this component */
+	public function register_template_layouts() {
+		$post_type_object = get_post_type_object( 'carkeek_event' );
+		if ( $post_type_object ) {
+			$post_type_object->template = array(
+				array( 'carkeek-blocks/featured-image', array("align"=>"right") ),
+				array( 'core/group' , array(
+					'layout' => array('type' => 'constrained'),
+				), array(
+					array( 'carkeek-events/event-details' ),
+					array( 'core/buttons', array(), array(
+						array( 'core/button', array(
+							'backgroundColor' => 'accent',
+						) ),
+					) ),
+					array( 'core/paragraph', array(
+						'placeholder' => 'Add event description here...',
+					) ),
+				) )
+
+			);
+		}
+	}
+
+
 }
 

@@ -27,6 +27,14 @@ namespace WP_Rig\WP_Rig;
 		</div>
 	<?php endif; ?>
 
+	<?php if ( get_post_type() == 'vol_event' ) : ?>
+		<?php
+			$block_content = '<!-- wp:carkeek-blocks/featured-image {"align":"right"} /-->
+			<!-- wp:volunteer-event-management/event-shifts /-->';
+			echo do_blocks( $block_content );
+			?>
+	<?php endif; ?>
+
 	<?php
 		get_template_part( 'template-parts/content/entry-content', get_post_type() );
 	?>
