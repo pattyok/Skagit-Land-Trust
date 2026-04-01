@@ -139,7 +139,7 @@
 				{
 					"fluid": {
 						"max": "1.625rem",
-						"min": "1.5rem"
+						"min": "1.25rem"
 					},
 					"name": "Large",
 					"size": "1.625rem",
