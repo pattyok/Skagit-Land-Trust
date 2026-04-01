@@ -94,7 +94,6 @@ class VEMgmt_Helpers {
 	public static function is_registration_open( int $shift_id ): bool {
 		$vol_needed = (int) get_post_meta( $shift_id, 'vol_shift_volunteers_needed', true );
 		if ( $vol_needed <= 0 ) {
-			var_dump( 'closed: no volunteers needed' );
 			return false;
 		}
 
