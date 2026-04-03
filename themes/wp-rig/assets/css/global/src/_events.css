@@ -68,12 +68,11 @@
 	}
 }
 
-.wp-block-carkeek-events-event-details {
-	& .carkeek-event-label {
-		font-weight: var(--font-weight--bold);
-		color: $primary;
-	}
+.carkeek-event-label {
+	font-weight: var(--font-weight--bold);
+	color: $primary;
 }
+
 
 .carkeek-event-card__slot {
 	line-height: 1.35;
