@@ -51,6 +51,13 @@
                 "operator": "==",
                 "value": "vol_event"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "carkeek_event"
+            }
         ]
     ],
     "menu_order": 0,
@@ -63,5 +70,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1761262774
+    "modified": 1775666688
 }

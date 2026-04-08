@@ -5,18 +5,18 @@ if ( !is_array( $rel_posts ) ) {
 	$rel_posts = array();
 }
 $count = count( $rel_posts );
-if ( $count < 3 ) {
-	/*  Fill up with posts  */
-	$args = array(
-		'post_type'      => 'post',
-		'posts_per_page' => 3 - $count,
-	);
-	if ( $count > 0 ) {
-		$args['post__not_in'] = $rel_posts;
-	}
-	$additional_posts = get_posts( $args );
-	$rel_posts        = array_merge( $rel_posts, wp_list_pluck( $additional_posts, 'ID' ) );
+
+/*  Get 3 Posts in case the events are in the past  */
+$args = array(
+	'post_type'      => 'post',
+	'posts_per_page' => 3,
+);
+if ( $count > 0 ) {
+	$args['post__not_in'] = $rel_posts;
 }
+$additional_posts = get_posts( $args );
+$rel_posts        = array_merge( $rel_posts, wp_list_pluck( $additional_posts, 'ID' ) );
+
 
 ?>
 <div class="wp-block-group alignfull is-style-half-tone is-layout-constrained wp-block-group-is-layout-constrained">
@@ -26,18 +26,21 @@ if ( $count < 3 ) {
 <?php
 // only show 3 posts
 $n = 0;
-while ( $n < 3 ) :
+$shown = 0;
+while ( $shown < 3 ) :
 	if ( !isset( $rel_posts[ $n ] ) ) {
 		break;
 	}
 	$post_id = $rel_posts[ $n ];
 	$link_label = __( 'Read More', 'wp-rig' );
 	// if event make sure event date is in the future
-	if ( get_post_type( $post_id ) == 'skgt_event' || get_post_type( $post_id ) == 'vol_event' ) {
-		$event_date = get_field( 'event_start_date', $post_id );
+	if ( get_post_type( $post_id ) == 'carkeek_event' || get_post_type( $post_id ) == 'vol_event' ) {
+		$event_date = get_post_type( $post_id ) == 'vol_event' ? get_post_meta( $post_id, 'event_start_date', true ) : get_post_meta( $post_id, '_carkeek_event_start', true );
+		$event_date = date( 'Ymd', strtotime( $event_date ) );
 		$today      = date( 'Ymd' );
 		$link_label = __( 'Join Us', 'wp-rig' );
 		if ( $event_date < $today ) {
+			$n++;
 			continue;
 		}
 	}
@@ -59,6 +62,7 @@ while ( $n < 3 ) :
 		</div>
 	<?php
 	$n++;
+	$shown++;
 endwhile;
 wp_reset_postdata();
 ?>

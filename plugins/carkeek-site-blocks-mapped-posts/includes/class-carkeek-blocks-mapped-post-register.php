@@ -88,7 +88,6 @@ class CarkeekMappedPosts_Register {
 	/** Enqueue assets not auto included */
 	function carkeek_blocks_mapped_posts_block_enqueue_assets() {
 		if ( has_block( 'carkeek-site-blocks/mapped-posts-block' ) || has_block( 'carkeek-site-blocks/location-map' ) ) {
-			error_log('enqueuing script styles');
 			$dir        = plugin_dir_path( dirname( __FILE__ ) );
 			$shared_css = 'build/mapped-post-block/script.css';
 			wp_enqueue_style(
