@@ -230,7 +230,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 */
 	public function action_add_block_styles() {
 		$styled_blocks = array(
-			'core'           => array( 'button', 'column', 'cover', 'group', 'media-text', 'post-featured-image', 'list', 'separator', 'image', 'navigation', 'pullquote' ),
+			'core'           => array( 'button', 'column', 'cover', 'group', 'media-text', 'list', 'separator', 'image', 'navigation', 'pullquote' ),
 			'carkeek-blocks' => array( 'accordion', 'custom-archive', 'extended-gallery', 'featured-image' ),
 		);
 		foreach ( $styled_blocks as $prefix => $blocks ) {
