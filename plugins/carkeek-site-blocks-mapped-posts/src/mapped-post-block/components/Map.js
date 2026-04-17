@@ -9,6 +9,9 @@ import Pins from './Pins.js';
 import Filters from './Filters.js';
 import Legend from './Legend.js';
 
+// Set to true to enable legend click-to-filter, false to disable
+const legendInteractive = true;
+
 function MapCluster(props) {
     const { zoom,
 		locations,
@@ -28,6 +31,32 @@ function MapCluster(props) {
     let paramCats = [];
 
     const mapRef = useRef(null);
+    const [legendFilter, setLegendFilter] = useState([]);
+
+    const handleLegendFilterToggle = (slug) => {
+        setLegendFilter(prev =>
+            prev.includes(slug) ? prev.filter(s => s !== slug) : [...prev, slug]
+        );
+    };
+
+    const filterByLegend = (locs, slugs) => {
+        if (!slugs || slugs.length === 0) return locs;
+        return _.filter(locs, loc => {
+            if (!loc.acf || !loc.acf.loc_public_access) return false;
+            const val = loc.acf.loc_public_access;
+            if (Array.isArray(val)) {
+                return val.some(v => slugs.includes(v));
+            }
+            if (typeof val === 'object' && val !== null) {
+                return val.value ? slugs.includes(val.value) : false;
+            }
+            return slugs.includes(val);
+        });
+    };
+
+    const legendFilteredLocations = legendInteractive && legendFilter.length > 0
+        ? filterByLegend(visibleLocations, legendFilter)
+        : visibleLocations;
 
 
     const mapReady = !isMapLoading && !isCatLoading;
@@ -54,14 +83,19 @@ function MapCluster(props) {
 			boundsOptions: { padding: [50, 100], maxZoom: 12 },
     	}
 	}
-	console.log('boundsOptions:', boundsOptions);
 
 	const intro = document.getElementById('mapped-posts-map-intro').innerHTML;
 
 	const legendItems  = [
-		{ slug: 'public', label: 'Public Access' },
-		{ slug: 'private', label: 'No Public Access' }
-	]
+		{ slug: 'featured', label: 'Featured Property' },
+		{ slug: 'open', label: 'Open to the Public' },
+		{ slug: 'closed', label: 'Closed to the Public' }
+	];
+
+	const getLabel = (slug) => {
+		const cat = legendItems.find(cat => cat.slug === slug);
+		return cat ? cat.label : slug;
+	}
 
 	/** this method for getting the baselayer is specific to esri, to get the attribution correct, for other services you can use inside the <Map>
      * <TileLayer
@@ -99,11 +133,17 @@ function MapCluster(props) {
 			}
 		/>
             {mapReady &&
-                <Pins fitBounds={true} paddingTopLeft={[50, 50]} cluster={cluster} data={visibleLocations}  />
+                <Pins fitBounds={true} paddingTopLeft={[50, 50]} cluster={cluster} data={legendFilteredLocations} getLabel={getLabel} />
             }
             <ZoomControl position="topright" />
         	<AttributionControl position="bottomleft" />
-			<Legend items={legendItems} position="topleft" />
+			<Legend
+				items={legendItems}
+				position="topleft"
+				interactive={legendInteractive}
+				activeFilters={legendFilter}
+				onFilterChange={handleLegendFilterToggle}
+			/>
         </MapContainer>
 
         </div>

@@ -26,13 +26,21 @@ import Pin from './Pin.js';
 				bounds.extend(item.position);
 				//if (item.cat.slugs.length > 0) {
 				const title = _.get(item, 'title.rendered', '');
+				let accessLabels = [];
+				if (item.acf.loc_public_access) {
+					for (const access of item.acf.loc_public_access) {
+						accessLabels.push(props.getLabel(access));
+					}
+
+				}
 				Markers.push(
 					<Pin
 						key={item.id}
 						itemId={item.id}
 						title={item.title.rendered}
 						type={item.acf.loc_type}
-						icon={item.acf.loc_open_to_the_public ? "public" : "private"}
+						access={item.acf.loc_public_access}
+						accessLabels={accessLabels}
 						//cat={item.cat.slugs.join(" ")}
 						cat = {item.cats ? item.cats.join(" ") : ""}
 						center={item.position}
@@ -50,8 +58,6 @@ import Pin from './Pin.js';
 				if (fitBounds) {
 						useEffect(() => {
 								const layer = groupRef.current; //get leaflet.markercluster instance
-								console.log('fitting bounds cluster', layer);
-								console.log(layer.getBounds());
 								if (data.length > 0 && layer) {
 										map.fitBounds(layer.getBounds(), {
 												paddingTopLeft: paddingTopLeft,
@@ -81,7 +87,6 @@ import Pin from './Pin.js';
 		}
 
 		useEffect(() => {
-				console.log('fitting bounds', bounds);
 				if (data.length > 0 && map) {
 						if (fitBounds) {
 								map.fitBounds(bounds, {

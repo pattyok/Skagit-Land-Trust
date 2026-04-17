@@ -1,18 +1,25 @@
 .leaflet-marker-icon {
-	&.icon-private {
+	&.icon-closed {
 		svg path.marker {
 			fill: #264D53;
+		}
+	}
+	&.icon-featured {
+		svg path.marker {
+			fill: #9fb523;
 		}
 	}
 }
 
 .location-data-item {
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
+	margin-bottom: 0.25rem;
 	& > span {
 		display: inline-block;
 		width: 1.5rem;
-		height: 1.5rem;
+		height: 1.65rem;
+		flex: 0 0 auto;
 		margin-right: 0.5rem;
 		vertical-align: middle;
 		mask-size: contain;

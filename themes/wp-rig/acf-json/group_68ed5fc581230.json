@@ -45,6 +45,34 @@
             "ui_off_text": ""
         },
         {
+            "key": "field_69dfc4ba02e67",
+            "label": "Public Access",
+            "name": "loc_public_access",
+            "aria-label": "",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "open": "Open to the Public",
+                "featured": "Featured Property",
+                "closed": "Closed to the Public"
+            },
+            "default_value": [],
+            "return_format": "label",
+            "allow_custom": 0,
+            "allow_in_bindings": 0,
+            "layout": "vertical",
+            "toggle": 0,
+            "save_custom": 0,
+            "custom_choice_button_text": "Add new choice"
+        },
+        {
             "key": "field_68ed5fc59c8bd",
             "label": "Latitude",
             "name": "loc_lat",
@@ -196,5 +224,5 @@
     "description": "",
     "show_in_rest": 1,
     "display_title": "",
-    "modified": 1775248929
+    "modified": 1776280910
 }

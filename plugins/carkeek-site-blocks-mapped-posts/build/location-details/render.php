@@ -1,5 +1,7 @@
 <?php
 $activities = get_the_terms( get_the_ID(), 'skgt_location_cat' );
+$access = get_field('loc_public_access');
+
 ?>
 <div <?php echo get_block_wrapper_attributes( ); ?>>
 
@@ -24,7 +26,8 @@ $activities = get_the_terms( get_the_ID(), 'skgt_location_cat' );
 		<li class="location-data-item"><span class="icon-acreage" title="Acreage"></span> <?php echo esc_html( get_field( 'loc_acreage' ) ); ?> acres</li>
 	<?php endif; ?>
 
-	<li class="location-data-item"><span class="icon-access" title="Access"></span> <?php echo ( get_field('loc_open_to_the_public') ) ? 'Open to the Public' : 'Closed to the Public'; ?></li>
+	<li class="location-data-item"><span class="icon-access" title="Access"></span>
+	<?php the_field('loc_public_access') ?></li>
 	<?php if ( $activities && ! is_wp_error( $activities ) ) :
 		foreach ( $activities as $activity ) { ?>
 		<li class="location-data-item"><span class="icon-<?php echo esc_attr( $activity->slug ); ?>"></span>
@@ -34,7 +37,7 @@ $activities = get_the_terms( get_the_ID(), 'skgt_location_cat' );
 	<?php }
 	endif; ?>
 	</ul>
-	<?php if ( (get_field('loc_open_to_the_public') == true)  ) :
+	<?php if ( in_array('Open to the Public', $access) )  :
 
 		$link_settings = get_field( 'loc_get_directions' );
 		$link_type = isset( $link_settings['link_settings'] ) ? $link_settings['link_settings'] : 'lat_lng';

@@ -49,7 +49,6 @@ function MappedPostsArchiveEdit(props) {
 		let latlngfieldOptions = [];
 		if (postTypes && postTypeSelected) {
 			const typeObj = postTypes.find(({ slug }) => slug === postTypeSelected);
-			console.log('typeObj:', typeObj);
 
 			if (typeObj.metafields) {
 				latlngfieldOptions =
@@ -141,9 +140,6 @@ function MappedPostsArchiveEdit(props) {
             )}
         </>
     );
-	console.log('postTypeSelected:', postTypeSelected);
-	console.log( 'addressFieldType:', addressFieldType );
-	console.log( 'latlngfieldOptions:', latlngfieldOptions );
     const taxonomySelect = (
         <>
             <ToggleControl

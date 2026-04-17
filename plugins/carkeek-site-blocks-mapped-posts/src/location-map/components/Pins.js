@@ -25,6 +25,7 @@ import Pin from './Pin.js';
 				bounds.extend(item.position);
 				//if (item.cat.slugs.length > 0) {
 				const title = _.get(item, 'title.rendered', '');
+				console.log('adding marker', item);
 				Markers.push(
 					<Pin
 						key={item.id}

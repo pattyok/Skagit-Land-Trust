@@ -9,16 +9,21 @@ const FilterList = ({ locations, categories, onUpdateLocations, label }) => {
 	const [selectedSearch, setSelectedSearch] = useState(null);
 	const [selectedCats, setSelectedCats] = useState(null);
 	const [selectedType, setSelectedType] = useState(null);
+	const [selectedAccess, setSelectedAccess] = useState(null);
 	const [viewMode, setViewMode] = useState('search');
 	const [filterActive, setFilterActive] = useState(false);
 
 	const [typeOptions, setTypeOptions] = useState([]);
+	const [accessOptions, setAccessOptions] = useState([]);
 
 	function checkFilterActive() {
 		if (selectedCats && selectedCats.length > 0) {
 			return true;
 		}
 		if (selectedType && selectedType.length > 0) {
+			return true;
+		}
+		if (selectedAccess && selectedAccess.length > 0) {
 			return true;
 		}
 		if (selectedSearch) {
@@ -34,11 +39,19 @@ const FilterList = ({ locations, categories, onUpdateLocations, label }) => {
 		}
 	}, [selectedCats, locations]);
 
+
 	useEffect(() => {
 		if (locations && locations.length > 0){
 			filterLocationsACF('loc_type', selectedType);
 		}
 	}, [selectedType, locations]);
+
+
+	useEffect(() => {
+		if (locations && locations.length > 0){
+			filterLocationsACF('loc_public_access', selectedAccess);
+		}
+	}, [selectedAccess, locations]);
 
 	useEffect(() => {
 		if (locations && locations.length > 0){
@@ -50,13 +63,22 @@ const FilterList = ({ locations, categories, onUpdateLocations, label }) => {
 	useEffect(() => {
 		const active = checkFilterActive();
 		setFilterActive(active);
-	}, [selectedCats, selectedType, selectedSearch]);
+	}, [selectedCats, selectedType, selectedSearch, selectedAccess]);
 
 	//Set options for type filter
 	useEffect(() => {
 		if (locations && locations.length > 0){
 			const options = getFilterOptions(locations, 'loc_type');
 			setTypeOptions(options);
+
+		}
+	}, [locations]);
+
+	//Set options for access filter
+	useEffect(() => {
+		if (locations && locations.length > 0){
+			const options = getFilterOptions(locations, 'loc_public_access');
+			setAccessOptions(options);
 
 		}
 	}, [locations]);
@@ -123,7 +145,6 @@ const FilterList = ({ locations, categories, onUpdateLocations, label }) => {
 							return matchingValue !== undefined;
 						}
 					}
-
 					return arrayContains(selected, [loc.acf[meta_key].value]);
 				}
 				return arrayContains(selected, [loc.acf[meta_key]]);
@@ -143,6 +164,13 @@ const FilterList = ({ locations, categories, onUpdateLocations, label }) => {
 				{ label: 'Easement', value: 'easement' },
 				{ label: 'Trust-Assisted', value: 'trust-assisted' },
 				{ label: 'Trust-Owned', value: 'trust-owned' }
+			];
+			return options;
+		} else if (key1 === 'loc_public_access') {
+			options = [
+				{ label: 'Featured Property', value: 'featured' },
+				{ label: 'Open to the Public', value: 'open' },
+				{ label: 'Closed to the Public', value: 'closed' }
 			];
 			return options;
 		}
@@ -166,6 +194,7 @@ const FilterList = ({ locations, categories, onUpdateLocations, label }) => {
 				<FilterRadio
 					options={[
 						{ label: 'Property Name', value: 'search' },
+						{ label: 'Access', value: 'loc_public_access' },
 						{ label: 'Property Type', value: 'loc_type' },
 						{ label: 'Activities', value: 'category' }
 					]}
@@ -190,6 +219,13 @@ const FilterList = ({ locations, categories, onUpdateLocations, label }) => {
 					options={categories}
 					setSelectedOptions={setSelectedCats}
 					selectedOptions={selectedCats ? selectedCats : []}
+				/>
+			}
+			{viewMode === 'loc_public_access' &&
+				<FilterCheckbox
+					options={accessOptions}
+					setSelectedOptions={setSelectedAccess}
+					selectedOptions={selectedAccess ? selectedAccess : []}
 				/>
 			}
 			{viewMode === 'loc_type' &&

@@ -180,6 +180,9 @@ ul.archive-filters-list {
     .map-archive-popup {
         font-family: var(--wp--preset--font-family--global);
         font-size: 1.375rem;
+		& ul {
+			font-size: 1.25rem;
+		}
 		.popup-link {
 			color: var(--wp--preset--color--accent) !important;
 			&:hover {
@@ -258,6 +261,15 @@ ul.archive-filters-list {
 		align-items: center;
 		gap: 0.5rem;
 		font-size: 1rem;
+		&--interactive {
+			&:hover {
+				cursor: pointer;
+				text-decoration: underline;
+			}
+		}
+		&--active {
+			font-weight: 600;
+		}
 
 	}
 	.map-legend-icon {
@@ -267,7 +279,12 @@ ul.archive-filters-list {
 			width: 100%;
 			height: auto;
 		}
-		&.icon-private {
+		&.icon-featured {
+			svg path.marker {
+				fill: #9fb523;
+			}
+		}
+		&.icon-closed {
 			svg path.marker {
 				fill: #264D53;
 			}

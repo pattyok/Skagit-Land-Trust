@@ -9,12 +9,22 @@ const Pin = props => {
         center,
         title,
         link,
-		icon,
+		access,
+		accessLabels,
 		data,
-		image
+		image,
+		getLabel
     } = props;
 
 	const getMyIcon =() => {
+		let icon = "closed";
+		if (access) {
+			if (access.includes("featured")) {
+				icon = "featured";
+			} else if (access.includes("open")) {
+				icon = "open";
+			}
+		}
 		const iconHtml = `${iconsvg.marker}`;
 		const divIcon = L.divIcon({
             className: `archive-map-icon icon-${icon}`,
@@ -40,7 +50,7 @@ const Pin = props => {
 				{data.loc_location && <li className="location-data-item"><span className="icon-location" title="Location"></span> {data.loc_location}</li>}
 				{data.loc_acreage && <li className="location-data-item"><span className="icon-acreage" title="Acreage"></span> {`${data.loc_acreage} acres`}</li>}
 				<li className="location-data-item"><span className="icon-access" title="Access"></span>
-				{data.loc_open_to_the_public ? "Open to the Public" : "Not open to the Public"}</li>
+				{accessLabels.join(", ")}</li>
 				</ul>
 			</div>
         </div>
