@@ -183,6 +183,7 @@ const FilterList = ({ locations, categories, onUpdateLocations, label }) => {
 		setSelectedCats(null);
 		setSelectedType(null);
 		setFilterActive(false);
+		setSelectedAccess(null);
 		//Reset locations to all
 		onUpdateLocations(locations);
 	}

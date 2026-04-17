@@ -37,7 +37,7 @@ $access = get_field('loc_public_access');
 	<?php }
 	endif; ?>
 	</ul>
-	<?php if ( in_array('Open to the Public', $access) )  :
+	<?php if ( is_array( $access ) && in_array( 'Open to the Public', $access ) ) :
 
 		$link_settings = get_field( 'loc_get_directions' );
 		$link_type = isset( $link_settings['link_settings'] ) ? $link_settings['link_settings'] : 'lat_lng';
