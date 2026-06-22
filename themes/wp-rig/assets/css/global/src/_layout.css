@@ -30,7 +30,7 @@
 	& > [class*="wp-block"] {
 		margin-bottom: var(--wp--preset--spacing--40);
 	}
-
+	& > .wp-block-carkeek-blocks-widget-row,
 	& > .wp-block-group,
 	& > .wp-block-cover,
 	& > .wp-block-media-text,
