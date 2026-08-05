@@ -72,6 +72,16 @@ class VEMgmt_Object_Sync {
 	/**
 	 * Only pull event details over if display on website is true and the start date is not in the past.
 	 *
+	 * DESIGN NOTE — Why the date guard exists:
+	 * Object Sync decides create-vs-update purely by whether a row exists in
+	 * wp_object_sync_sf_object_map; it never checks whether the WordPress post is
+	 * still there (see Object_Sync_Sf_Salesforce_Pull::salesforce_pull_process_records,
+	 * "Is this Salesforce object already connected to at least one WordPress object?").
+	 * VEMgmt_Cleanup deletes the map row along with each expired post, so without this
+	 * guard any later edit to a past Job/Shift in Salesforce would silently recreate
+	 * the post cleanup just removed. Both rules read the same
+	 * vemgmt_settings['cleanup_retention_days'] value so they can never drift apart.
+	 *
 	 * @param string $allowed current rule on from sf.
 	 * @param string $object_type Type of object we are working with.
 	 * @param array  $object the object we are pulling.
@@ -80,10 +90,13 @@ class VEMgmt_Object_Sync {
 		self::log( 'pull_allowed' );
 		self::log( $object_type );
 		self::log( $object );
-		$pull_allowed = true;
 
-		self::log( $object_type );
-		self::log( $object );
+		// Respect an upstream veto rather than overriding it back to true.
+		if ( ! $allowed ) {
+			return $allowed;
+		}
+
+		$pull_allowed = true;
 
 		if ( 'GW_Volunteers__Volunteer_Job__c' === $object_type ) {
 			$pull_allowed = false;
@@ -91,9 +104,56 @@ class VEMgmt_Object_Sync {
 			if ( $object['GW_Volunteers__Display_on_Website__c'] == true) {
 				$pull_allowed = true;
 			}
+
+			// Do not let a Salesforce edit resurrect a Job that cleanup already removed.
+			if ( $pull_allowed && self::is_past_retention( $object['GW_Volunteers__First_Shift__c'] ?? '' ) ) {
+				$pull_allowed = false;
+			}
 		}
+
+		if ( 'GW_Volunteers__Volunteer_Shift__c' === $object_type ) {
+			// Same guard for Shifts, keyed on their own start time.
+			if ( self::is_past_retention( $object['GW_Volunteers__Start_Date_Time__c'] ?? '' ) ) {
+				$pull_allowed = false;
+			}
+		}
+
 		self::log( $pull_allowed );
 		return $pull_allowed;
+	}
+
+	/**
+	 * Is this Salesforce timestamp older than the cleanup retention window?
+	 *
+	 * Fails open (returns false, meaning "allow the pull") on empty or unparseable
+	 * input — bad sync data must never silently block a legitimate record.
+	 *
+	 * @param string $sf_datetime Raw Salesforce datetime string, expected UTC.
+	 * @return bool True when the timestamp is old enough that cleanup would delete it.
+	 */
+	private static function is_past_retention( $sf_datetime ) {
+		if ( empty( $sf_datetime ) ) {
+			return false;
+		}
+
+		try {
+			$dt_utc = new DateTime( $sf_datetime, new DateTimeZone( 'UTC' ) );
+		} catch ( Exception $e ) {
+			return false;
+		}
+
+		// Match the Pacific conversion used everywhere else in this class.
+		$dt_pacific = clone $dt_utc;
+		$dt_pacific->setTimezone( new DateTimeZone( 'America/Los_Angeles' ) );
+
+		$settings       = get_option( 'vemgmt_settings', array() );
+		$retention_days = max( 0, (int) ( $settings['cleanup_retention_days'] ?? 7 ) );
+
+		// DateTime and DateTimeImmutable compare by absolute instant, so the
+		// differing timezones on these two objects are handled correctly.
+		$cutoff = current_datetime()->modify( '-' . $retention_days . ' days' );
+
+		return $dt_pacific < $cutoff;
 	}
 
 	/** Modify the pull parameters to include more fields.
