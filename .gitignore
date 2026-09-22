@@ -17,3 +17,4 @@ themes/*/bower_components/
 
 !plugins/.gitignore
 !mu-plugins/crk-functionality-plugin.php
+!mu-plugins/action-scheduler-failure-alerts.php
