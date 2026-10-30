@@ -129,7 +129,7 @@ function MapCluster(props) {
 		<VectorBasemapLayer
 			name="ArcGIS:Streets"
 			token={
-				"AAPTxy8BH1VEsoebNVZXo8HurDipqhpEp1BTW9kCT8CIbsLhsRKSL8bzWv9KE1VvWJRZH_mMQtfek8WWYOd8X3BajIUD1ZTeWIpL0Voyxxiho5XgmUJlu9yj24UVxvGnBhKtM42sXmkSeukhRL0gQCW3QuyEpjZ7ukBs1qF0UJxTONlNnZgb7_4T__jlaXIJh1xsHgWEmDf7uJ-1kSz10DOQCzF7VAWfhh3C8V5Nj9o6q1o.AT1_ayS4xCp7"
+				"AAPTaMH9w_GFkp5y4XBA6V4Z_4Q..Z4eSDiQmiJCSE4RL6XoWA2QIE6zLRXJ7HUOom4cvBdiPTb1avVHE-KdeX8gaNyg2dli3Oqh2ZjjgNVCjrvnhFcpVC40me41YQ_Kp5px0-oMj-d3aTD-TrxAl2pwMNTNMVPtXlzREQQyHqTgL1dCDslT55_6URg5H_35w281sq_43hWaj-LoAW42o23Y-Y7DDmSOR0t7UgjSC2FPjT131tyCCmw_awIBxYnovjq3_pZnmUdBf7sX36w..AT1_ayS4xCp7npm "
 			}
 		/>
             {mapReady &&
