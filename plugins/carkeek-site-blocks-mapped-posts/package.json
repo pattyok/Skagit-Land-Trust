@@ -20,6 +20,8 @@
 		"html-entities": "^2.6.0"
 	},
 	"dependencies": {
+		"esri-leaflet": "^3.0.19",
+		"esri-leaflet-vector": "^4.3.2",
 		"leaflet": "^1.9.3",
 		"maplibre-gl": "^2.4.0",
 		"query-string": "^8.1.0",
@@ -32,5 +34,10 @@
 		"react-select": "^5.10.2",
 		"react-tabs": "^4.2.1",
 		"save-dev": "^0.0.1-security"
+	},
+	"overrides": {
+		"react-esri-leaflet": {
+			"esri-leaflet-vector": "$esri-leaflet-vector"
+		}
 	}
 }
